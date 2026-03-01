@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="fr" id="doc">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Charte Officielle — Muslimah Society</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+/* ══════════════════════════════════════════════
+   DESIGN SYSTEM UNIFIÉ — Muslimah Society
+   Charte Officielle
+   ══════════════════════════════════════════════ */
+:root {
+  --blush:#e8d5d0; --blush-d:#ddc8c2; --blush-l:#f5ede9;
+  --rose:#c9a8a0; --rose-d:#b08880;
+  --gold:#c9a84c; --gold-l:#e0c87a; --gold-p:#f0e4c0;
+  --ivory:#fdf8f2; --cream:#faf4ec;
+  --text:#3d2b25; --text-m:#7a5a50; --text-l:#a89080;
+  --mauve:#c4b0c0; --lavender:#d8d0e4; --sage:#c8d4c0;
+  --max:1060px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cormorant Garamond',serif;background:var(--ivory);color:var(--text);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;}
+a{color:inherit;text-decoration:none;}
+button{font-family:inherit;cursor:pointer;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px;}
+@media(min-width:980px){.wrap{padding:0 48px;}}
+
+/* ── HEADER ── */
+.ms-header{position:sticky;top:0;z-index:800;background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);backdrop-filter:blur(10px);}
+.ms-header .inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.ms-logo{display:flex;align-items:center;gap:12px;min-width:0;}
+.ms-logo-mark{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,rgba(255,252,245,1),rgba(240,228,200,.55));box-shadow:0 0 12px rgba(201,168,76,.15);flex-shrink:0;overflow:hidden;}
+.ms-logo-mark img{width:100%;height:100%;object-fit:cover;}
+.ms-logo-mark .fallback{font-family:'Cinzel',serif;font-size:13px;font-weight:500;color:var(--gold);}
+.ms-logo-name{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--text);white-space:nowrap;}
+.ms-logo-sub{font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:var(--text-l);letter-spacing:1px;margin-top:2px;}
+.ms-nav{display:none;align-items:center;gap:18px;}
+.ms-nav a{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-m);transition:color .3s;}
+.ms-nav a:hover{color:var(--gold);}
+@media(min-width:900px){.ms-nav{display:flex;}}
+.ms-right{display:flex;align-items:center;gap:10px;}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:8px 18px;min-height:42px;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;border:1.5px solid transparent;transition:all .3s;touch-action:manipulation;}
+.btn:active{transform:translateY(1px);}
+.btn-member{border-color:var(--gold);color:var(--gold);background:transparent;}
+.btn-member:hover{background:var(--gold);color:#fff;box-shadow:0 8px 24px rgba(201,168,76,.2);}
+.btn-vip{border-color:rgba(176,136,128,.8);color:#fff;background:var(--rose-d);}
+.btn-vip:hover{background:var(--rose);box-shadow:0 8px 24px rgba(176,136,128,.25);}
+.btn-primary{border-color:var(--gold);background:var(--gold);color:#fff;}
+.btn-primary:hover{background:var(--gold-l);box-shadow:0 10px 28px rgba(201,168,76,.22);}
+.btn-primary[disabled]{opacity:.5;cursor:not-allowed;box-shadow:none;transform:none;}
+.btn-ghost{border-color:rgba(201,168,76,.25);color:var(--text-m);background:rgba(255,252,245,.8);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+/* Switch langue */
+.lang{display:flex;gap:6px;align-items:center;}
+.lang button{min-height:36px;padding:5px 10px;border-radius:30px;border:1px solid rgba(201,168,76,.2);background:rgba(255,252,245,.8);color:var(--text-m);font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;transition:all .3s;}
+.lang button.active{border-color:rgba(201,168,76,.5);color:var(--gold);background:rgba(201,168,76,.08);}
+.lang button:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ── HERO ── */
+.hero{position:relative;padding:56px 0 40px;background:linear-gradient(160deg,var(--blush-l) 0%,var(--blush) 35%,rgba(216,208,228,.6) 75%,var(--blush-l) 100%);border-bottom:1px solid rgba(201,168,76,.12);overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(800px 350px at 50% 0%,rgba(255,245,235,.65),transparent 60%);pointer-events:none;}
+.hero .wrap{position:relative;z-index:2;text-align:center;}
+.chip{display:inline-block;padding:6px 16px;border-radius:30px;border:1px solid var(--gold-p);background:rgba(255,252,245,.85);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+h1{font-family:'Cinzel',serif;font-weight:500;font-size:clamp(26px,5vw,44px);letter-spacing:3px;color:var(--text);margin-bottom:16px;line-height:1.2;}
+.tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.5vw,21px);font-style:italic;color:var(--text-m);line-height:1.85;max-width:820px;margin:0 auto 18px;}
+.hero-meta{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text-l);}
+.hero-meta .dot{opacity:.5;}
+
+/* Ornement */
+.orn{display:flex;justify-content:center;padding:20px 0;}
+
+/* ── LAYOUT ── */
+.page{padding:28px 0 64px;}
+.layout{display:grid;grid-template-columns:1fr;gap:16px;}
+@media(min-width:900px){.layout{grid-template-columns:280px 1fr;gap:20px;}}
+
+/* ── TOC ── */
+.toc{position:sticky;top:90px;align-self:start;background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;box-shadow:0 8px 32px rgba(61,43,37,.08);overflow:hidden;}
+.toc-head{padding:14px 18px;background:linear-gradient(155deg,rgba(232,213,208,.45),rgba(216,208,228,.2));border-bottom:1px solid rgba(201,168,76,.14);}
+.toc-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);}
+.toc-body{padding:8px 10px 12px;}
+.toc a{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:2px;font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-m);min-height:42px;transition:all .2s;}
+.toc a:hover{background:rgba(201,168,76,.07);color:var(--gold);}
+.toc a.active{background:rgba(201,168,76,.1);color:var(--gold);}
+.toc small{font-family:'Cinzel',serif;font-size:10px;color:var(--text-l);font-style:normal;}
+@media(max-width:899px){.toc{position:relative;top:auto;}}
+
+/* ── CARDS ── */
+.card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;box-shadow:0 8px 32px rgba(61,43,37,.08);overflow:hidden;position:relative;}
+.card+.card{margin-top:16px;}
+.card::before{content:'';position:absolute;top:6px;left:6px;width:14px;height:14px;border-top:1px solid var(--gold-p);border-left:1px solid var(--gold-p);}
+.card::after{content:'';position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-bottom:1px solid var(--gold-p);border-right:1px solid var(--gold-p);}
+.card-head{padding:16px 20px;background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.18));border-bottom:1px solid rgba(201,168,76,.14);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.card-head h2{font-family:'Cinzel',serif;font-size:17px;font-weight:500;letter-spacing:1px;color:var(--text);line-height:1.3;}
+.badge{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid rgba(201,168,76,.25);background:rgba(255,252,245,.85);color:var(--gold);white-space:nowrap;flex-shrink:0;}
+.card-body{padding:20px 22px 24px;}
+.card-body p{font-family:'Cormorant Garamond',serif;font-size:18px;line-height:1.9;color:var(--text-m);margin-bottom:14px;}
+.card-body p:last-child{margin-bottom:0;}
+.card-body ul{list-style:none;margin:8px 0 14px;}
+.card-body li{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text-m);line-height:1.85;padding:6px 0 6px 22px;position:relative;border-bottom:1px solid rgba(201,168,76,.08);}
+.card-body li:last-child{border-bottom:none;}
+.card-body li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:9px;top:10px;}
+.card-body strong{color:var(--text);font-weight:600;}
+
+.hr{height:1px;background:rgba(201,168,76,.14);margin:16px 0;}
+
+.kicker{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block;}
+
+.note{border-left:3px solid var(--gold);padding:14px 16px;background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 3px 3px 0;margin-top:14px;}
+.note strong{color:var(--text);}
+.note span{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text-m);}
+
+/* ── ENGAGEMENT ── */
+.callout{padding:18px;border-radius:3px;border:1px solid rgba(201,168,76,.2);background:linear-gradient(135deg,rgba(232,213,208,.12),rgba(216,208,228,.08));margin-top:14px;display:grid;gap:12px;}
+.accept-row{display:flex;align-items:flex-start;gap:12px;padding:14px;border-radius:2px;border:1px solid rgba(201,168,76,.2);background:rgba(255,252,245,.75);}
+.accept-row input[type="checkbox"]{width:18px;height:18px;margin-top:4px;accent-color:var(--gold);cursor:pointer;flex-shrink:0;}
+.accept-row label{font-family:'Cormorant Garamond',serif;font-size:17px;line-height:1.75;color:var(--text-m);cursor:pointer;}
+.actions{display:flex;gap:10px;flex-wrap:wrap;}
+.accept-hint{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text-l);}
+
+/* ── FOOTER ── */
+.ms-footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gold-p);padding:32px 0 22px;}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+.footer-copy{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
+.footer-quote{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--text-m);}
+.footer-links{display:flex;gap:14px;flex-wrap:wrap;}
+.footer-links a{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);transition:color .3s;}
+.footer-links a:hover{color:var(--gold);}
+
+/* ── RTL (arabe) ── */
+[dir="rtl"] body{text-align:right;}
+[dir="rtl"] .ms-logo{flex-direction:row-reverse;}
+[dir="rtl"] .ms-nav{direction:rtl;}
+[dir="rtl"] .toc a{direction:rtl;}
+[dir="rtl"] .card-body ul{padding-right:0;}
+[dir="rtl"] .card-body li{padding-right:22px;padding-left:0;}
+[dir="rtl"] .card-body li::before{right:0;left:auto;}
+[dir="rtl"] .note{border-left:none;border-right:3px solid var(--gold);}
+[dir="rtl"] .card::before{left:auto;right:6px;}
+[dir="rtl"] .card::after{right:auto;left:6px;}
+
+/* ── MOBILE ── */
+.btn-desktop{display:none;}
+@media(min-width:720px){
+  .btn-desktop{display:inline-flex;}
+}
+@media(max-width:719px){
+  .ms-header .inner{height:60px;gap:8px;}
+  .ms-logo-name{font-size:11px;letter-spacing:2px;}
+  .ms-logo-sub{display:none;}
+  .ms-logo-mark{width:34px;height:34px;}
+  .lang button{padding:4px 7px;font-size:9px;min-height:30px;}
+  .ms-nav{display:none;}
+  .hero{padding:36px 0 26px;}
+  .card-head h2{font-size:15px;}
+  .card-body p,.card-body li{font-size:16px;}
+}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ms-header">
+  <div class="wrap">
+    <div class="inner">
+      <a class="ms-logo" href="index.html" aria-label="Muslimah Society">
+        <div class="ms-logo-mark">
+          MS</span>')"/>
+        </div>
+        <div>
+          <div class="ms-logo-name" data-i18n="brand">MUSLIMAH SOCIETY</div>
+          <div class="ms-logo-sub" data-i18n="brandSub">by Institut Al Muta'allim</div>
+        </div>
+      </a>
+
+      <nav class="ms-nav" aria-label="Navigation">
+        <a href="index.html">Accueil</a>
+        <a href="la-plume/index.html">La Plume</a>
+        <a href="#preambule" data-i18n="navPreambule">Préambule</a>
+        <a href="#piliers" data-i18n="navPiliers">Piliers</a>
+        <a href="#engagement" data-i18n="navEngagement">Engagement</a>
+      </nav>
+
+      <div class="ms-right">
+        <div class="lang" aria-label="Langue">
+          <button type="button" class="active" data-lang="fr">FR</button>
+          <button type="button" data-lang="en">EN</button>
+          <button type="button" data-lang="ar">AR</button>
+        </div>
+        <a class="btn btn-member btn-desktop" href="index.html#programmes" data-i18n="navMember">Member</a>
+        <a class="btn btn-vip btn-desktop" href="index.html#programmes" data-i18n="navVip">VIP</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="chip" data-i18n="chip">Document Institutionnel</div>
+    <h1 data-i18n="title">Charte Officielle</h1>
+    <p class="tagline" data-i18n="tagline">
+      Muslimah Society est un cercle féminin exigeant, fondé pour former une génération de femmes enracinées et raffinées,
+      méthodologiquement alignées avec la compréhension des salaf as-salih.
+    </p>
+    <div class="hero-meta">
+      <span data-i18n="metaV">Version 1.0</span>
+      <span class="dot">•</span>
+      <span data-i18n="metaA">Applicable à Member &amp; VIP</span>
+      <span class="dot">•</span>
+      <span data-i18n="metaL">Alger • Institut Al Muta'allim</span>
+    </div>
+  </div>
+</section>
+
+<!-- ORNEMENT -->
+<div class="orn">
+  <svg width="280" height="24" viewBox="0 0 280 24" fill="none">
+    <line x1="0" y1="12" x2="108" y2="12" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+    <path d="M116 12L120 6L124 12L120 18Z" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+    <circle cx="133" cy="12" r="3" fill="#c9a84c" opacity=".5"/>
+    <circle cx="140" cy="12" r="5" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+    <circle cx="140" cy="12" r="1.5" fill="#c9a84c" opacity=".6"/>
+    <circle cx="147" cy="12" r="3" fill="#c9a84c" opacity=".5"/>
+    <path d="M156 12L160 6L164 12L160 18Z" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+    <line x1="172" y1="12" x2="280" y2="12" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+  </svg>
+</div>
+
+<!-- CONTENU PRINCIPAL -->
+<main class="page">
+  <div class="wrap">
+    <div class="layout">
+
+      <!-- SOMMAIRE -->
+      <aside class="toc" aria-label="Sommaire">
+        <div class="toc-head">
+          <p class="toc-title" data-i18n="toc">Sommaire</p>
+        </div>
+        <div class="toc-body">
+          <a href="#preambule"><span data-i18n="tocP1">Préambule</span><small>1</small></a>
+          <a href="#piliers"><span data-i18n="tocP2">Les 5 Piliers</span><small>2</small></a>
+          <a href="#regles"><span data-i18n="tocP3">Règles internes</span><small>3</small></a>
+          <a href="#confidentialite"><span data-i18n="tocP4">Confidentialité &amp; IP</span><small>4</small></a>
+          <a href="#desaccords"><span data-i18n="tocP5">Gestion des désaccords</span><small>5</small></a>
+          <a href="#discipline"><span data-i18n="tocP6">Mesures &amp; cadre</span><small>6</small></a>
+          <a href="#engagement"><span data-i18n="tocP7">Engagement membre</span><small>7</small></a>
+        </div>
+      </aside>
+
+      <!-- ARTICLES -->
+      <section aria-label="Contenu">
+
+        <!-- PRÉAMBULE -->
+        <article class="card" id="preambule">
+          <div class="card-head">
+            <h2 data-i18n="preambuleTitle">Préambule</h2>
+            <span class="badge" data-i18n="badgeFoundation">Fondation</span>
+          </div>
+          <div class="card-body">
+            <p data-i18n="preambuleP1">Muslimah Society est un cercle féminin fondé pour l'élévation spirituelle, l'excellence comportementale et la transmission authentique. Il ne vise ni la popularité, ni la recherche d'approbation sociale.</p>
+            <p data-i18n="preambuleP2">Notre ambition est claire : former une génération de femmes enracinées dans leur foi et raffinées dans leur caractère, capables d'influencer la culture par la constance, la dignité et la connaissance.</p>
+            <div class="note">
+              <strong data-i18n="preambuleNoteStrong">Principe directeur :</strong>
+              <span data-i18n="preambuleNote"> l'intérieur commande, l'extérieur reflète.</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- 5 PILIERS -->
+        <article class="card" id="piliers">
+          <div class="card-head">
+            <h2 data-i18n="pillarsTitle">Les 5 Piliers de Muslimah Society</h2>
+            <span class="badge" data-i18n="badgeDNA">ADN</span>
+          </div>
+          <div class="card-body">
+            <span class="kicker" data-i18n="p1k">I. Ancrage méthodologique</span>
+            <p data-i18n="p1">Muslimah Society s'inscrit dans la compréhension des salaf as-salih, en s'appuyant sur des savants reconnus de la tradition sunnite. La transmission privilégie la science avant l'émotion et refuse les innovations religieuses.</p>
+            <div class="hr"></div>
+            <span class="kicker" data-i18n="p2k">II. Adab intérieur et extérieur</span>
+            <p data-i18n="p2">La réforme visée est globale : purification du cœur, pudeur de la parole, dignité du comportement et tenue conforme. Le raffinement est une vertu : il se manifeste dans l'intention, la parole et la présence.</p>
+            <div class="hr"></div>
+            <span class="kicker" data-i18n="p3k">III. Discipline et excellence</span>
+            <p data-i18n="p3">Muslimah Society est un espace d'engagement. Les membres cultivent la constance, le sérieux et l'effort personnel. Ce cercle n'est pas une consommation de contenu : c'est un cheminement.</p>
+            <div class="hr"></div>
+            <span class="kicker" data-i18n="p4k">IV. Cercle restreint et sélectif</span>
+            <p data-i18n="p4">Muslimah Society s'adresse aux femmes qui se reconnaissent dans cette vision et acceptent l'exigence. La sélection protège la profondeur, la cohérence et l'élévation du cercle.</p>
+            <div class="hr"></div>
+            <span class="kicker" data-i18n="p5k">V. Transmission et héritage</span>
+            <p data-i18n="p5">Muslimah Society est conçu pour durer au-delà de sa fondatrice : documentation, standards, et culture interne transmissible. Il s'agit d'un héritage en construction.</p>
+          </div>
+        </article>
+
+        <!-- RÈGLES -->
+        <article class="card" id="regles">
+          <div class="card-head">
+            <h2 data-i18n="rulesTitle">Règles internes — Adab &amp; comportement</h2>
+            <span class="badge" data-i18n="badgeCircle">Cercle</span>
+          </div>
+          <div class="card-body">
+            <p data-i18n="rulesIntro">Chaque membre s'engage à préserver la dignité de la maison.</p>
+            <ul>
+              <li data-i18n="r1"><strong>Adab dans la parole :</strong> douceur, retenue, absence de moquerie, absence de dureté.</li>
+              <li data-i18n="r2"><strong>Bienveillance sans complaisance :</strong> conseiller avec respect, sans humiliations ni jugements.</li>
+              <li data-i18n="r3"><strong>Refus des polémiques :</strong> pas de débats agressifs, pas de disputes publiques.</li>
+              <li data-i18n="r4"><strong>Pudeur :</strong> tenue conforme lors des événements et contenus partagés.</li>
+              <li data-i18n="r5"><strong>Respect du cadre pédagogique :</strong> écoute, sérieux, non-sabotage, esprit de construction.</li>
+            </ul>
+            <div class="note">
+              <strong data-i18n="rulesNoteStrong">Rappel :</strong>
+              <span data-i18n="rulesNote"> un cercle fermé se protège par la dignité de chacune.</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- CONFIDENTIALITÉ -->
+        <article class="card" id="confidentialite">
+          <div class="card-head">
+            <h2 data-i18n="confTitle">Confidentialité, non-diffusion &amp; propriété</h2>
+            <span class="badge" data-i18n="badgeProtection">Protection</span>
+          </div>
+          <div class="card-body">
+            <span class="kicker" data-i18n="confK1">Confidentialité</span>
+            <p data-i18n="confP1">Les échanges internes (audio, textes, discussions, témoignages, informations personnelles) sont confidentiels. Toute diffusion externe sans autorisation explicite est interdite.</p>
+            <div class="hr"></div>
+            <span class="kicker" data-i18n="confK2">Non-diffusion des contenus</span>
+            <p data-i18n="confP2">Les contenus (La Plume, supports, audios, ateliers, fiches, replays) sont réservés aux membres. La reproduction, le partage ou la revente sans autorisation est interdite.</p>
+            <div class="hr"></div>
+            <span class="kicker" data-i18n="confK3">Propriété intellectuelle</span>
+            <p data-i18n="confP3">L'ensemble des contenus et de l'identité Muslimah Society sont la propriété de l'éditeur. Toute utilisation non autorisée (copie, imitation, republication) est interdite.</p>
+          </div>
+        </article>
+
+        <!-- DÉSACCORDS -->
+        <article class="card" id="desaccords">
+          <div class="card-head">
+            <h2 data-i18n="disTitle">Gestion des désaccords</h2>
+            <span class="badge" data-i18n="badgeWisdom">Sagesse</span>
+          </div>
+          <div class="card-body">
+            <p data-i18n="disP">Les divergences sont traitées avec adab et méthodologie, sans agitation ni exposition publique.</p>
+            <ul>
+              <li data-i18n="d1"><strong>Priorité au privé :</strong> on clarifie en message privé ou via le canal prévu.</li>
+              <li data-i18n="d2"><strong>Respect des rôles :</strong> toute question se traite selon la méthodologie et les sources reconnues.</li>
+              <li data-i18n="d3"><strong>Pas d'attaque personnelle :</strong> on critique une idée, jamais une personne.</li>
+              <li data-i18n="d4"><strong>Décision finale :</strong> l'orientation du cercle appartient à la direction.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- CADRE DISCIPLINAIRE -->
+        <article class="card" id="discipline">
+          <div class="card-head">
+            <h2 data-i18n="discTitle">Cadre disciplinaire &amp; mesures</h2>
+            <span class="badge" data-i18n="badgeClarity">Clarté</span>
+          </div>
+          <div class="card-body">
+            <p data-i18n="discP">Afin de préserver l'intégrité de Muslimah Society, des mesures peuvent être prises en cas de non-respect de la charte. Elles sont appliquées avec justice, transparence et gradation.</p>
+            <ul>
+              <li data-i18n="m1"><strong>Rappel :</strong> rappel privé et clarification du cadre.</li>
+              <li data-i18n="m2"><strong>Avertissement :</strong> avertissement officiel si récidive ou atteinte à la dignité.</li>
+              <li data-i18n="m3"><strong>Restriction :</strong> accès limité à certains espaces en cas de trouble répété.</li>
+              <li data-i18n="m4"><strong>Exclusion :</strong> en cas de diffusion, atteinte grave, ou comportement destructeur.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- ENGAGEMENT -->
+        <article class="card" id="engagement">
+          <div class="card-head">
+            <h2 data-i18n="engTitle">Engagement de la Membre</h2>
+            <span class="badge" data-i18n="badgeJoin">Adhésion</span>
+          </div>
+          <div class="card-body">
+            <p data-i18n="engP">En rejoignant Muslimah Society, chaque membre reconnaît avoir lu la présente charte, et s'engage à :</p>
+            <ul>
+              <li data-i18n="e1">adhérer à la vision et aux piliers,</li>
+              <li data-i18n="e2">respecter les règles d'adab et le cadre interne,</li>
+              <li data-i18n="e3">préserver la confidentialité,</li>
+              <li data-i18n="e4">ne pas diffuser les contenus,</li>
+              <li data-i18n="e5">accepter la méthodologie et l'orientation du cercle.</li>
+            </ul>
+
+            <div class="callout">
+              <span class="kicker" data-i18n="acceptK">Validation (Stripe / Supabase)</span>
+              <div class="accept-row">
+                <input type="checkbox" id="acceptBox"/>
+                <label for="acceptBox" data-i18n="acceptLabel">Je reconnais avoir lu la Charte de Muslimah Society et j'y adhère volontairement.</label>
+              </div>
+              <div class="actions">
+                <button class="btn btn-primary" id="acceptBtn" disabled data-i18n="acceptBtn">Je confirme</button>
+                <button class="btn btn-ghost" id="copyBtn" type="button" data-i18n="copyBtn">Copier la formule</button>
+                <a class="btn btn-member" href="index.html#programmes">S'abonner Member</a>
+                <a class="btn btn-vip" href="index.html#programmes">Rejoindre VIP</a>
+              </div>
+              <p class="accept-hint" data-i18n="acceptHint">Astuce : utilise la formule exacte dans ton formulaire d'inscription (case obligatoire).</p>
+            </div>
+          </div>
+        </article>
+
+      </section>
+    </div>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="ms-footer">
+  <div class="wrap">
+    <div class="footer-inner">
+      <p class="footer-copy" data-i18n="foot1">© 2026 Institut Al Muta'allim — Muslimah Society</p>
+      <p class="footer-quote" data-i18n="foot2">&ldquo;Former une génération de femmes enracinées et raffinées.&rdquo;</p>
+      <div class="footer-links">
+        <a href="index.html">Accueil</a>
+        <a href="la-plume/index.html">La Plume</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+const i18n = {
+  fr: {
+    brand:"MUSLIMAH SOCIETY",brandSub:"by Institut Al Muta'allim",navPreambule:"Préambule",navPiliers:"Piliers",navRules:"Règles",navEngagement:"Engagement",navMember:"Member",navVip:"VIP",chip:"Document Institutionnel",title:"Charte Officielle",tagline:"Muslimah Society est un cercle féminin exigeant, fondé pour former une génération de femmes enracinées et raffinées, méthodologiquement alignées avec la compréhension des salaf as-salih.",metaV:"Version 1.0",metaA:"Applicable à Member & VIP",metaL:"Alger • Institut Al Muta'allim",toc:"Sommaire",tocP1:"Préambule",tocP2:"Les 5 Piliers",tocP3:"Règles internes",tocP4:"Confidentialité & IP",tocP5:"Gestion des désaccords",tocP6:"Mesures & cadre",tocP7:"Engagement membre",preambuleTitle:"Préambule",badgeFoundation:"Fondation",preambuleP1:"Muslimah Society est un cercle féminin fondé pour l'élévation spirituelle, l'excellence comportementale et la transmission authentique. Il ne vise ni la popularité, ni la recherche d'approbation sociale.",preambuleP2:"Notre ambition est claire : former une génération de femmes enracinées dans leur foi et raffinées dans leur caractère, capables d'influencer la culture par la constance, la dignité et la connaissance.",preambuleNoteStrong:"Principe directeur :",preambuleNote:"l'intérieur commande, l'extérieur reflète.",pillarsTitle:"Les 5 Piliers de Muslimah Society",badgeDNA:"ADN",p1k:"I. Ancrage méthodologique",p1:"Muslimah Society s'inscrit dans la compréhension des salaf as-salih, en s'appuyant sur des savants reconnus de la tradition sunnite. La transmission privilégie la science avant l'émotion et refuse les innovations religieuses.",p2k:"II. Adab intérieur et extérieur",p2:"La réforme visée est globale : purification du cœur, pudeur de la parole, dignité du comportement et tenue conforme. Le raffinement est une vertu : il se manifeste dans l'intention, la parole et la présence.",p3k:"III. Discipline et excellence",p3:"Muslimah Society est un espace d'engagement. Les membres cultivent la constance, le sérieux et l'effort personnel. Ce cercle n'est pas une consommation de contenu : c'est un cheminement.",p4k:"IV. Cercle restreint et sélectif",p4:"Muslimah Society s'adresse aux femmes qui se reconnaissent dans cette vision et acceptent l'exigence. La sélection protège la profondeur, la cohérence et l'élévation du cercle.",p5k:"V. Transmission et héritage",p5:"Muslimah Society est conçu pour durer au-delà de sa fondatrice : documentation, standards, et culture interne transmissible. Il s'agit d'un héritage en construction.",rulesTitle:"Règles internes — Adab & comportement",badgeCircle:"Cercle",rulesIntro:"Chaque membre s'engage à préserver la dignité de la maison.",r1:"<strong>Adab dans la parole :</strong> douceur, retenue, absence de moquerie, absence de dureté.",r2:"<strong>Bienveillance sans complaisance :</strong> conseiller avec respect, sans humiliations ni jugements.",r3:"<strong>Refus des polémiques :</strong> pas de débats agressifs, pas de disputes publiques.",r4:"<strong>Pudeur :</strong> tenue conforme lors des événements et contenus partagés.",r5:"<strong>Respect du cadre pédagogique :</strong> écoute, sérieux, non-sabotage, esprit de construction.",rulesNoteStrong:"Rappel :",rulesNote:"un cercle fermé se protège par la dignité de chacune.",confTitle:"Confidentialité, non-diffusion & propriété",badgeProtection:"Protection",confK1:"Confidentialité",confP1:"Les échanges internes (audio, textes, discussions, témoignages, informations personnelles) sont confidentiels. Toute diffusion externe sans autorisation explicite est interdite.",confK2:"Non-diffusion des contenus",confP2:"Les contenus (La Plume, supports, audios, ateliers, fiches, replays) sont réservés aux membres. La reproduction, le partage ou la revente sans autorisation est interdite.",confK3:"Propriété intellectuelle",confP3:"L'ensemble des contenus et de l'identité Muslimah Society sont la propriété de l'éditeur. Toute utilisation non autorisée (copie, imitation, republication) est interdite.",disTitle:"Gestion des désaccords",badgeWisdom:"Sagesse",disP:"Les divergences sont traitées avec adab et méthodologie, sans agitation ni exposition publique.",d1:"<strong>Priorité au privé :</strong> on clarifie en message privé ou via le canal prévu.",d2:"<strong>Respect des rôles :</strong> toute question se traite selon la méthodologie et les sources reconnues.",d3:"<strong>Pas d'attaque personnelle :</strong> on critique une idée, jamais une personne.",d4:"<strong>Décision finale :</strong> l'orientation du cercle appartient à la direction.",discTitle:"Cadre disciplinaire & mesures",badgeClarity:"Clarté",discP:"Afin de préserver l'intégrité de Muslimah Society, des mesures peuvent être prises en cas de non-respect de la charte. Elles sont appliquées avec justice, transparence et gradation.",m1:"<strong>Rappel :</strong> rappel privé et clarification du cadre.",m2:"<strong>Avertissement :</strong> avertissement officiel si récidive ou atteinte à la dignité.",m3:"<strong>Restriction :</strong> accès limité à certains espaces en cas de trouble répété.",m4:"<strong>Exclusion :</strong> en cas de diffusion, atteinte grave, ou comportement destructeur.",engTitle:"Engagement de la Membre",badgeJoin:"Adhésion",engP:"En rejoignant Muslimah Society, chaque membre reconnaît avoir lu la présente charte, et s'engage à :",e1:"adhérer à la vision et aux piliers,",e2:"respecter les règles d'adab et le cadre interne,",e3:"préserver la confidentialité,",e4:"ne pas diffuser les contenus,",e5:"accepter la méthodologie et l'orientation du cercle.",acceptK:"Validation (Stripe / Supabase)",acceptLabel:"Je reconnais avoir lu la Charte de Muslimah Society et j'y adhère volontairement.",acceptBtn:"Je confirme",copyBtn:"Copier la formule",acceptHint:"Astuce : utilise la formule exacte dans ton formulaire d'inscription (case obligatoire).",foot1:"© 2026 Institut Al Muta'allim — Muslimah Society",foot2:"\u201cFormer une génération de femmes enracinées et raffinées.\u201d"
+  },
+  en: {
+    brand:"MUSLIMAH SOCIETY",brandSub:"by Institut Al Muta'allim",navPreambule:"Preamble",navPiliers:"Pillars",navRules:"Rules",navEngagement:"Commitment",navMember:"Member",navVip:"VIP",chip:"Institutional Document",title:"Official Charter",tagline:"Muslimah Society is a selective women's circle founded to form a generation of women who are rooted and refined, methodologically aligned with the understanding of the righteous predecessors (salaf).",metaV:"Version 1.0",metaA:"Applies to Member & VIP",metaL:"Algiers • Institut Al Muta'allim",toc:"Contents",tocP1:"Preamble",tocP2:"The 5 Pillars",tocP3:"Internal rules",tocP4:"Confidentiality & IP",tocP5:"Handling disagreements",tocP6:"Measures & framework",tocP7:"Member commitment",preambuleTitle:"Preamble",badgeFoundation:"Foundation",preambuleP1:"Muslimah Society is a women's circle founded for spiritual elevation, excellence in conduct, and authentic transmission. It does not seek popularity or social approval.",preambuleP2:"Our ambition is clear: to form a generation of women rooted in faith and refined in character, able to influence culture through consistency, dignity, and knowledge.",preambuleNoteStrong:"Guiding principle:",preambuleNote:"the inside leads, the outside reflects.",pillarsTitle:"The 5 Pillars of Muslimah Society",badgeDNA:"DNA",p1k:"I. Methodological anchoring",p1:"Muslimah Society follows the understanding of the salaf, relying on recognized scholars within the Sunni tradition. It prioritizes knowledge over emotion and rejects religious innovations.",p2k:"II. Inner & outer adab",p2:"Reform is holistic: purification of the heart, modest speech, dignified conduct, and appropriate dress. Refinement is a virtue—shown in intention, speech, and presence.",p3k:"III. Discipline & excellence",p3:"Muslimah Society is a space of commitment. Members cultivate consistency, seriousness, and personal effort. This is not content consumption—it is a path.",p4k:"IV. Selective, protected circle",p4:"Muslimah Society is for women who resonate with the vision and accept its standards. Selectivity protects depth, coherence, and elevation.",p5k:"V. Transmission & legacy",p5:"Muslimah Society is built to outlive its founder through documentation, standards, and a transmissible internal culture—an evolving legacy.",rulesTitle:"Internal rules — Adab & conduct",badgeCircle:"Circle",rulesIntro:"Each member commits to protecting the dignity of the house.",r1:"<strong>Adab in speech:</strong> gentleness, restraint, no mockery, no harshness.",r2:"<strong>Kindness without complacency:</strong> advise with respect, without humiliation or judgment.",r3:"<strong>No polemics:</strong> no aggressive debates, no public disputes.",r4:"<strong>Modesty:</strong> appropriate dress during events and shared content.",r5:"<strong>Respect the framework:</strong> listen, be serious, do not sabotage, build constructively.",rulesNoteStrong:"Reminder:",rulesNote:"a closed circle is protected by each member's dignity.",confTitle:"Confidentiality, non-sharing & ownership",badgeProtection:"Protection",confK1:"Confidentiality",confP1:"Internal exchanges (audio, texts, discussions, testimonies, personal information) are confidential. External sharing without explicit permission is forbidden.",confK2:"No sharing of content",confP2:"Content (La Plume, materials, audios, workshops, worksheets, replays) is members-only. Copying, sharing, or reselling is forbidden.",confK3:"Intellectual property",confP3:"All content and the Muslimah Society identity belong to the publisher. Unauthorized use is forbidden.",disTitle:"Handling disagreements",badgeWisdom:"Wisdom",disP:"Differences are handled with adab and method, without agitation or public exposure.",d1:"<strong>Private first:</strong> clarify via private message or the designated channel.",d2:"<strong>Respect roles:</strong> questions are handled with method and recognized sources.",d3:"<strong>No personal attacks:</strong> critique ideas, never people.",d4:"<strong>Final decision:</strong> the circle's direction belongs to leadership.",discTitle:"Disciplinary framework & measures",badgeClarity:"Clarity",discP:"To protect Muslimah Society, measures may be taken when the charter is violated, applied with fairness, transparency, and escalation.",m1:"<strong>Reminder:</strong> private reminder and clarification of the framework.",m2:"<strong>Warning:</strong> official warning in case of recurrence or harm.",m3:"<strong>Restriction:</strong> limited access for repeated disruption.",m4:"<strong>Removal:</strong> for leaks, severe harm, or destructive behavior.",engTitle:"Member commitment",badgeJoin:"Joining",engP:"By joining Muslimah Society, each member acknowledges reading this charter and commits to:",e1:"adhere to the vision and pillars,",e2:"respect adab and the internal framework,",e3:"preserve confidentiality,",e4:"not share members-only content,",e5:"accept the methodology and direction of the circle.",acceptK:"Validation (Stripe / Supabase)",acceptLabel:"I acknowledge I have read the Muslimah Society Charter and I voluntarily adhere to it.",acceptBtn:"I confirm",copyBtn:"Copy the statement",acceptHint:"Tip: use the exact statement in your signup form (required checkbox).",foot1:"© 2026 Institut Al Muta'allim — Muslimah Society",foot2:"\u201cForming a generation of rooted and refined women.\u201d"
+  },
+  ar: {
+    brand:"مجتمع المسلمات",brandSub:"بإشراف معهد المتعلّم",navPreambule:"التمهيد",navPiliers:"المرتكزات",navRules:"الآداب",navEngagement:"الالتزام",navMember:"عضوية",navVip:"VIP",chip:"وثيقة مؤسسية",title:"الميثاق الرسمي",tagline:"مجتمع المسلمات دائرة نسائية منتقاة تهدف إلى إعداد جيلٍ ثابتٍ على منهجه، رفيعٍ في خُلُقه، بمنهجيةٍ موافقةٍ لفهم السلف الصالح.",metaV:"الإصدار 1.0",metaA:"يسري على العضوية و VIP",metaL:"الجزائر • معهد المتعلّم",toc:"المحتويات",tocP1:"التمهيد",tocP2:"المرتكزات الخمس",tocP3:"القواعد الداخلية",tocP4:"السرّية والحقوق",tocP5:"إدارة الخلاف",tocP6:"الإجراءات",tocP7:"التزام العضوة",preambuleTitle:"التمهيد",badgeFoundation:"الأساس",preambuleP1:"مجتمع المسلمات دائرة نسائية أُسِّست للارتقاء الإيماني، وإتقان السلوك، والتلقي الصحيح. ولا تهدف إلى الشهرة أو استرضاء الناس.",preambuleP2:"غايتنا واضحة: إعداد جيلٍ من النساء ثابتاتٍ على دينهن، رفيعاتٍ في أخلاقهن، يؤثرن في الثقافة بالثبات والوقار والعلم.",preambuleNoteStrong:"مبدأ موجّه:",preambuleNote:"الباطن يقود، والظاهر يعكس.",pillarsTitle:"المرتكزات الخمس لمجتمع المسلمات",badgeDNA:"الهوية",p1k:"١. رسوخ المنهج",p1:"يسير مجتمع المسلمات على فهم السلف الصالح، مع الرجوع إلى أهل العلم المعتبرين من أهل السنة. ويُقدِّم العلم على العاطفة ويجتنب البدع.",p2k:"٢. الآداب باطناً وظاهراً",p2:"الإصلاح شامل: تزكية القلب، تهذيب اللسان، وقار السلوك، والستر. والرقيّ خُلُقٌ يظهر في النية والكلام والحضور.",p3k:"٣. الانضباط والإتقان",p3:"مجتمع المسلمات مساحة التزام. تُربّي العضوات على الثبات والجدّ وبذل الجهد. ليس استهلاك محتوى بل مسار تربية.",p4k:"٤. دائرة محمية منتقاة",p4:"هذه الدائرة لمن توافق رؤيتها وتقبل معيارها. الانتقاء يحمي العمق والانسجام والارتقاء.",p5k:"٥. التوريث والاستمرار",p5:"صُمّم مجتمع المسلمات ليبقى بعد المؤسسة عبر توثيق المعايير وبناء ثقافة داخلية قابلة للتسليم.",rulesTitle:"القواعد الداخلية — الآداب والسلوك",badgeCircle:"الدائرة",rulesIntro:"تلتزم كل عضوة بحفظ كرامة هذا البيت.",r1:"<strong>آداب الكلام:</strong> لينٌ ووقارٌ بلا سخرية ولا فظاظة.",r2:"<strong>رحمة بلا تمييع:</strong> نصحٌ باحترام دون إهانة أو تجريح.",r3:"<strong>ترك الخصومات:</strong> لا جدالات حادّة ولا نزاعات علنية.",r4:"<strong>الستر:</strong> التزام الستر في اللقاءات والمحتوى.",r5:"<strong>احترام الإطار:</strong> إنصاتٌ وجِدّ وبناءٌ لا تعطيل.",rulesNoteStrong:"تذكير:",rulesNote:"الدائرة المغلقة تُحمى بوقار كل عضوة.",confTitle:"السرّية وعدم النشر والحقوق",badgeProtection:"حماية",confK1:"السرّية",confP1:"كل ما يدور داخل الدائرة (صوتيات، نصوص، نقاشات، شهادات، معلومات شخصية) سرّي. ويحرم نشره دون إذن صريح.",confK2:"عدم نشر المحتوى",confP2:"المحتوى خاص بالعضوات. يمنع نسخه أو نشره أو بيعه دون إذن.",confK3:"الحقوق الفكرية",confP3:"جميع المواد وهوية مجتمع المسلمات ملك للجهة الناشرة. يمنع الاستخدام غير المصرح به.",disTitle:"إدارة الخلاف",badgeWisdom:"حِكمة",disP:"الخلاف يُدار بالآداب والمنهج دون تشويش أو فضح علني.",d1:"<strong>الخاص أولاً:</strong> توضيح عبر الخاص أو القناة المخصصة.",d2:"<strong>احترام الأدوار:</strong> تُعالَج المسائل وفق المنهج والمصادر المعتبرة.",d3:"<strong>لا طعن شخصي:</strong> نقد الأفكار لا الأشخاص.",d4:"<strong>القرار النهائي:</strong> توجّه الدائرة بيد الإدارة.",discTitle:"الإطار والإجراءات",badgeClarity:"وضوح",discP:"حفاظاً على سلامة الدائرة قد تُتخذ إجراءات عند مخالفة الميثاق، بعدل وتدرّج.",m1:"<strong>تنبيه:</strong> تذكير خاص وشرح الإطار.",m2:"<strong>إنذار:</strong> إنذار رسمي عند التكرار أو الضرر.",m3:"<strong>تقييد:</strong> تقييد بعض الصلاحيات عند الإزعاج المتكرر.",m4:"<strong>إزالة:</strong> عند التسريب أو الضرر الجسيم أو السلوك الهدّام.",engTitle:"التزام العضوة",badgeJoin:"الانضمام",engP:"بانضمامك إلى مجتمع المسلمات تقرين بقراءة هذا الميثاق وتلتزمين بما يلي:",e1:"الالتزام بالرؤية والمرتكزات،",e2:"احترام الآداب والإطار الداخلي،",e3:"حفظ السرّية،",e4:"عدم نشر محتوى العضوات،",e5:"قبول المنهجية وتوجيه الدائرة.",acceptK:"اعتماد (Stripe / Supabase)",acceptLabel:"أقرّ أنني قرأت ميثاق مجتمع المسلمات وألتزم به طوعاً.",acceptBtn:"أؤكد",copyBtn:"نسخ العبارة",acceptHint:"نصيحة: ضعي العبارة نفسها في استمارة التسجيل (خانة إلزامية).",foot1:"© 2026 معهد المتعلّم — مجتمع المسلمات",foot2:"\u201cإعداد جيلٍ ثابتٍ ورفيع.\u201d"
+  }
+};
+
+function setLang(lang){
+  const doc=document.getElementById('doc');
+  doc.lang=lang;
+  doc.dir=(lang==='ar')?'rtl':'ltr';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    const val=i18n[lang]?.[key];
+    if(typeof val==='string'){
+      if(val.includes('<strong>')||val.includes('<em>')) el.innerHTML=val;
+      else el.textContent=val;
+    }
+  });
+  document.querySelectorAll('.lang button').forEach(b=>{
+    b.classList.toggle('active',b.dataset.lang===lang);
+  });
+}
+
+document.querySelectorAll('.lang button').forEach(btn=>{
+  btn.addEventListener('click',()=>setLang(btn.dataset.lang));
+});
+
+// Acceptance
+const acceptBox=document.getElementById('acceptBox');
+const acceptBtn=document.getElementById('acceptBtn');
+const copyBtn=document.getElementById('copyBtn');
+
+function getAcceptText(){
+  const lang=document.getElementById('doc').lang||'fr';
+  return i18n[lang].acceptLabel;
+}
+acceptBox?.addEventListener('change',()=>{acceptBtn.disabled=!acceptBox.checked;});
+acceptBtn?.addEventListener('click',()=>{alert('✓ '+getAcceptText());});
+copyBtn?.addEventListener('click',async()=>{
+  try{
+    await navigator.clipboard.writeText(getAcceptText());
+    const old=copyBtn.textContent;
+    copyBtn.textContent='✓';
+    setTimeout(()=>copyBtn.textContent=old,1200);
+  }catch(e){alert(getAcceptText());}
+});
+
+// TOC highlight
+const links=Array.from(document.querySelectorAll('.toc a[href^="#"]'));
+const targets=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const id='#'+e.target.id;
+    links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===id));
+  });
+},{rootMargin:'-40% 0px -55% 0px',threshold:0.01});
+targets.forEach(t=>io.observe(t));
+
+setLang('fr');
+</script>
+</body>
+</html>
