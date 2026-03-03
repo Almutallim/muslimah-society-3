@@ -13,8 +13,6 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Cormorant Garamond',serif;background:var(--ivory);color:var(--text);}
 a{color:inherit;text-decoration:none;}
-
-/* Header */
 .ms-header{position:sticky;top:0;z-index:800;background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);backdrop-filter:blur(10px);}
 .ms-header .inner{max-width:var(--max);margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
 .ms-logo{display:flex;align-items:center;gap:10px;}
@@ -23,11 +21,7 @@ a{color:inherit;text-decoration:none;}
 .ms-logo-name{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--text);}
 .btn-logout{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;padding:8px 16px;border-radius:20px;border:1px solid rgba(201,168,76,.3);color:var(--text-m);background:transparent;cursor:pointer;transition:all .3s;}
 .btn-logout:hover{border-color:var(--gold);color:var(--gold);}
-
-/* Page */
 .page{max-width:var(--max);margin:0 auto;padding:32px 24px 64px;}
-
-/* Hero utilisateur */
 .user-hero{background:linear-gradient(155deg,rgba(232,213,208,.45),rgba(216,208,228,.25));border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:28px 28px 24px;margin-bottom:24px;position:relative;}
 .user-hero::before{content:'';position:absolute;top:6px;left:6px;width:14px;height:14px;border-top:1px solid var(--gold-p);border-left:1px solid var(--gold-p);}
 .user-hero::after{content:'';position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-bottom:1px solid var(--gold-p);border-right:1px solid var(--gold-p);}
@@ -37,8 +31,6 @@ a{color:inherit;text-decoration:none;}
 .badge-member{background:rgba(201,168,76,.12);color:#9a7830;border:1px solid rgba(201,168,76,.28);}
 .badge-vip{background:rgba(176,136,128,.15);color:var(--rose-d);border:1px solid rgba(176,136,128,.28);}
 .badge-none{background:rgba(160,144,128,.1);color:var(--text-l);border:1px solid rgba(160,144,128,.2);}
-
-/* Cards accès rapide */
 .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:24px;}
 @media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr);}}
 .access-card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:20px 22px;display:flex;flex-direction:column;gap:10px;transition:all .2s;position:relative;}
@@ -47,11 +39,7 @@ a{color:inherit;text-decoration:none;}
 .access-card-title{font-family:'Cinzel',serif;font-size:14px;font-weight:500;letter-spacing:1px;color:var(--text);}
 .access-card-desc{font-size:15px;font-style:italic;color:var(--text-m);}
 .access-card-link{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:auto;}
-
-/* Section */
 .section-title{font-family:'Cinzel',serif;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(201,168,76,.2);}
-
-/* Upgrade banner */
 .upgrade-banner{background:linear-gradient(155deg,rgba(232,213,208,.3),rgba(216,208,228,.2));border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:10px;}
 .upgrade-text h3{font-family:'Cinzel',serif;font-size:15px;font-weight:500;letter-spacing:1px;margin-bottom:6px;}
 .upgrade-text p{font-size:15px;font-style:italic;color:var(--text-m);}
@@ -80,9 +68,7 @@ a{color:inherit;text-decoration:none;}
   </div>
 
   <div class="section-title">Accès rapide</div>
-  <div class="grid" id="accessGrid">
-    <!-- rempli par JS selon le tier -->
-  </div>
+  <div class="grid" id="accessGrid"></div>
 
   <div id="upgradeSection" style="display:none;">
     <div class="section-title">Rejoindre la Maison</div>
@@ -114,7 +100,6 @@ a{color:inherit;text-decoration:none;}
   const tier = profile.subscription_tier || 'none';
   const active = profile.subscription_status === 'active';
 
-  // Badge
   const badge = document.getElementById('userBadge');
   if(active && tier === 'vip'){
     badge.innerHTML = '<span class="badge-tier badge-vip">✦ VIP</span>';
@@ -124,7 +109,6 @@ a{color:inherit;text-decoration:none;}
     badge.innerHTML = '<span class="badge-tier badge-none">Sans abonnement</span>';
   }
 
-  // Cards accès
   const grid = document.getElementById('accessGrid');
   const cards = [];
 
@@ -140,14 +124,14 @@ a{color:inherit;text-decoration:none;}
 
   cards.push({icon:'📋', title:'Charte officielle', desc:'Les engagements de la Maison', link:'charte.html'});
 
-  grid.innerHTML = cards.map(c=>`
-     '<a class="access-card" href="' + c.link + '">' +
+  grid.innerHTML = cards.map(c=>
+    '<a class="access-card" href="' + c.link + '">' +
       '<div class="access-card-icon">' + c.icon + '</div>' +
       '<div class="access-card-title">' + c.title + '</div>' +
       '<div class="access-card-desc">' + c.desc + '</div>' +
-      '<div class="access-card-link">Accéder →</div>' +
+      '<div class="access-card-link">Acc\u00e9der \u2192</div>' +
     '</a>'
-  `).join('');
+  ).join('');
 
   if(!active){
     document.getElementById('upgradeSection').style.display = 'block';
