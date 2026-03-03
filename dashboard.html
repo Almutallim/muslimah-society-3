@@ -141,7 +141,12 @@ a{color:inherit;text-decoration:none;}
   cards.push({icon:'📋', title:'Charte officielle', desc:'Les engagements de la Maison', link:'charte.html'});
 
   grid.innerHTML = cards.map(c=>`
-    
+     '<a class="access-card" href="' + c.link + '">' +
+      '<div class="access-card-icon">' + c.icon + '</div>' +
+      '<div class="access-card-title">' + c.title + '</div>' +
+      '<div class="access-card-desc">' + c.desc + '</div>' +
+      '<div class="access-card-link">Accéder →</div>' +
+    '</a>'
   `).join('');
 
   if(!active){
