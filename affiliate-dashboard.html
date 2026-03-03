@@ -145,9 +145,6 @@ input:focus,select:focus{border-color:rgba(201,168,76,.6);}
     </span>
   </div></div>
 </footer>
-<script src="js/supabaseClient.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/gate.js"></script>
 <script>
 (async()=>{
   const user = await requireAuth();
@@ -172,6 +169,38 @@ function copyCode(){
   const c=document.getElementById('codeBox').textContent;
   navigator.clipboard.writeText(c).then(()=>{ const btn=event.target; btn.textContent='✓ Copié!'; setTimeout(()=>btn.textContent='Copier le code',1500); });
 }
+</script>
+<script>
+window.supabaseClient=window.supabase.createClient("https://lgxnejnihodyfgxlyycd.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo");
+window.requireAuth=async function(){
+  var r=await window.supabaseClient.auth.getUser();
+  if(!r.data||!r.data.user){location.href="login.html";return null;}
+  return r.data.user;
+};
+window.getProfileSafe=async function(uid){
+  var r=await window.supabaseClient.from("profiles").select("subscription_status,subscription_tier").eq("id",uid).maybeSingle();
+  return r.data||{subscription_status:"inactive",subscription_tier:"none"};
+};
+window.logout=async function(){
+  await window.supabaseClient.auth.signOut();
+  location.href="index.html";
+};
+window.checkout=async function(plan){
+  var r=await window.supabaseClient.auth.getSession();
+  var token=r.data&&r.data.session&&r.data.session.access_token;
+  if(!token){location.href="login.html";return;}
+  var btn=window.event&&window.event.target;
+  if(btn&&btn.tagName==="BUTTON"){btn.disabled=true;btn.textContent="Redirection...";}
+  fetch("/api/create-checkout-session",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},
+    body:JSON.stringify({plan:plan})
+  }).then(function(res){return res.json();})
+  .then(function(d){
+    if(d.url){location.href=d.url;}
+    else{alert(d.error||"Erreur paiement");if(btn)btn.disabled=false;}
+  }).catch(function(e){alert("Erreur: "+e.message);if(btn)btn.disabled=false;});
+};
 </script>
 </body>
 </html>
