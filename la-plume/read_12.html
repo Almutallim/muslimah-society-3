@@ -334,3 +334,43 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div class="modal-ov" id="modal-cgv"><div class="modal-box"><span class="modal-x" onclick="closeModal('cgv')">&#215;</span><div class="modal-title">Conditions G&eacute;n&eacute;rales de Vente</div><div class="modal-body"><h3>Tarifs</h3><p>Member&nbsp;: 2&nbsp;500 DZD / 17&euro; / 65 ر.س par mois.<br>VIP&nbsp;: 9&nbsp;000 DZD / 60&euro; / 225 ر.س par mois.<br>Annuel&nbsp;: 90&nbsp;000 DZD / 600&euro;.</p><h3>R&eacute;siliation</h3><p>Member&nbsp;: sans engagement. VIP&nbsp;: 3 mois minimum.</p></div></div></div>
 <div class="modal-ov" id="modal-privacy"><div class="modal-box"><span class="modal-x" onclick="closeModal('privacy')">&#215;</span><div class="modal-title">Politique de Confidentialit&eacute;</div><div class="modal-body"><h3>Donn&eacute;es</h3><p>Nous collectons uniquement votre pr&eacute;nom et adresse e-mail pour la gestion de votre abonnement.</p><h3>Contact</h3><p><a href="mailto:contact@muslimahsociety.dz">contact@muslimahsociety.dz</a></p></div></div></div>
 <div class="modal-ov" id="modal-mentions"><div class="modal-box"><span class="modal-x" onclick="closeModal('mentions')">&#215;</span><div class="modal-title">Mentions L&eacute;gales</div><div class="modal-body"><h3>&Eacute;diteur</h3><p>Institut Al Muta'allim &bull; Alger &bull; <a href="mailto:contact@muslimahsociety.dz">contact@muslimahsociety.dz</a></p><h3>Directrice</h3><p>Ustadha Zina &bull; Fondat
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="../js/supabaseClient.js"></script>
+<script src="../js/gate.js"></script>
+<script>
+(async () => {
+  // Cache le contenu complet par défaut
+  const fullContent = document.getElementById('full-content');
+  if (fullContent) fullContent.style.display = 'none';
+
+  // Vérifie si connectée
+  const { data } = await supabaseClient.auth.getUser();
+  const user = data?.user;
+  if (!user) return; // pas connectée → paywall reste
+
+  // Récupère l'abonnement
+  let profile;
+  try { profile = await getProfileSafe(user.id); }
+  catch(e) { return; }
+
+  const active = profile.subscription_status === 'active';
+  const tier   = profile.subscription_tier || 'none';
+  const hasAccess = active && (tier === 'member' || tier === 'vip');
+
+  if (hasAccess) {
+    // Affiche le contenu complet
+    if (fullContent) fullContent.style.display = 'block';
+    // Cache le paywall si présent
+    const paywall = document.querySelector('.ep-paywall');
+    if (paywall) paywall.style.display = 'none';
+    // Cache le fondu
+    const fade = document.querySelector('.ep-fade');
+    if (fade) fade.style.display = 'none';
+  }
+})();
+
+function openModal(id){ const m=document.getElementById('modal-'+id); if(m) m.style.display='flex'; }
+function closeModal(id){ const m=document.getElementById('modal-'+id); if(m) m.style.display='none'; }
+</script>
+</body>
+</html>
