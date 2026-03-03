@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>La transmission comme amour &mdash; Vol.&nbsp;XXVII &mdash; La Plume des Sahabiyyat</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blush:#e8d5d0;--blush-d:#ddc8c2;--blush-l:#f5ede9;
+  --rose:#c9a8a0;--rose-d:#b08880;
+  --gold:#c9a84c;--gold-l:#e0c87a;--gold-p:#f0e4c0;
+  --ivory:#fdf8f2;--cream:#faf4ec;
+  --text:#3d2b25;--text-m:#7a5a50;--text-l:#a89080;
+  --mauve:#c4b0c0;--lavender:#d8d0e4;--sage:#c8d4c0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cormorant Garamond',serif;background:var(--ivory);color:var(--text);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;}
+
+/* ── HEADER ── */
+.ms-header{background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:500;backdrop-filter:blur(10px);}
+.ms-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.ms-logo-mono{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(255,248,238,1) 40%,rgba(240,228,200,.5) 100%);box-shadow:0 0 12px rgba(201,168,76,.15);flex-shrink:0;}
+.ms-logo-mono span{font-family:'Cinzel',serif;font-size:13px;font-weight:500;color:var(--gold);}
+.ms-logo-name{font-family:'Cinzel',serif;font-size:14px;color:var(--text);letter-spacing:3px;}
+.ms-logo-sub{font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:var(--text-l);letter-spacing:1px;}
+.ms-nav{display:flex;gap:20px;align-items:center;}
+.ms-nav a{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-m);text-decoration:none;transition:color .3s;}
+.ms-nav a:hover{color:var(--gold);}
+.btn-member{padding:7px 20px;border:1.5px solid var(--gold);border-radius:30px;background:transparent;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;}
+.btn-member:hover{background:var(--gold);color:white;}
+.btn-vip{padding:7px 20px;border:1.5px solid var(--rose);border-radius:30px;background:var(--rose-d);color:white;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;}
+.btn-vip:hover{background:var(--rose);box-shadow:0 4px 16px rgba(176,136,128,.3);}
+
+/* ── BREADCRUMB ── */
+.breadcrumb{padding:14px 48px;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);border-bottom:1px solid rgba(201,168,76,.12);background:var(--cream);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.breadcrumb a{color:var(--text-l);text-decoration:none;transition:color .3s;}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb span{color:var(--gold);}
+
+/* ── HERO ── */
+.ep-hero{position:relative;padding:64px 48px 56px;text-align:center;overflow:hidden;background:linear-gradient(160deg,#f0ecf6 0%,#d8d0e4 45%,#c4b0c0 80%,#f0ecf6 100%);}
+.ep-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,245,235,.6) 0%,transparent 60%);pointer-events:none;}
+.ep-vol{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-p);border-radius:20px;padding:5px 18px;margin-bottom:22px;background:rgba(255,252,245,.8);position:relative;animation:fadeUp .9s ease both;}
+.ep-access{position:absolute;top:16px;right:20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;border-radius:20px;padding:4px 12px;background:rgba(176,136,128,.2);color:#b08880;}
+.ep-series{font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--rose-d);margin-bottom:16px;animation:fadeUp .9s .1s ease both;opacity:0;position:relative;}
+.ep-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);font-weight:500;color:var(--text);line-height:1.2;margin-bottom:18px;animation:fadeUp .9s .2s ease both;opacity:0;position:relative;}
+.ep-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,22px);font-style:italic;color:var(--text-m);line-height:1.75;max-width:580px;margin:0 auto 20px;animation:fadeUp .9s .3s ease both;opacity:0;position:relative;}
+.ep-meta{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;animation:fadeUp .9s .4s ease both;opacity:0;position:relative;}
+.ep-meta-item{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);display:flex;align-items:center;gap:5px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── ORNEMENT ── */
+.orn{text-align:center;padding:24px 0;}
+
+/* ── CONTENU ── */
+.ep-body{max-width:720px;margin:0 auto;padding:48px 40px 0;}
+.ep-text p{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.95;color:var(--text-m);margin-bottom:22px;}
+.ep-quote{margin:32px 0;padding:24px 32px;border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 4px 4px 0;}
+.ep-quote blockquote{font-family:'Playfair Display',serif;font-size:clamp(18px,2.3vw,22px);font-style:italic;color:var(--text);line-height:1.65;margin-bottom:10px;}
+.ep-quote cite{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
+
+/* ── FONDU PAYWALL ── */
+.ep-fade{position:relative;max-width:720px;margin:0 auto;padding:0 40px;}
+.ep-fade::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,var(--ivory));pointer-events:none;}
+.ep-fade .ep-text p{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.95;color:var(--text-m);margin-bottom:22px;}
+
+/* ── PAYWALL ── */
+.ep-paywall{max-width:760px;margin:0 auto 48px;padding:0 40px;position:relative;}
+.paywall-glow{position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:400px;height:80px;background:radial-gradient(ellipse,rgba(201,168,76,.1),transparent 70%);pointer-events:none;}
+.paywall-lock{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--gold-p);background:linear-gradient(135deg,rgba(255,252,245,.9),rgba(250,244,236,.8));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--gold);}
+.paywall-vip-note{text-align:center;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rose-d);margin-bottom:12px;}
+.paywall-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:var(--text);text-align:center;margin-bottom:10px;}
+.paywall-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-m);text-align:center;line-height:1.7;max-width:480px;margin:0 auto 32px;}
+.paywall-offers{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:16px;}
+.offer-card{background:rgba(253,248,242,.97);border:1.5px solid var(--gold-p);border-radius:4px;padding:28px 28px;width:220px;text-align:center;transition:all .3s;}
+.offer-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(201,168,76,.14);border-color:var(--gold);}
+.offer-card.featured{border-color:var(--gold);background:linear-gradient(145deg,rgba(255,252,245,.97),rgba(250,242,228,.9));}
+.offer-badge{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;background:var(--gold);color:white;border-radius:20px;padding:3px 10px;margin-bottom:10px;display:inline-block;}
+.offer-name{font-family:'Cinzel',serif;font-size:16px;color:var(--text);letter-spacing:2px;margin-bottom:12px;}
+.offer-prices{margin-bottom:14px;}
+.offer-price-row{font-family:'Playfair Display',serif;font-size:13px;color:var(--text-m);line-height:1.8;}
+.offer-price-row strong{font-size:20px;color:var(--gold);font-weight:400;}
+.offer-features{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--text-m);line-height:1.9;text-align:left;margin-bottom:18px;}
+.btn-offer-member{display:block;padding:10px 20px;border:1.5px solid var(--gold);border-radius:30px;background:transparent;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;text-align:center;}
+.btn-offer-member:hover{background:var(--gold);color:white;}
+.btn-offer-vip{display:block;padding:10px 20px;border:1.5px solid var(--rose-d);border-radius:30px;background:var(--rose-d);color:white;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;text-align:center;}
+.btn-offer-vip:hover{background:var(--rose);box-shadow:0 4px 16px rgba(176,136,128,.3);}
+.paywall-note{text-align:center;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
+
+/* ── CONTENU COMPLET (caché visuellement) ── */
+.ep-full{max-width:720px;margin:0 auto;padding:0 40px 48px;}
+.ep-full .ep-text p{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.95;color:var(--text-m);margin-bottom:22px;}
+.ep-full .ep-text .ep-quote{margin:32px 0;padding:24px 32px;border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 4px 4px 0;}
+
+/* ── ACTIONS ── */
+.ep-actions{max-width:720px;margin:0 auto;padding:0 40px 56px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.action-block{background:linear-gradient(135deg,rgba(232,213,208,.2),rgba(216,208,228,.12));border:1px solid var(--gold-p);border-radius:4px;padding:28px 28px;}
+.action-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.action-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:500;color:var(--text);margin-bottom:14px;}
+.action-text{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text-m);line-height:1.85;}
+.dua-arabic{font-size:26px;text-align:right;direction:rtl;color:var(--text);margin-bottom:12px;line-height:1.8;font-family:'Cormorant Garamond',serif;}
+.dua-fr{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text-m);line-height:1.7;}
+
+/* ── PARTAGE ── */
+.ep-share{max-width:720px;margin:0 auto;padding:0 40px 40px;text-align:center;}
+.share-text{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-l);margin-bottom:14px;}
+.share-btns{display:flex;justify-content:center;gap:10px;}
+.share-btn{width:40px;height:40px;border:1px solid var(--gold-p);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);text-decoration:none;transition:all .3s;}
+.share-btn:hover{background:var(--gold);color:white;border-color:var(--gold);}
+
+/* ── NAVIGATION ── */
+.ep-nav{display:flex;justify-content:space-between;align-items:stretch;gap:16px;max-width:720px;margin:0 auto;padding:24px 40px 56px;}
+.ep-nav-btn{flex:1;display:flex;flex-direction:column;gap:6px;padding:18px 22px;border:1px solid var(--gold-p);border-radius:4px;text-decoration:none;background:rgba(255,252,248,.8);transition:all .3s;max-width:calc(50% - 8px);}
+.ep-nav-btn:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,168,76,.12);}
+.ep-nav-dir{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.ep-nav-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-m);line-height:1.4;}
+.ep-nav-spacer{flex:1;}
+
+/* ── FOOTER ── */
+.ms-footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gold-p);padding:40px 48px 28px;}
+.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:28px;max-width:900px;margin:0 auto 28px;}
+.footer-col-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.25);}
+.footer-col a,.footer-col p{display:block;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text-m);text-decoration:none;line-height:1.5;margin-bottom:6px;transition:color .3s;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bot{border-top:1px solid rgba(201,168,76,.2);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;max-width:900px;margin:0 auto;}
+.footer-copy{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
+.footer-legal{display:flex;gap:14px;flex-wrap:wrap;}
+.footer-legal a{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);text-decoration:none;transition:color .3s;cursor:pointer;}
+.footer-legal a:hover{color:var(--gold);}
+
+/* ── MODALES ── */
+.modal-ov{position:fixed;inset:0;background:rgba(61,43,37,.6);backdrop-filter:blur(4px);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-ov.open{display:flex;}
+.modal-box{background:var(--ivory);border:1px solid var(--gold-p);border-radius:4px;max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:40px 44px;position:relative;}
+.modal-x{position:absolute;top:16px;right:20px;font-size:22px;color:var(--text-l);cursor:pointer;font-family:'Cinzel',serif;transition:color .3s;}
+.modal-x:hover{color:var(--gold);}
+.modal-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:var(--text);margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--gold-p);}
+.modal-body h3{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:18px 0 8px;}
+.modal-body p{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-m);line-height:1.8;margin-bottom:12px;}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .ms-header{padding:14px 20px;}
+  .ms-nav{display:none;}
+  .breadcrumb{padding:12px 20px;}
+  .ep-hero{padding:48px 24px 40px;}
+  .ep-body,.ep-fade,.ep-full,.ep-actions,.ep-share,.ep-paywall{padding-left:20px;padding-right:20px;}
+  .ep-actions{grid-template-columns:1fr;}
+  .ep-nav{padding:16px 20px 40px;}
+  .ms-footer{padding:28px 20px 20px;}
+  .paywall-offers{gap:14px;}
+  .offer-card{width:100%;max-width:280px;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="ms-header">
+  <a class="ms-logo" href="../index.html">
+    <div class="ms-logo-mono"><span>MS</span></div>
+    <div>
+      <div class="ms-logo-name">MUSLIMAH SOCIETY</div>
+      <div class="ms-logo-sub">by Institut Al Muta'allim</div>
+    </div>
+  </a>
+  <nav class="ms-nav">
+    <a href="index.html">La Plume</a>
+    <a href="../index.html#espaces">Biblioth&egrave;que</a>
+    <a href="../index.html#programmes">Programmes</a>
+    <a class="btn-member" href="../index.html#programmes">Member</a>
+    <a class="btn-vip" href="../index.html#programmes">VIP</a>
+  </nav>
+</header>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">Muslimah Society</a>
+  <span>&rsaquo;</span>
+  <a href="index.html">La Plume des Sahabiyyat</a>
+  <span>&rsaquo;</span>
+  <span style="color:var(--text-m)">La transmission comme amour</span>
+  <span style="margin-left:auto;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--gold)">JOUR 27 · SAMEDI</span>
+</div>
+
+<!-- HERO -->
+<section class="ep-hero">
+  <span class="ep-access">VIP</span>
+  <div class="ep-vol">La Plume des Sahabiyyat &bull; Volume&nbsp;XXVII</div>
+  <div class="ep-series">S&eacute;rie principale &bull; Saison I</div>
+  <h1 class="ep-title">La transmission comme amour</h1>
+  <p class="ep-tagline">Elles n'&eacute;crivaient pas pour la post&eacute;rit&eacute;. Elles parlaient, enseignaient, transmettaient parce que c'&eacute;tait juste. Et la post&eacute;rit&eacute; s'en est charg&eacute;e.</p>
+  <div class="ep-meta">
+    <span class="ep-meta-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      5 min de lecture
+    </span>
+    <span class="ep-meta-item">&bull;</span>
+    <span class="ep-meta-item">Jour 27 · Samedi</span>
+    <span class="ep-meta-item">&bull;</span>
+    <span class="ep-meta-item">VIP</span>
+  </div>
+</section>
+
+<!-- ORNEMENT -->
+<div class="orn">
+  <svg width="280" height="24" viewBox="0 0 280 24" fill="none">
+    <line x1="0" y1="12" x2="108" y2="12" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+    <path d="M116 12L120 6L124 12L120 18Z" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+    <circle cx="133" cy="12" r="3" fill="#c9a84c" opacity=".5"/>
+    <circle cx="140" cy="12" r="5" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+    <circle cx="140" cy="12" r="1.5" fill="#c9a84c" opacity=".6"/>
+    <circle cx="147" cy="12" r="3" fill="#c9a84c" opacity=".5"/>
+    <path d="M156 12L160 6L164 12L160 18Z" fill="none" stroke="#c9a84c" stroke-width="1" opacity=".6"/>
+    <line x1="172" y1="12" x2="280" y2="12" stroke="#c9a84c" stroke-width=".8" opacity=".5"/>
+  </svg>
+</div>
+
+<!-- EXTRAIT LIBRE -->
+<main class="ep-body">
+  <div class="ep-text">
+    <p>Les hadiths que nous lisons aujourd'hui &mdash; ceux qui ont &eacute;t&eacute; transmis par A&iuml;sha, Umm Salamah, Hafsah, Umm Sulaym et tant d'autres &mdash; ont travers&eacute; quatorze si&egrave;cles.</p>
+<p>Pas parce que ces femmes avaient des ambitions litt&eacute;raires. Mais parce qu'elles parlaient &agrave; celles qui &eacute;taient en face d'elles. Et ces femmes-l&agrave; ont parl&eacute; &agrave; d'autres. Et ainsi de suite.</p>
+<div class="ep-quote"><blockquote>&ldquo; La transmission est l'acte d'amour le plus long qui soit. Elle commence par une parole et ne finit jamais. &rdquo;</blockquote><cite>La Plume des Sahabiyyat &mdash; Vol. XXVII</cite></div>
+  </div>
+</main>
+
+<!-- FONDU + SUITE -->
+<div class="ep-fade">
+  <div class="ep-text">
+    <p>Vous &ecirc;tes aujourd'hui &agrave; la fin d'un maillon de cette cha&icirc;ne. Quelqu'un vous a appris &agrave; prier. Quelqu'un vous a lu le Coran. Quelqu'un vous a montr&eacute; comment &ecirc;tre femme avec dignit&eacute;.</p>
+<p>Ce quelqu'un &mdash; ou ces quelqu'uns &mdash; ont transmis. &Agrave; vous. Et vous transmettrez &agrave; d'autres &mdash; vos enfants, vos &eacute;l&egrave;ves, vos amies, vos s&oelig;urs dans la foi.</p>
+<p>La question n'est pas si vous transmettrez. La question est&nbsp;: qu'est-ce que vous transmettrez&nbsp;?</p>
+  </div>
+</div>
+
+<!-- PAYWALL -->
+<section class="ep-paywall">
+  <div class="paywall-glow"></div>
+  <div class="paywall-lock">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+      <path d="M7 11V7a5 5 0 0110 0v4"/>
+    </svg>
+  </div>
+  <div class="paywall-vip-note">Cet &eacute;pisode est r&eacute;serv&eacute; aux membres <strong>VIP</strong></div>
+  <h3 class="paywall-title">La suite vous attend</h3>
+  <p class="paywall-sub">Cet &eacute;pisode continue. Rejoignez notre maison pour lire la chronique compl&egrave;te.</p>
+  <div class="paywall-offers">
+    <div class="offer-card">
+      <div class="offer-name">MEMBER</div>
+      <div class="offer-prices">
+        <div class="offer-price-row"><strong>2&nbsp;500</strong> DZD/mois</div>
+        <div class="offer-price-row"><strong>17&nbsp;&euro;</strong>/mois</div>
+      </div>
+      <div class="offer-features">
+        &#10003; Tous les &eacute;pisodes complets<br>
+        &#10003; Biblioth&egrave;que islamique<br>
+        &#10003; Programmes structur&eacute;s<br>
+        &#10003; Newsletter exclusive
+      </div>
+      <a href="../index.html#programmes" class="btn-offer-member">Rejoindre Member</a>
+    </div>
+    <div class="offer-card featured">
+      <div class="offer-badge">&#10022; Recommand&eacute;</div>
+      <div class="offer-name">VIP</div>
+      <div class="offer-prices">
+        <div class="offer-price-row"><strong>9&nbsp;000</strong> DZD/mois</div>
+        <div class="offer-price-row"><strong>60&nbsp;&euro;</strong>/mois</div>
+      </div>
+      <div class="offer-features">
+        &#10003; Tout Member inclus<br>
+        &#10003; Soir&eacute;es Al Muta'allim<br>
+        &#10003; Sessions personnalis&eacute;es<br>
+        &#10003; Acc&egrave;s prioritaire
+      </div>
+      <a href="../index.html#programmes" class="btn-offer-vip">Rejoindre VIP</a>
+    </div>
+  </div>
+  <p class="paywall-note">R&eacute;siliation possible &agrave; tout moment &middot; Paiement en DZD, EUR ou SAR</p>
+</section>
+
+<!-- CONTENU COMPLET (pour abonnées connectées) -->
+<div class="ep-full" id="full-content" style="display:none">
+  <div class="ep-text">
+    <p><em style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--gold)">&#10022; Contenu r&eacute;serv&eacute; aux membres &#10022;</em></p>
+    <p>Vous &ecirc;tes aujourd'hui &agrave; la fin d'un maillon de cette cha&icirc;ne. Quelqu'un vous a appris &agrave; prier. Quelqu'un vous a lu le Coran. Quelqu'un vous a montr&eacute; comment &ecirc;tre femme avec dignit&eacute;.</p>
+<p>Ce quelqu'un &mdash; ou ces quelqu'uns &mdash; ont transmis. &Agrave; vous. Et vous transmettrez &agrave; d'autres &mdash; vos enfants, vos &eacute;l&egrave;ves, vos amies, vos s&oelig;urs dans la foi.</p>
+<p>La question n'est pas si vous transmettrez. La question est&nbsp;: qu'est-ce que vous transmettrez&nbsp;?</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text-l);text-align:center;margin-top:32px">
+      &mdash; Votre lecture continue avec un abonnement actif. Contactez-nous &agrave; <a href="mailto:contact@muslimahsociety.dz">contact@muslimahsociety.dz</a> &mdash;
+    </p>
+  </div>
+</div>
+
+<!-- ACTIONS -->
+<section class="ep-actions">
+  <div class="action-block">
+    <div class="action-label">Action du Jour</div>
+    <div class="action-title">Votre action du jour</div>
+    <div class="action-text">Pensez &agrave; quelqu'un qui vous a transmis quelque chose de pr&eacute;cieux. Islamiquement ou humainement. Aujourd'hui, dites-le lui.<br><br>Et pensez &agrave; ce que vous, vous &ecirc;tes en train de transmettre, m&ecirc;me sans le savoir.</div>
+  </div>
+  <div class="action-block">
+    <div class="action-label">Du&rsquo;&acirc; du Jour</div>
+    <div class="action-title">Invoquez avec intention</div>
+    <div class="dua-arabic">اللّهُمَّ اجْعَلْنَا مُبَلِّغِينَ لِهَذَا الدِّينِ بِأَحْسَنِ مَا نَكُونُ</div>
+    <div class="dua-fr">&laquo;&nbsp;O Allah, fais de nous des transmetteurs de cette religion de la plus belle des fa&ccedil;ons.&nbsp;&raquo;</div>
+  </div>
+</section>
+
+<!-- PARTAGE -->
+<div class="ep-share">
+  <p class="share-text">Partager cet &eacute;pisode avec une s&oelig;ur qui m&eacute;rite de le lire</p>
+  <div class="share-btns">
+    <a class="share-btn" href="https://instagram.com/muslimah.off" target="_blank" title="Instagram">IG</a>
+    <a class="share-btn" href="https://wa.me/?text=La%20Plume%20des%20Sahabiyyat%20%E2%80%94%20La%20transmission%20comme%20amour" target="_blank" title="WhatsApp">WA</a>
+    <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='✓';setTimeout(()=>this.textContent='CP',2000)" title="Copier le lien">CP</a>
+  </div>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="ep-nav">
+  <a class="ep-nav-btn" href="read_26.html" style="align-items:flex-start">
+      <div class="ep-nav-dir">&larr; &Eacute;pisode pr&eacute;c&eacute;dent</div>
+      <div class="ep-nav-title">Vol.&nbsp;XXVI &mdash; Le travail comme ibadah</div>
+    </a>
+  <a class="ep-nav-btn" href="read_28.html" style="align-items:flex-end;text-align:right">
+      <div class="ep-nav-dir">&Eacute;pisode suivant &rarr;</div>
+      <div class="ep-nav-title">Vol.&nbsp;XXVIII &mdash; Lettre aux femmes d'aujourd'hui</div>
+    </a>
+</nav>
+
+<!-- FOOTER -->
+<footer class="ms-footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-col-title">Muslimah Society</div>
+      <p>Un espace d'&eacute;l&eacute;vation pour la femme musulmane.</p>
+      <p style="margin-top:8px">&copy; 2026 Institut Al Muta'allim</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">La Plume</div>
+      <a href="index.html">Toutes les chroniques</a>
+      <a href="index.html#sem1">Semaine I</a>
+      <a href="index.html#sem2">Semaine II</a>
+      <a href="index.html#sem3">Semaine III</a>
+      <a href="index.html#sem4">Semaine IV</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Abonnements</div>
+      <a href="../index.html#programmes">Member &mdash; 2&nbsp;500 DZD &bull; 17&nbsp;&euro;</a>
+      <a href="../index.html#programmes">VIP &mdash; 9&nbsp;000 DZD &bull; 60&nbsp;&euro;</a>
+      <a href="../index.html#contact">Nous contacter</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Suivez-nous</div>
+      <a href="https://instagram.com/muslimah.off" target="_blank">Instagram : @muslimah.off</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <div class="footer-copy">Muslimah Society &bull; Institut Al Muta'allim &bull; Alger</div>
+    <div class="footer-legal">
+      <a onclick="openModal('cgu')">CGU</a>
+      <a onclick="openModal('cgv')">CGV</a>
+      <a onclick="openModal('privacy')">Confidentialit&eacute;</a>
+      <a onclick="openModal('mentions')">Mentions l&eacute;gales</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MODALES -->
+<div class="modal-ov" id="modal-cgu"><div class="modal-box"><span class="modal-x" onclick="closeModal('cgu')">&#215;</span><div class="modal-title">Conditions G&eacute;n&eacute;rales d'Utilisation</div><div class="modal-body"><h3>1. Objet</h3><p>Les pr&eacute;sentes CGU r&eacute;gissent l'utilisation de Muslimah Society, &eacute;dit&eacute;e par Institut Al Muta'allim, Alger.</p><h3>2. Propri&eacute;t&eacute; intellectuelle</h3><p>Tous les contenus de La Plume des Sahabiyyat sont la propri&eacute;t&eacute; exclusive d'Institut Al Muta'allim. Toute reproduction est interdite.</p></div></div></div>
+<div class="modal-ov" id="modal-cgv"><div class="modal-box"><span class="modal-x" onclick="closeModal('cgv')">&#215;</span><div class="modal-title">Conditions G&eacute;n&eacute;rales de Vente</div><div class="modal-body"><h3>Tarifs</h3><p>Member&nbsp;: 2&nbsp;500 DZD / 17&euro; / 65 ر.س par mois.<br>VIP&nbsp;: 9&nbsp;000 DZD / 60&euro; / 225 ر.س par mois.<br>Annuel&nbsp;: 90&nbsp;000 DZD / 600&euro;.</p><h3>R&eacute;siliation</h3><p>Member&nbsp;: sans engagement. VIP&nbsp;: 3 mois minimum.</p></div></div></div>
+<div class="modal-ov" id="modal-privacy"><div class="modal-box"><span class="modal-x" onclick="closeModal('privacy')">&#215;</span><div class="modal-title">Politique de Confidentialit&eacute;</div><div class="modal-body"><h3>Donn&eacute;es</h3><p>Nous collectons uniquement votre pr&eacute;nom et adresse e-mail pour la gestion de votre abonnement.</p><h3>Contact</h3><p><a href="mailto:contact@muslimahsociety.dz">contact@muslimahsociety.dz</a></p></div></div></div>
+<div class="modal-ov" id="modal-mentions"><div class="modal-box"><span class="modal-x" onclick="closeModal('mentions')">&#215;</span><div class="modal-title">Mentions L&eacute;gales</div><div class="modal-body"><h3>&Eacute;diteur</h3><p>Institut Al Muta'allim &bull; Alger &bull; <a href="mailto:contact@muslimahsociety.dz">contact@muslimahsociety.dz</a></p><h3>Directrice</h3><p>Ustadha Zina &bull; Fondat
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="../js/supabaseClient.js"></script>
+<script src="../js/gate.js"></script>
+<script>
+(async () => {
+  // Cache le contenu complet par défaut
+  const fullContent = document.getElementById('full-content');
+  if (fullContent) fullContent.style.display = 'none';
+
+  // Vérifie si connectée
+  const { data } = await supabaseClient.auth.getUser();
+  const user = data?.user;
+  if (!user) return; // pas connectée → paywall reste
+
+  // Récupère l'abonnement
+  let profile;
+  try { profile = await getProfileSafe(user.id); }
+  catch(e) { return; }
+
+  const active = profile.subscription_status === 'active';
+  const tier   = profile.subscription_tier || 'none';
+  const hasAccess = active && (tier === 'member' || tier === 'vip');
+
+  if (hasAccess) {
+    // Affiche le contenu complet
+    if (fullContent) fullContent.style.display = 'block';
+    // Cache le paywall si présent
+    const paywall = document.querySelector('.ep-paywall');
+    if (paywall) paywall.style.display = 'none';
+    // Cache le fondu
+    const fade = document.querySelector('.ep-fade');
+    if (fade) fade.style.display = 'none';
+  }
+})();
+
+function openModal(id){ const m=document.getElementById('modal-'+id); if(m) m.style.display='flex'; }
+function closeModal(id){ const m=document.getElementById('modal-'+id); if(m) m.style.display='none'; }
+</script>
+</body>
+</html>
