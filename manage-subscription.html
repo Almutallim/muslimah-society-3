@@ -128,33 +128,38 @@ input:focus,select:focus{border-color:rgba(201,168,76,.6);}
     </span>
   </div></div>
 </footer>
-<script src="js/supabaseClient.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/gate.js"></script>
 <script>
-(async()=>{
-  const user = await requireAuth();
-  if(!user) return;
-  try{
-    const profile = await getProfileSafe(user.id);
-    const tier = profile.subscription_tier||'none';
-    const status = profile.subscription_status||'inactive';
-    const tLabel = tier==='vip'?'VIP':tier==='member'?'Member':'Sans abonnement';
-    const tClass = tier==='vip'?'vip':tier==='member'?'member':'none';
-    document.getElementById('subCard').innerHTML = `
-      <div class="card-head"><h2>Votre abonnement</h2></div>
-      <div class="card-body">
-        <div class="info-grid">
+var _U="https://lgxnejnihodyfgxlyycd.supabase.co";
+var _K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
+(function(){
+  function init(){
+    var client=window.supabase.createClient(_U,_K);
+    client.auth.getUser().then(function(r){
+      if(!r.data||!r.data.user){location.href="login.html";return null;}
+      return client.from("profiles").select("subscription_status,subscription_tier").eq("id",r.data.user.id).maybeSingle();
+    }).then(function(pr){
+      if(!pr)return;
+      var d=pr.data||{};
+      var status=d.subscription_status||"inactive";
+      var tier=d.subscription_tier||"none";
+      var active=status==="active";
+      var tLabel=tier==="vip"?"VIP":tier==="member"?"Member":"Sans abonnement";
+      var tClass=tier==="vip"?"badge-vip":tier==="member"?"badge-member":"badge-none";
+      var box=document.getElementById("subBox");
+      if(box){
+        box.innerHTML=\`<div class="info-grid">
           <div class="info-item"><div class="info-label">Formule</div><div><span class="badge ${tClass}">${tLabel}</span></div></div>
-          <div class="info-item"><div class="info-label">Statut</div><div><span class="badge ${status==='active'?'active':'inactive'}">${status==='active'?'Actif':'Inactif'}</span></div></div>
+          <div class="info-item"><div class="info-label">Statut</div><div><span class="badge ${active?"active":"inactive"}">${active?"Actif":"Inactif"}</span></div></div>
         </div>
         <div class="actions">
-          ${tier==='none'||status!=='active'?'<button class="btn btn-gold" onclick="location.href=\'pricing.html\'">Choisir un abonnement</button>':''}
-          ${tier==='member'?'<button class="btn btn-vip" onclick="location.href=\'upgrade.html\'">Passer à VIP ✦</button>':''}
-          <button class="btn btn-ghost" onclick="location.href=\'dashboard.html\'">← Mon espace</button>
-        </div>
-      </div>`;
-  }catch(e){ console.error(e); }
+          ${tier==="none"||!active?'<button class="btn btn-gold" onclick="location.href=\\'pricing.html\\'">Choisir un abonnement</button>':""}
+          ${tier==="member"?'<button class="btn btn-vip" onclick="location.href=\\'upgrade.html\\'">Passer a VIP</button>':""}
+          <button class="btn btn-ghost" onclick="location.href='dashboard.html'">Mon espace</button>
+        </div>\`;
+      }
+    }).catch(function(e){console.error(e);location.href="login.html";});
+  }
+  window.addEventListener("load",init);
 })();
 </script>
 </body>

@@ -70,41 +70,32 @@ body{font-family:'Cormorant Garamond',serif;background:linear-gradient(155deg,va
   </div>
 </div>
 
-<script src="js/supabaseClient.js"></script>
-<script src="js/auth.js"></script>
 <script>
-async function doLogin(){
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  const btn = document.getElementById('loginBtn');
-  const msg = document.getElementById('msg');
+var _U="https://lgxnejnihodyfgxlyycd.supabase.co";
+var _K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
 
-  if(!email || !password){ showMsg('Veuillez remplir tous les champs.','error'); return; }
-
-  btn.disabled = true;
-  btn.textContent = 'Connexion…';
-  msg.style.display = 'none';
-
-  try{
-    await login(email, password);
-    showMsg('Connexion réussie — redirection…','success');
-    setTimeout(()=> window.location.href = 'dashboard.html', 1000);
-  }catch(e){
-    showMsg(e.message || 'Erreur de connexion.','error');
-    btn.disabled = false;
-    btn.textContent = 'Se connecter';
-  }
+function showMsg(text,type){
+  var m=document.getElementById("msg");
+  m.textContent=text; m.className="msg "+type; m.style.display="block";
 }
 
-function showMsg(text, type){
-  const msg = document.getElementById('msg');
-  msg.textContent = text;
-  msg.className = 'msg ' + type;
-  msg.style.display = 'block';
+function doLogin(){
+  var email=document.getElementById("email").value.trim();
+  var pwd=document.getElementById("password").value;
+  var btn=document.getElementById("loginBtn");
+  if(!email||!pwd){showMsg("Veuillez remplir tous les champs.","error");return;}
+  btn.disabled=true; btn.textContent="Connexion...";
+  var c=window.supabase.createClient(_U,_K);
+  c.auth.signInWithPassword({email:email,password:pwd})
+    .then(function(r){
+      if(r.error){showMsg(r.error.message,"error");btn.disabled=false;btn.textContent="Se connecter";return;}
+      showMsg("Connexion reussie — redirection...","success");
+      setTimeout(function(){location.href="dashboard.html";},1000);
+    })
+    .catch(function(e){showMsg(e.message||"Erreur.","error");btn.disabled=false;btn.textContent="Se connecter";});
 }
 
-// Enter key
-document.addEventListener('keydown', e => { if(e.key === 'Enter') doLogin(); });
+document.addEventListener("keydown",function(e){if(e.key==="Enter")doLogin();});
 </script>
 </body>
 </html>

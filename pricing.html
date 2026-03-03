@@ -141,7 +141,30 @@ h1{font-family:'Cinzel',serif;font-size:clamp(22px,4vw,38px);font-weight:500;let
   </div>
 </main>
 
-<script src="js/supabaseClient.js"></script>
-<script src="js/billing.js"></script>
+<script>
+var _U="https://lgxnejnihodyfgxlyycd.supabase.co";
+var _K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
+function checkout(plan){
+  var c=window.supabase.createClient(_U,_K);
+  c.auth.getSession().then(function(r){
+    var token=r.data&&r.data.session&&r.data.session.access_token;
+    if(!token){location.href="login.html";return;}
+    var btn=event&&event.target;
+    if(btn){btn.disabled=true;btn.textContent="Redirection...";}
+    fetch("/api/create-checkout-session",{
+      method:"POST",
+      headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},
+      body:JSON.stringify({plan:plan})
+    }).then(function(res){return res.json();})
+    .then(function(data){
+      if(data.url){location.href=data.url;}
+      else{alert(data.error||"Erreur paiement");if(btn){btn.disabled=false;btn.textContent=plan==="vip"?"Rejoindre VIP":"Rejoindre Member";}}
+    }).catch(function(e){alert("Erreur: "+e.message);if(btn){btn.disabled=false;}});
+  });
+}
+// Si succes/annulation
+var params=new URLSearchParams(location.search);
+if(params.get("success")){location.href="dashboard.html?success=1";}
+</script>
 </body>
 </html>

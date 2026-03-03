@@ -3,61 +3,72 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Mon Espace - Muslimah Society</title>
+  <title>Mon Espace — Muslimah Society</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
-    :root{--gold:#c9a84c;--gold-p:rgba(201,168,76,.2);--ivory:#fdf8f2;--text:#3d2b25;--text-m:#7a5a50;--text-l:#a89080;--rose-d:#b08880;}
+    :root{--gold:#c9a84c;--gp:rgba(201,168,76,.2);--ivory:#fdf8f2;--text:#3d2b25;--tm:#7a5a50;--tl:#a89080;--rose:#b08880;}
     *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:Cormorant Garamond,serif;background:var(--ivory);color:var(--text);}
+    body{font-family:"Cormorant Garamond",serif;background:var(--ivory);color:var(--text);}
     a{color:inherit;text-decoration:none;}
-    .ms-header{position:sticky;top:0;z-index:800;background:rgba(253,248,242,.97);border-bottom:1px solid var(--gold-p);}
-    .inner{max-width:900px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;}
+    /* Header */
+    header{position:sticky;top:0;z-index:800;background:rgba(253,248,242,.97);border-bottom:1px solid var(--gp);backdrop-filter:blur(10px);}
+    .nav{max-width:900px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between;}
     .logo{display:flex;align-items:center;gap:10px;}
     .logo-mark{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:Cinzel,serif;font-size:12px;color:var(--gold);}
     .logo-name{font-family:Cinzel,serif;font-size:12px;letter-spacing:3px;}
-    .btn-out{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid var(--gold-p);color:var(--text-m);background:transparent;cursor:pointer;}
-    .page{max-width:900px;margin:0 auto;padding:32px 24px 80px;}
-    .hero{background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.2));border:1px solid var(--gold-p);border-radius:4px;padding:28px;margin-bottom:28px;}
+    .btn-out{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:8px 18px;border-radius:20px;border:1px solid var(--gp);color:var(--tm);background:transparent;cursor:pointer;transition:all .3s;}
+    .btn-out:hover{border-color:var(--gold);color:var(--gold);}
+    /* Page */
+    main{max-width:900px;margin:0 auto;padding:32px 24px 80px;}
+    /* Hero */
+    .hero{background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.2));border:1px solid var(--gp);border-radius:4px;padding:28px;margin-bottom:28px;position:relative;}
+    .hero::before{content:"";position:absolute;top:6px;left:6px;width:14px;height:14px;border-top:1px solid var(--gp);border-left:1px solid var(--gp);}
+    .hero::after{content:"";position:absolute;bottom:6px;right:6px;width:14px;height:14px;border-bottom:1px solid var(--gp);border-right:1px solid var(--gp);}
     .hero-label{font-family:Cinzel,serif;font-size:10px;letter-spacing:4px;color:var(--gold);margin-bottom:8px;}
-    .hero-email{font-size:20px;font-style:italic;color:var(--text-m);}
+    .hero-email{font-size:20px;font-style:italic;color:var(--tm);}
     .badge{display:inline-block;margin-top:10px;padding:6px 16px;border-radius:20px;font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;}
-    .b-vip{background:rgba(176,136,128,.15);color:var(--rose-d);border:1px solid rgba(176,136,128,.3);}
-    .b-member{background:rgba(201,168,76,.1);color:#9a7830;border:1px solid var(--gold-p);}
-    .b-none{background:rgba(160,144,128,.1);color:var(--text-l);border:1px solid rgba(160,144,128,.2);}
-    .sec-title{font-family:Cinzel,serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gold-p);}
+    .b-vip{background:rgba(176,136,128,.15);color:var(--rose);border:1px solid rgba(176,136,128,.3);}
+    .b-member{background:rgba(201,168,76,.1);color:#9a7830;border:1px solid var(--gp);}
+    .b-none{background:rgba(160,144,128,.1);color:var(--tl);border:1px solid rgba(160,144,128,.2);}
+    /* Section */
+    .sec-title{font-family:Cinzel,serif;font-size:11px;letter-spacing:4px;color:var(--gold);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gp);}
+    /* Grid */
     .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-bottom:28px;}
     @media(min-width:600px){.grid{grid-template-columns:repeat(2,1fr);}}
-    .card{background:rgba(255,252,248,.95);border:1px solid var(--gold-p);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:8px;transition:all .2s;}
+    .card{background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;padding:22px;display:flex;flex-direction:column;gap:8px;transition:all .2s;cursor:pointer;}
     .card:hover{border-color:rgba(201,168,76,.5);box-shadow:0 8px 28px rgba(61,43,37,.08);transform:translateY(-2px);}
-    .card-t{font-family:Cinzel,serif;font-size:13px;letter-spacing:1px;color:var(--text);}
-    .card-d{font-size:15px;font-style:italic;color:var(--text-m);}
+    .card-t{font-family:Cinzel,serif;font-size:13px;letter-spacing:1px;}
+    .card-d{font-size:15px;font-style:italic;color:var(--tm);}
     .card-a{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;color:var(--gold);margin-top:auto;padding-top:8px;}
-    .up-box{background:linear-gradient(155deg,rgba(232,213,208,.3),rgba(216,208,228,.2));border:1px solid var(--gold-p);border-radius:4px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:10px;}
+    /* Upsell */
+    .up-box{background:linear-gradient(155deg,rgba(232,213,208,.3),rgba(216,208,228,.2));border:1px solid var(--gp);border-radius:4px;padding:24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:10px;}
     .up-box h3{font-family:Cinzel,serif;font-size:14px;letter-spacing:1px;margin-bottom:6px;}
-    .up-box p{font-size:15px;font-style:italic;color:var(--text-m);}
+    .up-box p{font-size:15px;font-style:italic;color:var(--tm);}
     .btn-up{padding:10px 24px;border-radius:20px;background:var(--gold);color:#fff;border:none;font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;cursor:pointer;}
-    #msg{text-align:center;padding:60px 24px;font-style:italic;color:var(--text-l);}
+    /* Loading */
+    #loading{text-align:center;padding:60px 24px;font-style:italic;color:var(--tl);}
   </style>
 </head>
 <body>
-<header class="ms-header">
-  <div class="inner">
+<header>
+  <div class="nav">
     <a class="logo" href="index.html">
       <div class="logo-mark">MS</div>
       <div class="logo-name">MUSLIMAH SOCIETY</div>
     </a>
-    <button class="btn-out" id="btnLogout">Deconnexion</button>
+    <button class="btn-out" id="btnOut">Deconnexion</button>
   </div>
 </header>
-<main class="page">
+
+<main>
   <div class="hero">
     <div class="hero-label">Espace personnel</div>
-    <div class="hero-email" id="email">Chargement...</div>
-    <div id="badge"><span class="badge b-none">...</span></div>
+    <div class="hero-email" id="uEmail">Chargement...</div>
+    <div id="uBadge"><span class="badge b-none">...</span></div>
   </div>
-  <p id="msg">Chargement...</p>
-  <div id="main" style="display:none">
+  <p id="loading">Chargement de votre espace...</p>
+  <div id="content" style="display:none">
     <div class="sec-title">Acces rapide</div>
     <div class="grid" id="grid"></div>
     <div id="upsell" style="display:none">
@@ -72,55 +83,67 @@
     </div>
   </div>
 </main>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 (function(){
   var U="https://lgxnejnihodyfgxlyycd.supabase.co";
   var K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
 
-  function mkCard(href,title,desc){
+  function card(href,t,d){
     var a=document.createElement("a");
     a.className="card"; a.href=href;
-    a.innerHTML="<div class='card-t'>"+title+"</div><div class='card-d'>"+desc+"</div><div class='card-a'>Acceder &rarr;</div>";
+    a.innerHTML="<div class='card-t'>"+t+"</div><div class='card-d'>"+d+"</div><div class='card-a'>Acceder &rarr;</div>";
     return a;
   }
 
-  function render(active,tier){
+  function show(active,tier){
     var g=document.getElementById("grid");
-    g.appendChild(mkCard("la-plume/index.html","La Plume des Sahabiyyat","30 chroniques des grandes femmes"));
-    g.appendChild(mkCard("la-plume/index.html#chroniques","Chroniques du Mois","Articles et dossiers mensuels"));
+    g.appendChild(card("la-plume/index.html","La Plume des Sahabiyyat","Bibliotheque des 30 chroniques"));
+    g.appendChild(card("la-plume/index.html#chroniques","Chroniques du Mois","Articles et dossiers mensuels"));
     if(active){
-      g.appendChild(mkCard("audio.html","Audios exclusifs","Messages et conferences privees"));
-      if(tier==="vip") g.appendChild(mkCard("vip-events.html","Espace VIP","Soirees, replays et contenus reserves"));
-      g.appendChild(mkCard("manage-subscription.html","Mon abonnement","Gerer ma formule"));
+      g.appendChild(card("audio.html","Audios exclusifs","Messages et conferences privees"));
+      if(tier==="vip") g.appendChild(card("vip-events.html","Espace VIP","Soirees, replays et contenus reserves"));
+      g.appendChild(card("manage-subscription.html","Mon abonnement","Gerer ma formule"));
     }
-    g.appendChild(mkCard("charte.html","Charte officielle","Les engagements de la Maison"));
+    g.appendChild(card("charte.html","Charte officielle","Les engagements de la Maison"));
     if(!active) document.getElementById("upsell").style.display="block";
-    document.getElementById("msg").style.display="none";
-    document.getElementById("main").style.display="block";
+    document.getElementById("loading").style.display="none";
+    document.getElementById("content").style.display="block";
   }
 
-  document.getElementById("btnLogout").addEventListener("click",function(){
-    window.supabase.createClient(U,K).auth.signOut().then(function(){location.href="index.html";});
-  });
+  document.getElementById("btnOut").onclick=function(){
+    window.supabase.createClient(U,K).auth.signOut()
+      .then(function(){location.href="index.html";})
+      .catch(function(){location.href="index.html";});
+  };
 
   window.addEventListener("load",function(){
     var c=window.supabase.createClient(U,K);
-    c.auth.getUser().then(function(r){
-      if(!r.data||!r.data.user){location.href="login.html";return;}
-      var user=r.data.user;
-      document.getElementById("email").textContent=user.email;
-      c.from("profiles").select("subscription_status,subscription_tier").eq("id",user.id).maybeSingle().then(function(pr){
-        var d=pr.data||{};
+    c.auth.getUser()
+      .then(function(r){
+        if(!r.data||!r.data.user){location.href="login.html";return null;}
+        document.getElementById("uEmail").textContent=r.data.user.email;
+        return c.from("profiles")
+          .select("subscription_status,subscription_tier")
+          .eq("id",r.data.user.id)
+          .maybeSingle();
+      })
+      .then(function(r){
+        if(!r)return;
+        var d=r.data||{};
         var active=d.subscription_status==="active";
         var tier=d.subscription_tier||"none";
-        var b=document.getElementById("badge");
+        var b=document.getElementById("uBadge");
         if(active&&tier==="vip") b.innerHTML="<span class='badge b-vip'>+ VIP</span>";
         else if(active) b.innerHTML="<span class='badge b-member'>Member</span>";
         else b.innerHTML="<span class='badge b-none'>Sans abonnement</span>";
-        render(active,tier);
-      }).catch(function(){render(false,"none");});
-    }).catch(function(){location.href="login.html";});
+        show(active,tier);
+      })
+      .catch(function(e){
+        console.error("Dashboard error:",e);
+        document.getElementById("loading").textContent="Erreur. Veuillez vous reconnecter.";
+      });
   });
 })();
 </script>
