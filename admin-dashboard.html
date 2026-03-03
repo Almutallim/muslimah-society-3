@@ -135,24 +135,6 @@ input:focus,select:focus{border-color:rgba(201,168,76,.6);}
   </div></div>
 </footer>
 <script>
-requireAuth();
-(async()=>{
-  try{
-    const {data:profiles} = await supabaseClient.from('profiles').select('*');
-    const members = profiles?.filter(p=>p.subscription_tier==='member'&&p.subscription_status==='active').length||0;
-    const vip = profiles?.filter(p=>p.subscription_tier==='vip'&&p.subscription_status==='active').length||0;
-    const revenue = (members*17+vip*60).toFixed(0);
-    const d7 = new Date(); d7.setDate(d7.getDate()-7);
-    const newU = profiles?.filter(p=>new Date(p.created_at)>d7).length||0;
-    document.getElementById('stats').innerHTML = `
-      <div class="stat-card"><div class="stat-value">${members}</div><div class="stat-label">Members Actifs</div></div>
-      <div class="stat-card"><div class="stat-value">${vip}</div><div class="stat-label">VIP Actifs</div></div>
-      <div class="stat-card"><div class="stat-value">${revenue} €</div><div class="stat-label">Revenus mois</div></div>
-      <div class="stat-card"><div class="stat-value">${newU}</div><div class="stat-label">Nouveaux 7j</div></div>`;
-  }catch(e){ console.error(e); }
-})();
-</script>
-<script>
 window.supabaseClient=window.supabase.createClient("https://lgxnejnihodyfgxlyycd.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo");
 window.requireAuth=async function(){
   var r=await window.supabaseClient.auth.getUser();
@@ -184,5 +166,27 @@ window.checkout=async function(plan){
   }).catch(function(e){alert("Erreur: "+e.message);if(btn)btn.disabled=false;});
 };
 </script>
+<script>
+(async()=>{
+  const user = await requireAuth();
+  if(!user) return;
+(async()=>{
+  try{
+    const {data:profiles} = await supabaseClient.from('profiles').select('*');
+    const members = profiles?.filter(p=>p.subscription_tier==='member'&&p.subscription_status==='active').length||0;
+    const vip = profiles?.filter(p=>p.subscription_tier==='vip'&&p.subscription_status==='active').length||0;
+    const revenue = (members*17+vip*60).toFixed(0);
+    const d7 = new Date(); d7.setDate(d7.getDate()-7);
+    const newU = profiles?.filter(p=>new Date(p.created_at)>d7).length||0;
+    document.getElementById('stats').innerHTML = `
+      <div class="stat-card"><div class="stat-value">${members}</div><div class="stat-label">Members Actifs</div></div>
+      <div class="stat-card"><div class="stat-value">${vip}</div><div class="stat-label">VIP Actifs</div></div>
+      <div class="stat-card"><div class="stat-value">${revenue} €</div><div class="stat-label">Revenus mois</div></div>
+      <div class="stat-card"><div class="stat-value">${newU}</div><div class="stat-label">Nouveaux 7j</div></div>`;
+  }catch(e){ console.error(e); }
+})();
+})();
+</script>
+
 </body>
 </html>

@@ -86,86 +86,66 @@
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-// ── CONFIG ──────────────────────────────────────────────────────────
-var _U = "https://lgxnejnihodyfgxlyycd.supabase.co";
-var _K = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
+(function(){
+  var U="https://lgxnejnihodyfgxlyycd.supabase.co";
+  var K="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
 
-// ── LOGOUT ──────────────────────────────────────────────────────────
-document.getElementById("btnOut").addEventListener("click", function() {
-  window.supabase.createClient(_U, _K).auth.signOut()
-    .then(function() { location.href = "index.html"; })
-    .catch(function() { location.href = "index.html"; });
-});
-
-// ── CARD HTML ───────────────────────────────────────────────────────
-function mkCard(href, title, desc) {
-  return '<a class="card" href="' + href + '">'
-    + '<div class="card-t">' + title + '</div>'
-    + '<div class="card-d">' + desc + '</div>'
-    + '<div class="card-a">Acceder &rarr;</div>'
-    + '</a>';
-}
-
-// ── MAIN : async/await, zero chaining ──────────────────────────────
-async function initDashboard() {
-  var client = window.supabase.createClient(_U, _K);
-
-  // 1. Utilisateur connecté ?
-  var authRes = await client.auth.getUser();
-  var user = authRes && authRes.data && authRes.data.user;
-  if (!user) { location.href = "login.html"; return; }
-
-  // Afficher l'email
-  document.getElementById("uEmail").textContent = user.email;
-
-  // 2. Profil abonnement
-  var profRes = await client
-    .from("profiles")
-    .select("subscription_status, subscription_tier")
-    .eq("id", user.id)
-    .maybeSingle();
-
-  var prof    = (profRes && profRes.data) ? profRes.data : {};
-  var active  = prof.subscription_status === "active";
-  var tier    = prof.subscription_tier   || "none";
-
-  // 3. Badge
-  var badgeEl = document.getElementById("uBadge");
-  if (active && tier === "vip") {
-    badgeEl.innerHTML = "<span class='badge b-vip'>&#10022; VIP</span>";
-  } else if (active) {
-    badgeEl.innerHTML = "<span class='badge b-member'>Member</span>";
-  } else {
-    badgeEl.innerHTML = "<span class='badge b-none'>Sans abonnement</span>";
+  function card(href,t,d){
+    var a=document.createElement("a");
+    a.className="card"; a.href=href;
+    a.innerHTML="<div class='card-t'>"+t+"</div><div class='card-d'>"+d+"</div><div class='card-a'>Acceder &rarr;</div>";
+    return a;
   }
 
-  // 4. Cartes ── innerHTML d'un seul coup, aucun appendChild
-  var html = mkCard("la-plume/index.html", "La Plume des Sahabiyyat", "Bibliotheque des 30 chroniques");
-  html    += mkCard("la-plume/index.html#chroniques", "Chroniques du Mois", "Articles et dossiers mensuels");
-
-  if (active) {
-    html += mkCard("audio.html", "Audios exclusifs", "Messages et conferences privees");
-    if (tier === "vip") {
-      html += mkCard("vip-events.html", "Espace VIP", "Soirees, replays et contenus reserves");
+  function show(active,tier){
+    var g=document.getElementById("grid");
+    g.appendChild(card("la-plume/index.html","La Plume des Sahabiyyat","Bibliotheque des 30 chroniques"));
+    g.appendChild(card("la-plume/index.html#chroniques","Chroniques du Mois","Articles et dossiers mensuels"));
+    if(active){
+      g.appendChild(card("audio.html","Audios exclusifs","Messages et conferences privees"));
+      if(tier==="vip") g.appendChild(card("vip-events.html","Espace VIP","Soirees, replays et contenus reserves"));
+      g.appendChild(card("manage-subscription.html","Mon abonnement","Gerer ma formule"));
     }
-    html += mkCard("manage-subscription.html", "Mon abonnement", "Gerer ma formule");
+    g.appendChild(card("charte.html","Charte officielle","Les engagements de la Maison"));
+    if(!active) document.getElementById("upsell").style.display="block";
+    document.getElementById("loading").style.display="none";
+    document.getElementById("content").style.display="block";
   }
-  html += mkCard("charte.html", "Charte officielle", "Les engagements de la Maison");
 
-  document.getElementById("grid").innerHTML = html;
+  document.getElementById("btnOut").onclick=function(){
+    window.supabase.createClient(U,K).auth.signOut()
+      .then(function(){location.href="index.html";})
+      .catch(function(){location.href="index.html";});
+  };
 
-  // 5. Afficher / masquer
-  if (!active) document.getElementById("upsell").style.display = "block";
-  document.getElementById("loading").style.display  = "none";
-  document.getElementById("content").style.display  = "block";
-}
-
-// Lancer dès que le DOM est prêt
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", initDashboard);
-} else {
-  initDashboard();
-}
+  window.addEventListener("load",function(){
+    var c=window.supabase.createClient(U,K);
+    c.auth.getUser()
+      .then(function(r){
+        if(!r.data||!r.data.user){location.href="login.html";return null;}
+        document.getElementById("uEmail").textContent=r.data.user.email;
+        return c.from("profiles")
+          .select("subscription_status,subscription_tier")
+          .eq("id",r.data.user.id)
+          .maybeSingle();
+      })
+      .then(function(r){
+        if(!r)return;
+        var d=r.data||{};
+        var active=d.subscription_status==="active";
+        var tier=d.subscription_tier||"none";
+        var b=document.getElementById("uBadge");
+        if(active&&tier==="vip") b.innerHTML="<span class='badge b-vip'>+ VIP</span>";
+        else if(active) b.innerHTML="<span class='badge b-member'>Member</span>";
+        else b.innerHTML="<span class='badge b-none'>Sans abonnement</span>";
+        show(active,tier);
+      })
+      .catch(function(e){
+        console.error("Dashboard error:",e);
+        document.getElementById("loading").textContent="Erreur. Veuillez vous reconnecter.";
+      });
+  });
+})();
 </script>
 </body>
 </html>

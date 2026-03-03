@@ -136,35 +136,6 @@ input:focus,select:focus{border-color:rgba(201,168,76,.6);}
   </div></div>
 </footer>
 <script>
-requireAuth();
-let allUsers=[];
-(async()=>{
-  try{
-    const {data:profiles} = await supabaseClient.from('profiles').select('*').order('created_at',{ascending:false});
-    allUsers = profiles||[];
-    renderUsers(allUsers);
-  }catch(e){ console.error(e); }
-})();
-function renderUsers(users){
-  const tbody = document.getElementById('usersBody');
-  if(!users||!users.length){ tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:32px;font-style:italic;color:var(--text-l);">Aucun utilisateur</td></tr>'; return; }
-  tbody.innerHTML = users.map(u=>`<tr>
-    <td>${u.full_name||'—'}</td>
-    <td>${u.email||'—'}</td>
-    <td><span class="badge ${u.subscription_tier||'none'}">${u.subscription_tier==='member'?'Member':u.subscription_tier==='vip'?'VIP':'Gratuit'}</span></td>
-    <td><span class="badge ${u.subscription_status==='active'?'active':'inactive'}">${u.subscription_status==='active'?'Actif':'Inactif'}</span></td>
-    <td>${new Date(u.created_at).toLocaleDateString('fr-FR')}</td>
-  </tr>`).join('');
-}
-['searchInput','tierFilter','statusFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',filterUsers));
-function filterUsers(){
-  const s=document.getElementById('searchInput').value.toLowerCase();
-  const t=document.getElementById('tierFilter').value;
-  const st=document.getElementById('statusFilter').value;
-  renderUsers(allUsers.filter(u=>(!s||u.email?.toLowerCase().includes(s)||u.full_name?.toLowerCase().includes(s))&&(!t||u.subscription_tier===t)&&(!st||u.subscription_status===st)));
-}
-</script>
-<script>
 window.supabaseClient=window.supabase.createClient("https://lgxnejnihodyfgxlyycd.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo");
 window.requireAuth=async function(){
   var r=await window.supabaseClient.auth.getUser();
@@ -196,5 +167,38 @@ window.checkout=async function(plan){
   }).catch(function(e){alert("Erreur: "+e.message);if(btn)btn.disabled=false;});
 };
 </script>
+<script>
+(async()=>{
+  const user = await requireAuth();
+  if(!user) return;
+let allUsers=[];
+(async()=>{
+  try{
+    const {data:profiles} = await supabaseClient.from('profiles').select('*').order('created_at',{ascending:false});
+    allUsers = profiles||[];
+    renderUsers(allUsers);
+  }catch(e){ console.error(e); }
+})();
+function renderUsers(users){
+  const tbody = document.getElementById('usersBody');
+  if(!users||!users.length){ tbody.innerHTML='<tr><td colspan="5" style="text-align:center;padding:32px;font-style:italic;color:var(--text-l);">Aucun utilisateur</td></tr>'; return; }
+  tbody.innerHTML = users.map(u=>`<tr>
+    <td>${u.full_name||'—'}</td>
+    <td>${u.email||'—'}</td>
+    <td><span class="badge ${u.subscription_tier||'none'}">${u.subscription_tier==='member'?'Member':u.subscription_tier==='vip'?'VIP':'Gratuit'}</span></td>
+    <td><span class="badge ${u.subscription_status==='active'?'active':'inactive'}">${u.subscription_status==='active'?'Actif':'Inactif'}</span></td>
+    <td>${new Date(u.created_at).toLocaleDateString('fr-FR')}</td>
+  </tr>`).join('');
+}
+['searchInput','tierFilter','statusFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',filterUsers));
+function filterUsers(){
+  const s=document.getElementById('searchInput').value.toLowerCase();
+  const t=document.getElementById('tierFilter').value;
+  const st=document.getElementById('statusFilter').value;
+  renderUsers(allUsers.filter(u=>(!s||u.email?.toLowerCase().includes(s)||u.full_name?.toLowerCase().includes(s))&&(!t||u.subscription_tier===t)&&(!st||u.subscription_status===st)));
+}
+})();
+</script>
+
 </body>
 </html>
