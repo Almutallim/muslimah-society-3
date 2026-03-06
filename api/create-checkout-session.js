@@ -38,8 +38,8 @@ module.exports = async function handler(req, res) {
       mode: "subscription",
       line_items: [{ price, quantity: 1 }],
       customer_email: user.email,
-      success_url: `${origin}/dashboard.html?success=1`,
-      cancel_url: `${origin}/pricing.html?cancelled=1`,
+      success_url: `${origin}/https://muslimahsociety.com/dashboard.html?success=1`,
+      cancel_url: `${origin}/https://muslimahsociety.com/pricing.html`,
       metadata: { supabase_user_id: user.id, plan },
     });
 
