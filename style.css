@@ -1,0 +1,123 @@
+/* ===== MUSLIMAH SOCIETY GLOBAL STYLE ===== */
+
+body{
+    font-family: 'Cormorant Garamond', serif;
+    background:#f6f2ee;
+    color:#3d3d3d;
+    margin:0;
+}
+
+/* header */
+
+header{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    padding:18px 30px;
+    background:#f3ede8;
+}
+
+.logo{
+    width:48px;
+    height:48px;
+    border:2px solid #c8a96a;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:600;
+    color:#c8a96a;
+}
+
+header h1{
+    font-size:20px;
+    letter-spacing:3px;
+    margin:0;
+}
+
+header span{
+    font-style:italic;
+    font-size:14px;
+    color:#8a8a8a;
+}
+
+/* hero */
+
+.hero img{
+    width:100%;
+    border-radius:16px;
+}
+
+/* sections */
+
+.section{
+    padding:50px 25px;
+    max-width:900px;
+    margin:auto;
+}
+
+.section h2{
+    font-size:28px;
+    margin-bottom:12px;
+}
+
+.section p{
+    line-height:1.7;
+    font-size:18px;
+}
+
+/* lists */
+
+.section ul{
+    padding-left:20px;
+    margin-top:18px;
+}
+
+.section li{
+    margin-bottom:10px;
+    line-height:1.7;
+}
+
+/* buttons */
+
+.button{
+    display:inline-block;
+    margin-top:20px;
+    padding:14px 28px;
+    border-radius:30px;
+    background:#b89686;
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+}
+
+/* cards */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:16px;
+    padding:15px;
+}
+
+.card img{
+    width:100%;
+    border-radius:12px;
+}
+
+/* divider */
+
+.divider{
+    display:flex;
+    justify-content:center;
+    margin:40px 0;
+}
+
+.divider img{
+    width:200px;
+}
