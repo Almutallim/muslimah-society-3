@@ -4,64 +4,9 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Abonnements — Muslimah Society</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <style>
-:root{--gold:#c9a84c;--gold-p:#f0e4c0;--blush:#e8d5d0;--blush-l:#f5ede9;--ivory:#fdf8f2;--text:#3d2b25;--text-m:#7a5a50;--text-l:#a89080;--rose-d:#b08880;--max:900px;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Cormorant Garamond',serif;background:var(--ivory);color:var(--text);}
-a{color:inherit;text-decoration:none;}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
-
-/* Header */
-.ms-header{position:sticky;top:0;z-index:800;background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);backdrop-filter:blur(10px);}
-.ms-header .inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
-.ms-logo{display:flex;align-items:center;gap:10px;}
-.ms-logo-mark{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,rgba(255,252,245,1),rgba(240,228,200,.55));}
-.ms-logo-mark span{font-family:'Cinzel',serif;font-size:12px;color:var(--gold);}
-.ms-logo-name{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--text);}
-.btn-nav{padding:8px 18px;border-radius:20px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;border:1.5px solid var(--gold);color:var(--gold);background:transparent;cursor:pointer;transition:all .3s;}
-.btn-nav:hover{background:var(--gold);color:#fff;}
-
-/* Hero */
-.hero{padding:48px 0 36px;background:linear-gradient(160deg,var(--blush-l),var(--blush) 40%,rgba(216,208,228,.5) 80%,var(--blush-l));border-bottom:1px solid rgba(201,168,76,.12);text-align:center;}
-.chip{display:inline-block;padding:6px 16px;border-radius:20px;border:1px solid var(--gold-p);background:rgba(255,252,245,.85);font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
-h1{font-family:'Cinzel',serif;font-size:clamp(22px,4vw,38px);font-weight:500;letter-spacing:2px;margin-bottom:12px;}
-.tagline{font-size:clamp(16px,2.5vw,20px);font-style:italic;color:var(--text-m);max-width:600px;margin:0 auto;}
-
-/* Grille prix */
-.page{padding:36px 0 64px;}
-.grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:8px;}
-@media(min-width:640px){.grid{grid-template-columns:repeat(2,1fr);}}
-
-.plan{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;box-shadow:0 8px 32px rgba(61,43,37,.08);overflow:hidden;position:relative;}
-.plan.featured{border-color:rgba(176,136,128,.4);box-shadow:0 16px 48px rgba(61,43,37,.14);}
-.plan::before{content:'';position:absolute;top:6px;left:6px;width:12px;height:12px;border-top:1px solid var(--gold-p);border-left:1px solid var(--gold-p);}
-.plan::after{content:'';position:absolute;bottom:6px;right:6px;width:12px;height:12px;border-bottom:1px solid var(--gold-p);border-right:1px solid var(--gold-p);}
-.plan-head{padding:24px 24px 20px;background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.18));border-bottom:1px solid rgba(201,168,76,.14);}
-.plan-badge{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 12px;border-radius:20px;border:1px solid rgba(201,168,76,.25);background:rgba(255,252,245,.85);color:var(--gold);display:inline-block;margin-bottom:12px;}
-.plan-badge.vip{border-color:rgba(176,136,128,.3);color:var(--rose-d);background:rgba(176,136,128,.08);}
-.plan-name{font-family:'Cinzel',serif;font-size:22px;font-weight:500;letter-spacing:2px;margin-bottom:4px;}
-.plan-desc{font-size:15px;font-style:italic;color:var(--text-m);}
-.plan-price{margin-top:14px;}
-.plan-amount{font-family:'Cinzel',serif;font-size:32px;font-weight:500;color:var(--text);}
-.plan-period{font-size:15px;font-style:italic;color:var(--text-l);margin-left:4px;}
-.plan-alt{font-size:13px;font-style:italic;color:var(--text-l);margin-top:4px;}
-.plan-body{padding:22px 24px 26px;}
-.plan-body ul{list-style:none;}
-.plan-body li{font-size:16px;color:var(--text-m);padding:7px 0 7px 22px;position:relative;border-bottom:1px solid rgba(201,168,76,.08);}
-.plan-body li:last-child{border-bottom:none;}
-.plan-body li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:9px;top:11px;}
-.btn-plan{width:100%;margin-top:18px;padding:14px;border:none;border-radius:30px;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .3s;}
-.btn-member{background:var(--gold);color:#fff;}
-.btn-member:hover{background:#b8923e;box-shadow:0 10px 28px rgba(201,168,76,.25);}
-.btn-vip-plan{background:var(--rose-d);color:#fff;}
-.btn-vip-plan:hover{background:#9a7068;box-shadow:0 10px 28px rgba(176,136,128,.3);}
-.note{text-align:center;margin-top:24px;font-size:14px;font-style:italic;color:var(--text-l);}
-.note a{color:var(--gold);}
-  </style>
 </head>
 <body>
 
