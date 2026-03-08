@@ -1,449 +1,488 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Bibliothèque — Muslimah Society</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>La Bibliothèque — Muslimah Society · Maison éditoriale</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{
-  --ivory:#fdf8f2;
-  --cream:#faf4ec;
-  --blush:#ead8d2;
-  --blush-light:#f5ece8;
-  --rose:#cda9a0;
-  --rose-deep:#b48a82;
-  --gold:#c9a84c;
-  --gold-soft:#edd8a6;
-  --text:#3f2d26;
-  --text-soft:#7d6055;
-  --text-faint:#a48a7d;
-  --shadow:0 18px 48px rgba(90,65,52,.12);
-  --radius:6px;
+  --blue-deep:#8fa8bc;--blue-mid:#a8bfce;--blue-soft:#bccdd9;
+  --blue-pale:#d4e2ea;--blue-whisper:#e8f0f4;--blue-bg:#f0f5f8;
+  --white-card:rgba(255,254,252,.96);--gold:#c9a84c;
+  --ink:#1e2d38;--text:#2e3f4d;--soft:#5a7080;--faint:#8aa0b0;
+  --sh:0 14px 40px rgba(100,140,170,.14);--r:6px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'Cormorant Garamond',serif;
-  color:var(--text);
-  background:linear-gradient(to bottom,var(--ivory),var(--cream));
-  overflow-x:hidden;
-}
+body{font-family:'Cormorant Garamond',serif;color:var(--text);background:var(--blue-bg);overflow-x:hidden}
 a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
-button{font:inherit}
 
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
-}
-
-.page-shell{position:relative;z-index:1}
-.page-shell::before,
-.page-shell::after{
-  content:"";position:fixed;top:0;width:150px;height:150px;pointer-events:none;opacity:.42;z-index:1;
-  background-repeat:no-repeat;background-size:contain;
-}
-.page-shell::before{left:0;background-image:url('images/floral-corner-1.png')}
-.page-shell::after{right:0;background-image:url('images/floral-corner-2.png')}
-
-.container{max-width:1180px;margin:0 auto}
-
-.ms-header{
-  position:sticky;top:0;z-index:50;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  padding:18px 42px;
-  background:rgba(253,248,242,.92);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(201,168,76,.18);
-}
+/* ── NAV ── */
+.ms-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 42px;background:rgba(240,245,248,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(140,180,205,.25)}
 .ms-logo{display:flex;align-items:center;gap:12px}
-.ms-logo-mono{
-  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
-  border:1.5px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:13px;
-  background:radial-gradient(circle,rgba(255,248,238,.98),rgba(240,228,200,.55));
-  box-shadow:0 0 14px rgba(201,168,76,.16);
-}
-.ms-logo-name{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px}
-.ms-logo-sub{font-size:11px;color:var(--text-faint);font-style:italic;letter-spacing:1px}
-.ms-nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
-.ms-nav a{font-size:16px;color:var(--text-soft);font-style:italic;transition:.25s}
-.ms-nav a:hover{color:var(--gold)}
-.btn-outline,.btn-solid,.btn-soft{
-  border-radius:40px;display:inline-flex;align-items:center;justify-content:center;
-  padding:12px 28px;transition:.28s;border:1.5px solid transparent;
-}
-.btn-outline{border-color:var(--gold);color:var(--gold);background:transparent}
-.btn-outline:hover{background:var(--gold);color:#fff}
-.btn-solid{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff}
-.btn-solid:hover{transform:translateY(-2px);background:var(--rose);border-color:var(--rose)}
-.btn-soft{background:rgba(255,252,248,.72);border-color:rgba(201,168,76,.45);color:var(--text)}
-.btn-soft:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+.ms-logo-mono{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--blue-mid);color:var(--blue-deep);font-family:'Cinzel',serif;font-size:13px;background:rgba(255,254,252,.9)}
+.ms-logo-name{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--ink)}
+.ms-logo-sub{font-size:10px;color:var(--faint);font-style:italic}
+.ms-nav{display:flex;align-items:center;gap:20px}
+.ms-nav a{font-size:15px;color:var(--soft);font-style:italic;transition:.25s}
+.ms-nav a:hover,.ms-nav a.active{color:var(--blue-deep)}
+.btn-o{border-radius:40px;padding:8px 20px;border:1.5px solid var(--blue-mid);color:var(--blue-deep);background:transparent;font-size:14px;font-style:italic;transition:.25s}
+.btn-o:hover{background:var(--blue-mid);color:#fff}
+.btn-s{border-radius:40px;padding:8px 20px;border:1.5px solid var(--blue-deep);background:var(--blue-deep);color:#fff;font-size:14px;font-style:italic;transition:.25s}
+.btn-s:hover{background:var(--blue-mid)}
 
-.hero{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
-  padding:88px 24px 110px;
-  background:
-    linear-gradient(rgba(253,248,242,.52),rgba(253,248,242,.78)),
-    url('images/hero-main.jpg') center/cover no-repeat;
-  position:relative;overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(255,248,240,.04),rgba(61,43,37,.18));
-}
-.hero-card{
-  position:relative;z-index:2;max-width:760px;padding:46px 34px;
-  background:rgba(253,248,242,.72);backdrop-filter:blur(8px);
-  border:1.5px solid rgba(201,168,76,.4);border-radius:var(--radius);box-shadow:var(--shadow);
-}
-.hero-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
-.hero-title{font-family:'Cinzel',serif;font-size:clamp(30px,5vw,58px);letter-spacing:4px;line-height:1.18;margin-bottom:14px}
-.hero-sub{font-size:clamp(20px,2.5vw,28px);line-height:1.7;font-style:italic;color:var(--text-soft);margin-bottom:28px}
-.hero-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+/* ── MASTHEAD ── */
+.masthead{background:linear-gradient(155deg,var(--blue-soft) 0%,var(--blue-mid) 45%,var(--blue-deep) 100%);padding:56px 42px 48px;text-align:center;position:relative;overflow:hidden}
+.masthead::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.16),transparent 55%)}
+.masthead-sup{font-family:'Cinzel',serif;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:16px;position:relative;z-index:2}
+.masthead-icon{font-size:32px;color:rgba(255,255,255,.4);margin-bottom:14px;position:relative;z-index:2;display:block}
+.masthead-title{font-family:'Playfair Display',serif;font-size:clamp(42px,7vw,84px);color:rgba(255,255,255,.95);letter-spacing:4px;line-height:1;margin-bottom:10px;position:relative;z-index:2}
+.masthead-title em{color:#e8e0c8;font-style:italic}
+.masthead-rule{display:flex;align-items:center;justify-content:center;gap:18px;margin:18px 0;position:relative;z-index:2}
+.masthead-rule hr{width:110px;border:none;border-top:1px solid rgba(255,255,255,.3)}
+.masthead-sub{font-size:17px;font-style:italic;color:rgba(255,255,255,.65);letter-spacing:1px;position:relative;z-index:2}
 
-.sec-nav{
-  display:flex;justify-content:center;flex-wrap:wrap;gap:30px;
-  padding:16px 24px;border-top:1px solid rgba(201,168,76,.18);border-bottom:1px solid rgba(201,168,76,.18);
-  background:rgba(250,244,236,.92)
-}
-.sec-nav a{font-size:16px;font-style:italic;color:var(--text-soft)}
-.sec-nav a:hover{color:var(--gold)}
+/* ── FILTRES ── */
+.filter-band{background:rgba(240,245,248,.95);border-bottom:1px solid rgba(140,180,205,.2);padding:0 42px;display:flex;align-items:center;gap:6px;overflow-x:auto;scrollbar-width:none}
+.filter-band::-webkit-scrollbar{display:none}
+.filt-btn{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:14px 16px;border:none;background:none;color:var(--faint);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:.2s}
+.filt-btn:hover,.filt-btn.active{color:var(--blue-deep);border-bottom-color:var(--blue-deep)}
 
-.divider{padding:22px 0;text-align:center;background:linear-gradient(to bottom,var(--cream),var(--ivory))}
-.divider img{width:min(360px,70vw);margin:0 auto;opacity:.7}
+/* ── MAIN ── */
+.main{max-width:1200px;margin:0 auto;padding:56px 42px}
+.sec-block{margin-bottom:64px}
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:32px;padding-bottom:14px;border-bottom:1px solid rgba(140,180,205,.22)}
+.sec-num{font-family:'Playfair Display',serif;font-size:56px;color:rgba(140,180,205,.3);line-height:1}
+.sec-rub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:4px}
+.sec-title{font-family:'Playfair Display',serif;font-size:28px;color:var(--ink)}
+.sec-desc{font-size:15px;font-style:italic;color:var(--faint);margin-top:3px}
 
-.section{padding:84px 42px;position:relative}
-.section.alt{background:linear-gradient(to bottom,var(--cream),var(--ivory))}
-.section.wash{background:linear-gradient(160deg,var(--blush-light),var(--blush),#f2e5e0 65%,#efe7f1)}
-.label{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:12px}
-.title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,42px);text-align:center;margin-bottom:14px}
-.subtitle{max-width:780px;margin:0 auto 44px;text-align:center;font-size:21px;line-height:1.75;font-style:italic;color:var(--text-faint)}
+/* ── FEATURED ── */
+.lib-featured{display:grid;grid-template-columns:1fr 1.4fr;border:1px solid rgba(140,180,205,.25);border-radius:var(--r);overflow:hidden;background:var(--white-card);margin-bottom:32px;box-shadow:var(--sh)}
+.lf-visual{background:linear-gradient(155deg,var(--blue-whisper),var(--blue-pale) 50%,var(--blue-soft));min-height:300px;display:flex;align-items:center;justify-content:center;padding:32px;position:relative}
+.lf-visual::after{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.3);border-radius:2px;pointer-events:none}
+.lf-book{background:linear-gradient(145deg,rgba(255,255,255,.3),rgba(255,255,255,.1));border:1px solid rgba(255,255,255,.5);border-radius:4px;padding:28px 22px;width:160px;text-align:center;position:relative;z-index:2;box-shadow:0 12px 32px rgba(100,140,170,.2)}
+.lf-book-icon{font-size:36px;margin-bottom:10px;opacity:.7}
+.lf-book-title{font-family:'Playfair Display',serif;font-size:16px;color:#fff;font-style:italic;line-height:1.3}
+.lf-book-sub{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-top:8px}
+.lf-body{padding:40px 42px;display:flex;flex-direction:column;justify-content:center}
+.lf-type{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:12px}
+.lf-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,34px);color:var(--ink);line-height:1.25;margin-bottom:8px}
+.lf-sub{font-size:16px;font-style:italic;color:var(--blue-deep);margin-bottom:14px}
+.lf-desc{font-size:17px;line-height:1.85;color:var(--soft);margin-bottom:20px}
+.lf-meta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.lf-tag{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid rgba(140,180,205,.3);color:var(--blue-deep);background:var(--blue-whisper)}
+.lf-cta{display:inline-flex;align-items:center;gap:8px;border-radius:40px;padding:11px 26px;background:var(--blue-mid);color:#fff;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;transition:.25s}
+.lf-cta:hover{background:var(--blue-deep)}
 
-.about-grid{
-  display:grid;grid-template-columns:1.04fr .96fr;gap:54px;align-items:center;max-width:1120px;margin:0 auto;
-}
-.figure-frame{background:rgba(255,252,248,.7);border:1px solid rgba(201,168,76,.34);padding:14px;border-radius:var(--radius);box-shadow:var(--shadow)}
-.figure-frame img{width:100%;height:510px;object-fit:cover;border-radius:3px}
-.about-copy p{font-size:22px;line-height:1.9;color:var(--text-soft);font-style:italic;margin-bottom:26px}
+/* ── GRILLE RESSOURCES ── */
+.lib-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lib-card{background:var(--white-card);border:1px solid rgba(140,180,205,.22);border-radius:var(--r);overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.lib-card:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:rgba(140,180,205,.45)}
+.lib-card-header{background:linear-gradient(145deg,var(--blue-whisper),var(--blue-pale) 60%,var(--blue-soft));padding:28px 24px;display:flex;align-items:center;justify-content:space-between}
+.lib-card-icon{font-size:32px;opacity:.7}
+.lib-card-badge{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.badge-libre{color:var(--soft);border:1px solid rgba(140,180,205,.3);background:rgba(255,255,255,.4)}
+.badge-member{color:#3a7a3a;background:rgba(80,140,80,.08);border:1px solid rgba(80,140,80,.25)}
+.badge-vip{color:#fff;background:var(--gold);border:1px solid var(--gold)}
+.badge-bientot{color:var(--faint);background:rgba(255,255,255,.3);border:1px solid rgba(140,180,205,.2)}
+.lib-card-body{padding:22px;flex:1;display:flex;flex-direction:column}
+.lib-card-rub{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:8px}
+.lib-card-title{font-family:'Playfair Display',serif;font-size:19px;color:var(--ink);line-height:1.3;margin-bottom:6px}
+.lib-card-text{font-size:15px;line-height:1.75;color:var(--soft);flex:1;margin-bottom:14px}
+.lib-card-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(140,180,205,.14)}
+.lib-card-format{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--faint)}
+.lib-card-link{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-deep);transition:.2s}
+.lib-card-link:hover{color:var(--gold)}
+a.lib-card-link{cursor:pointer}
 
-.membership-grid{
-  display:grid;grid-template-columns:repeat(5,1fr);gap:22px;max-width:1180px;margin:0 auto;
-}
-.card{
-  background:rgba(255,252,248,.92);border:1.5px solid rgba(201,168,76,.28);border-radius:var(--radius);
-  padding:12px 12px 22px;box-shadow:var(--shadow);transition:.3s;
-}
-.card:hover{transform:translateY(-6px);box-shadow:0 22px 52px rgba(90,65,52,.14)}
-.card-image{height:220px;overflow:hidden;border-radius:4px;margin-bottom:16px}
-.card-image img{width:100%;height:100%;object-fit:cover}
-.card-kicker{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:8px}
-.card-title{font-family:'Playfair Display',serif;font-size:28px;text-align:center;margin-bottom:10px}
-.card-text{font-size:18px;line-height:1.65;color:var(--text-soft);font-style:italic;text-align:center;margin-bottom:16px}
-.card-actions{text-align:center}
+/* ── SECTION FONCÉE — CHRONIQUES ── */
+.dark-section{background:linear-gradient(155deg,var(--blue-soft),var(--blue-mid) 50%,var(--blue-deep));padding:56px 42px;position:relative;overflow:hidden}
+.dark-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(255,255,255,.08),transparent 55%)}
+.dark-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+.dark-head{display:flex;align-items:baseline;gap:18px;margin-bottom:32px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.18)}
+.dark-num{font-family:'Playfair Display',serif;font-size:56px;color:rgba(255,255,255,.15);line-height:1}
+.dark-rub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:4px}
+.dark-title{font-family:'Playfair Display',serif;font-size:28px;color:#fff}
+.dark-desc{font-size:15px;font-style:italic;color:rgba(255,255,255,.5);margin-top:3px}
+.dark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.dark-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--r);padding:26px;transition:.3s;backdrop-filter:blur(4px)}
+.dark-card:hover{background:rgba(255,255,255,.16)}
+.dark-card-vol{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:10px}
+.dark-card-title{font-family:'Playfair Display',serif;font-size:19px;color:#fff;line-height:1.3;margin-bottom:6px}
+.dark-card-text{font-size:14px;font-style:italic;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:14px}
+.dark-card-foot{display:flex;align-items:center;justify-content:space-between}
+.dark-card-badge{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.7)}
+.dark-card-link{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);transition:.2s}
+.dark-card-link:hover{color:#fff}
 
-.quran-band{
-  max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:center;
-}
-.quran-box{
-  background:rgba(255,252,248,.92);border:1.5px solid rgba(201,168,76,.3);padding:36px 34px;border-radius:var(--radius);box-shadow:var(--shadow);
-}
-.quran-box h3{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:14px}
-.quran-box p{font-size:21px;line-height:1.82;font-style:italic;color:var(--text-soft);margin-bottom:20px}
-.quran-list{list-style:none;margin:0 0 22px 0}
-.quran-list li{font-size:17px;line-height:1.8;color:var(--text-soft);padding-left:18px;position:relative}
-.quran-list li::before{content:'✦';position:absolute;left:0;top:0;color:var(--gold)}
-.quran-visual{
-  border-radius:var(--radius);min-height:380px;padding:34px;background:
-    linear-gradient(rgba(253,248,242,.52),rgba(253,248,242,.72)),
-    url('images/library-card.jpg') center/cover no-repeat;
-  display:flex;align-items:flex-end;box-shadow:var(--shadow);border:1px solid rgba(201,168,76,.26)
-}
-.quran-overlay{background:rgba(255,252,248,.72);backdrop-filter:blur(8px);padding:26px 24px;border-radius:4px;border:1px solid rgba(201,168,76,.24)}
-.quran-overlay strong{display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:8px}
-.quran-overlay span{display:block;font-size:19px;font-style:italic;color:var(--text-soft);line-height:1.7}
+/* ── SECTION COURS FIQH ── */
+.cours-section{background:var(--blue-whisper);padding:56px 42px;border-top:1px solid rgba(140,180,205,.2)}
+.cours-inner{max-width:1200px;margin:0 auto}
+.cours-head{display:flex;align-items:baseline;gap:18px;margin-bottom:32px;padding-bottom:14px;border-bottom:1px solid rgba(140,180,205,.22)}
+.cours-num{font-family:'Playfair Display',serif;font-size:56px;color:rgba(140,180,205,.3);line-height:1}
+.cours-rub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:4px}
+.cours-title{font-family:'Playfair Display',serif;font-size:28px;color:var(--ink)}
+.cours-desc{font-size:15px;font-style:italic;color:var(--faint);margin-top:3px}
+.cours-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.cours-card{background:var(--white-card);border:1px solid rgba(140,180,205,.22);border-radius:var(--r);padding:28px 30px;transition:.3s}
+.cours-card:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.cours-card-rub{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:10px}
+.cours-card-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);margin-bottom:6px}
+.cours-card-text{font-size:15px;font-style:italic;color:var(--soft);line-height:1.75;margin-bottom:16px}
+.cours-card-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.cours-card-tag{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid rgba(140,180,205,.3);color:var(--blue-deep);background:var(--blue-whisper)}
+.cours-card-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(140,180,205,.12)}
+.cours-badge{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 10px;border-radius:20px}
 
-.plume-layout,.chronicle-wrap,.events-layout{
-  max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;
-}
-.media-frame img{width:100%;height:100%;min-height:430px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow)}
-.copy-panel{
-  background:rgba(255,252,248,.9);padding:34px 32px;border-radius:var(--radius);border:1.5px solid rgba(201,168,76,.25);box-shadow:var(--shadow)
-}
-.copy-badge{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);border-radius:24px;padding:6px 16px;margin-bottom:18px;background:rgba(255,252,248,.7)}
-.copy-panel h3{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);margin-bottom:14px}
-.copy-panel h3 em{font-style:italic;color:var(--rose-deep)}
-.copy-panel p{font-size:21px;line-height:1.86;color:var(--text-soft);font-style:italic;margin-bottom:22px}
-.stat-row{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px}
-.stat{min-width:85px}
-.stat strong{display:block;font-family:'Playfair Display',serif;font-size:30px;color:var(--gold)}
-.stat span{font-size:14px;font-style:italic;color:var(--text-faint)}
-
-.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1120px;margin:0 auto}
-.community-card{background:rgba(255,252,248,.92);border:1px solid rgba(201,168,76,.24);padding:12px;border-radius:var(--radius);box-shadow:var(--shadow)}
-.community-card img{width:100%;height:275px;object-fit:cover;border-radius:3px;margin-bottom:12px}
-.community-card p{text-align:center;font-size:18px;font-style:italic;color:var(--text-soft);line-height:1.62}
-
-.price-grid{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;max-width:1100px;margin:0 auto}
-.price-card{width:312px;background:rgba(255,252,248,.95);border:1.5px solid rgba(201,168,76,.28);border-radius:var(--radius);padding:34px 28px;box-shadow:var(--shadow);position:relative}
-.price-card.featured{border-color:var(--gold);box-shadow:0 12px 34px rgba(201,168,76,.18)}
-.pop-badge{position:absolute;top:-1px;right:22px;background:var(--gold);color:#fff;padding:4px 12px;border-radius:0 0 4px 4px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase}
-.price-kicker{display:inline-block;padding:4px 12px;border-radius:18px;border:1px solid rgba(201,168,76,.28);color:var(--gold);font-size:12px;font-style:italic;margin-bottom:14px}
-.price-title{font-family:'Cinzel',serif;font-size:18px;margin-bottom:10px}
-.price-desc{font-size:16px;line-height:1.72;color:var(--text-soft);font-style:italic;margin-bottom:16px}
-.price-list{list-style:none;margin-bottom:18px}
-.price-list li{position:relative;padding-left:16px;font-size:15px;line-height:1.8;color:var(--text-soft)}
-.price-list li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:8px;top:7px}
-.price-amount{font-family:'Playfair Display',serif;font-size:14px;color:var(--text-soft);line-height:1.8}
-.price-amount strong{font-size:22px;color:var(--gold);font-weight:400}
-.price-note{font-size:12px;font-style:italic;color:var(--text-faint);margin:12px 0 18px}
-
-.s-contact{padding:82px 42px;background:linear-gradient(to bottom,var(--cream),var(--ivory))}
-.contact-wrap{display:flex;gap:56px;flex-wrap:wrap;max-width:940px;margin:0 auto}
-.c-info,.c-form{min-width:280px}
-.c-info{flex:1}
-.c-form{flex:1.2}
-.c-info-title,.c-form-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:24px}
-.c-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
-.c-item-ic{font-size:18px;line-height:1;margin-top:2px}
-.c-item-txt{font-size:17px;line-height:1.7;color:var(--text-soft)}
-.c-item-txt strong{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;font-weight:400}
-.c-item-txt a{color:var(--text-soft)}
-.soc-links{display:flex;gap:10px;margin-top:22px}
-.soc-link{width:36px;height:36px;border:1px solid rgba(201,168,76,.28);border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-size:10px;color:var(--gold)}
-.fg{margin-bottom:18px}
-.fg label{display:block;font-size:13px;letter-spacing:2px;color:var(--text-faint);font-style:italic;margin-bottom:6px}
-.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:1px solid rgba(201,168,76,.28);background:rgba(255,252,248,.85);border-radius:2px;font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text);outline:none}
-.fg textarea{height:126px;resize:vertical}
-.btn-submit{display:block;width:100%;padding:14px;border-radius:32px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:17px;font-style:italic;cursor:pointer}
-#contact-msg{display:none;margin-top:12px;padding:10px 16px;border-radius:4px;font-size:15px;font-style:italic}
-
-.s-nl{padding:72px 42px;text-align:center;background:linear-gradient(160deg,var(--blush),#e9dde7 60%,var(--blush))}
-.nl-box{max-width:580px;margin:0 auto}
-.nl-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,38px);margin-bottom:14px}
-.nl-sub{font-size:19px;line-height:1.75;color:var(--text-soft);font-style:italic;margin-bottom:28px}
-.nl-form{display:flex;max-width:460px;margin:0 auto 14px;border:1.5px solid rgba(201,168,76,.28);border-radius:40px;overflow:hidden;background:rgba(255,252,248,.92)}
-.nl-form input{flex:1;padding:12px 18px;border:none;background:transparent;outline:none;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic}
-.nl-form button{padding:12px 26px;border:none;background:var(--gold);color:#fff;font-size:16px;font-style:italic;cursor:pointer}
-.nl-note{font-size:13px;color:var(--text-faint);font-style:italic}
-
-.ms-footer{padding:56px 42px 34px;background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid rgba(201,168,76,.18)}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:38px;max-width:1080px;margin:0 auto 36px}
-.fc-logo{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);letter-spacing:3px;margin-bottom:4px}
-.fc-logo-sub{font-size:13px;font-style:italic;color:var(--text-faint);margin-bottom:14px}
-.fc-desc{font-size:15px;font-style:italic;color:var(--text-soft);line-height:1.74;margin-bottom:18px}
+/* ── FOOTER ── */
+.ms-footer{padding:52px 42px 32px;background:linear-gradient(to bottom,var(--blue-soft),var(--blue-mid));border-top:1px solid rgba(140,180,205,.3)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:38px;max-width:1200px;margin:0 auto 32px}
+.fc-logo{font-family:'Cinzel',serif;font-size:15px;color:#fff;letter-spacing:3px;margin-bottom:4px}
+.fc-logo-sub{font-size:12px;font-style:italic;color:rgba(255,255,255,.6);margin-bottom:12px}
+.fc-desc{font-size:14px;font-style:italic;color:rgba(255,255,255,.6);line-height:1.74;margin-bottom:16px}
 .fc-soc{display:flex;gap:8px}
-.fc-soc a{width:34px;height:34px;border:1px solid rgba(201,168,76,.28);border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-size:9px;color:var(--gold)}
-.fc-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding-bottom:8px;margin-bottom:14px;border-bottom:1px solid rgba(201,168,76,.18)}
+.fc-soc a{width:32px;height:32px;border:1px solid rgba(255,255,255,.3);border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-size:9px;color:#fff;transition:.2s}
+.fc-soc a:hover{background:rgba(255,255,255,.15)}
+.fc-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.7);padding-bottom:8px;margin-bottom:12px;border-bottom:1px solid rgba(255,255,255,.18)}
 .fc-links{list-style:none}
 .fc-links li{margin-bottom:6px}
-.fc-links a{font-size:15px;color:var(--text-soft)}
-.fc-ci{font-size:14px;color:var(--text-soft);line-height:1.6;margin-bottom:10px}
-.fc-ci strong{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:2px}
-.footer-bot{max-width:1080px;margin:0 auto;padding-top:22px;border-top:1px solid rgba(201,168,76,.18);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.fcopy,.flegal a{font-size:13px;color:var(--text-faint);font-style:italic}
-.fmono{font-family:'Cinzel',serif;font-size:18px;color:var(--gold);opacity:.5;letter-spacing:2px}
-.flegal{display:flex;gap:16px;flex-wrap:wrap}
+.fc-links a{font-size:14px;color:rgba(255,255,255,.65);transition:.2s}
+.fc-links a:hover{color:#fff}
+.footer-bot{max-width:1200px;margin:0 auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+.fcopy{font-size:12px;font-style:italic;color:rgba(255,255,255,.5)}
+.flegal{display:flex;gap:14px}
+.flegal a{font-size:12px;font-style:italic;color:rgba(255,255,255,.5)}
+.flegal a:hover{color:#fff}
 
-.modal-ov{position:fixed;inset:0;background:rgba(61,43,37,.6);backdrop-filter:blur(4px);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px}
-.modal-ov.open{display:flex}
-.modal-box{background:var(--ivory);border:1px solid rgba(201,168,76,.28);border-radius:var(--radius);max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:40px 44px;position:relative}
-.modal-x{position:absolute;top:16px;right:20px;font-size:22px;color:var(--text-faint);cursor:pointer;font-family:'Cinzel',serif}
-.modal-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(201,168,76,.22)}
-.modal-body h3{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:18px 0 8px}
-.modal-body p{font-size:17px;color:var(--text-soft);line-height:1.8;margin-bottom:12px}
-
-@media (max-width:1080px){
-  .membership-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media (max-width:980px){
-  .about-grid,.quran-band,.plume-layout,.community-grid,.events-layout,.chronicle-wrap,.footer-grid{grid-template-columns:1fr !important}
-  .membership-grid{grid-template-columns:repeat(2,1fr)}
-  .ms-header,.section,.s-contact,.s-nl,.ms-footer{padding-left:24px;padding-right:24px}
-  .figure-frame img{height:420px}
-}
-@media (max-width:640px){
-  .ms-nav{display:none}
-  .membership-grid,.community-grid{grid-template-columns:1fr}
-  .hero-card{padding:34px 20px}
-  .hero-btns,.nl-form{flex-direction:column}
-  .nl-form{border-radius:18px}
-  .page-shell::before,.page-shell::after{width:92px;height:92px}
-}
-
-/* ── compat classes ── */
-.chip{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:5px 18px;margin-bottom:16px;background:rgba(255,252,248,.8)}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);color:var(--text);margin-bottom:10px;letter-spacing:2px}
-.hero-sub{font-size:18px;font-style:italic;color:var(--text-soft)}
-.page{padding:52px 42px 72px}
-.plan{background:rgba(255,252,248,.95);border:1.5px solid rgba(201,168,76,.24);border-radius:var(--radius);padding:0;box-shadow:var(--shadow);width:340px;overflow:hidden;transition:.3s}
-.plan:hover{transform:translateY(-4px)}
-.plan.featured{border-color:var(--gold)}
-.plan-head{background:linear-gradient(160deg,var(--blush-light),rgba(255,252,248,.85));padding:28px 28px 22px;border-bottom:1px solid rgba(201,168,76,.15)}
-.plan-badge{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:4px 14px;border-radius:20px;margin-bottom:12px}
-.plan-badge.vip{background:var(--gold);color:#fff;border-color:var(--gold)}
-.plan-name{font-family:'Playfair Display',serif;font-size:34px;color:var(--text);margin-bottom:4px}
-.plan-desc{font-size:16px;font-style:italic;color:var(--text-soft);margin-bottom:16px}
-.plan-amount{font-family:'Playfair Display',serif;font-size:42px;color:var(--gold)}
-.plan-period{font-size:15px;color:var(--text-soft);margin-left:4px}
-.plan-alt{font-size:13px;font-style:italic;color:var(--text-faint);margin-top:4px}
-.plan-body{padding:24px 28px 28px}
-.plan-body ul{list-style:none;margin:0 0 22px 0}
-.plan-body li{font-size:16px;line-height:1.85;color:var(--text-soft);padding-left:18px;position:relative}
-.plan-body li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:8px;top:7px}
-.btn-plan{display:block;width:100%;padding:13px;border-radius:40px;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;cursor:pointer;transition:.25s;border:1.5px solid transparent}
-.btn-member{background:transparent;border-color:var(--gold);color:var(--gold)}
-.btn-member:hover{background:var(--gold);color:#fff}
-.btn-vip-plan{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff}
-.btn-vip-plan:hover{background:var(--rose);border-color:var(--rose)}
-.pricing-note{text-align:center;margin-top:24px;font-size:14px;font-style:italic;color:var(--text-faint)}
-.text-content{max-width:820px;margin:0 auto;padding:52px 42px}
-.text-content h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);margin:24px 0 10px}
-.text-content h3{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:18px 0 8px}
-.text-content p{font-size:17px;line-height:1.85;color:var(--text-soft);margin-bottom:14px}
-.text-content ul{margin:0 0 14px 18px}
-.text-content li{font-size:17px;line-height:1.85;color:var(--text-soft)}
-.text-content .note{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:12px 16px;margin:16px 0;font-style:italic;color:var(--text-soft)}
-.card-body{padding:8px 0}
-.card-body h2{font-family:'Playfair Display',serif;font-size:20px;color:var(--text);margin:20px 0 8px}
-.card-body h3{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:14px 0 6px}
-.card-body p{font-size:17px;line-height:1.85;color:var(--text-soft);margin-bottom:12px}
-.card-body ul{margin:0 0 14px 18px}
-.card-body li{font-size:17px;line-height:1.85;color:var(--text-soft)}
-.card-body .note{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;margin:12px 0;border-radius:4px;font-style:italic;color:var(--text-soft)}
-
+@media(max-width:1060px){.lib-featured{grid-template-columns:1fr}.lib-grid,.dark-grid{grid-template-columns:repeat(2,1fr)}.cours-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.ms-header,.main,.dark-section,.cours-section,.ms-footer{padding-left:20px;padding-right:20px}.masthead{padding:40px 20px 36px}.filter-band{padding:0 20px}.lib-grid,.dark-grid,.cours-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}.ms-nav a:not(.btn-o):not(.btn-s){display:none}}
 </style>
 </head>
 <body>
-<header class="ms-header" id="top">
-    <a class="ms-logo" href="#">
-      <div class="ms-logo-mono">MS</div>
+
+<header class="ms-header">
+  <a class="ms-logo" href="index.html">
+    <div class="ms-logo-mono">MS</div>
+    <div><div class="ms-logo-name">MUSLIMAH SOCIETY</div><div class="ms-logo-sub">by Institut Al Muta'allim</div></div>
+  </a>
+  <nav class="ms-nav">
+    <a href="index.html">Accueil</a>
+    <a href="la-plume/index.html">La Plume</a>
+    <a href="audio.html">La Voix</a>
+    <a href="vip-events.html">Les Majalis</a>
+    <a href="library.html" class="active">Bibliothèque</a>
+    <a href="login.html" class="btn-o">Connexion</a>
+    <a href="pricing.html" class="btn-s">VIP</a>
+  </nav>
+</header>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-sup">Muslimah Society · Maison éditoriale</div>
+  <span class="masthead-icon">❧</span>
+  <h1 class="masthead-title"><em>La</em> Bibliothèque</h1>
+  <div class="masthead-rule"><hr/><span style="color:rgba(255,255,255,.5);font-size:14px">✦</span><hr/></div>
+  <p class="masthead-sub">Ressources pédagogiques, cours et archives de l'Institut Al Muta'allim</p>
+</div>
+
+<!-- FILTRES -->
+<div class="filter-band">
+  <button class="filt-btn active" onclick="filterLib('all',this)">Tout voir</button>
+  <button class="filt-btn" onclick="filterLib('chroniques',this)">Les Chroniques</button>
+  <button class="filt-btn" onclick="filterLib('fiqh',this)">Fiqh &amp; Aqidah</button>
+  <button class="filt-btn" onclick="filterLib('ramadan',this)">Ramadan</button>
+  <button class="filt-btn" onclick="filterLib('pdf',this)">PDF &amp; Guides</button>
+  <button class="filt-btn" onclick="filterLib('member',this)">Member</button>
+  <button class="filt-btn" onclick="filterLib('vip',this)">VIP</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- I — ACCÈS RAPIDE -->
+  <div class="sec-block">
+    <div class="sec-head">
+      <div class="sec-num">I</div>
       <div>
-        <div class="ms-logo-name">MUSLIMAH SOCIETY</div>
-        <div class="ms-logo-sub">by Institut Al Muta'allim</div>
+        <div class="sec-rub">Bibliothèque · Accès rapide</div>
+        <div class="sec-title">Ressources à la une</div>
+        <div class="sec-desc">Les contenus les plus consultés de la Maison</div>
       </div>
-    </a>
-    <nav class="ms-nav">
-      <a href="index.html">Accueil</a>
-      <a href="index.html#offres">Espaces</a>
-      <a href="quran-player.html">Qur'an</a>
-      <a href="la-plume/index.html">La Plume</a>
-      <a href="community.html">Communauté</a>
-      <a href="pricing.html">Abonnements</a>
-      <a href="index.html#contact">Contact</a>
-      <a href="login.html" class="btn-outline" style="padding:8px 18px">Connexion</a>
-      <a href="pricing.html" class="btn-solid" style="padding:8px 18px">VIP</a>
-    </nav>
-  </header>
-<section class="section wash" style="text-align:center;padding:52px 42px 44px">
-  <div class="container">
-    <div class="chip">Espace Member</div>
-    <div class="hero-title">Bibliothèque</div>
-    <div class="hero-sub">Ressources pédagogiques — Institut Al Muta'allim</div>
-  </div>
-</section>
-<main class="page">
-  <div class="container">
-<div class="card">
-  <div class="card-head"><h2>La Plume des Sahabiyyat</h2></div>
-  <div class="card-body">
-    <p>Accédez aux 30 chroniques de la Saison I.</p>
-    <div class="" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:24px"><a class="btn-solid" href="la-plume/index.html">Accéder à la bibliothèque</a></div>
-  </div>
-</div>
-<div class="card">
-  <div class="card-head"><h2>Ressources pédagogiques</h2></div>
-  <div class="card-body">
-    <div id="resourcesList">
-      <div style="padding:32px;text-align:center;font-style:italic;color:var(--text-l);">Les ressources pédagogiques seront disponibles ici prochainement.</div>
     </div>
-  </div>
-</div>
-  </div>
-</main>
-<footer class="ms-footer">
-    <div class="footer-grid">
-      <div>
-        <div class="fc-logo">MUSLIMAH SOCIETY</div>
-        <div class="fc-logo-sub">by Institut Al Muta'allim</div>
-        <p class="fc-desc">Une maison éditoriale et spirituelle pour les femmes musulmanes qui aiment le savoir authentique, la douceur et le raffinement.</p>
-        <div class="fc-soc">
-          <a href="https://instagram.com/muslimah.off" target="_blank">IG</a>
-          <a href="#">TG</a>
-          <a href="#">YT</a>
+
+    <!-- Featured card -->
+    <div class="lib-featured">
+      <div class="lf-visual">
+        <div class="lf-book">
+          <div class="lf-book-icon">📖</div>
+          <div class="lf-book-title">Saison I — Sahabiyyat</div>
+          <div class="lf-book-sub">30 volumes</div>
         </div>
       </div>
-      <div>
-        <div class="fc-title">Navigation</div>
-        <ul class="fc-links">
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="index.html#offres">Nos espaces</a></li>
-          <li><a href="quran-player.html">Lecteur du Qur'an</a></li>
-          <li><a href="la-plume/index.html">La Plume</a></li>
-          <li><a href="community.html">Communauté</a></li>
-          <li><a href="vip-events.html">Soirées</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="fc-title">Offres</div>
-        <ul class="fc-links">
-          <li><a href="pricing.html">Member — 17 €</a></li>
-          <li><a href="pricing.html">VIP — 60 €</a></li>
-          <li><a href="pricing.html">Annuel — 600 €</a></li>
-          <li><a href="library.html">Bibliothèque</a></li>
-          <li><a href="audio.html">Podcast</a></li>
-          <li><a href="quran-player.html">Qur'an Player</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="fc-title">Contact</div>
-        <div class="fc-ci"><strong>Email général</strong><a href="mailto:contact@muslimahsociety.com">contact@muslimahsociety.com</a></div>
-        <div class="fc-ci"><strong>Podcast</strong><a href="mailto:podcast@muslimahsociety.com">podcast@muslimahsociety.com</a></div>
-        <div class="fc-ci"><strong>Support</strong><a href="mailto:support@muslimahsociety.com">support@muslimahsociety.com</a></div>
-        <div class="fc-ci"><strong>Instagram</strong>@muslimah.off</div>
+      <div class="lf-body">
+        <div class="lf-type">La Plume · Chroniques complètes</div>
+        <div class="lf-title">Les Femmes de l'Islam</div>
+        <div class="lf-sub">Saison I — Les Sahabiyyat, l'Histoire islamique &amp; les Portraits</div>
+        <div class="lf-desc">Trente chroniques rédigées selon la méthodologie salafie — sources authentifiées, Ibn Kathîr, As-Sa'di, At-Tabarî. De Khadija à Lubna de Cordoue.</div>
+        <div class="lf-meta">
+          <span class="lf-tag">30 volumes</span>
+          <span class="lf-tag">Salafi</span>
+          <span class="lf-tag">Member &amp; VIP</span>
+        </div>
+        <a href="la-plume/index.html" class="lf-cta">Accéder à La Plume →</a>
       </div>
     </div>
-    <div class="footer-bot">
-      <div class="fcopy">© 2026 Muslimah Society • Institut Al Muta'allim • Tous droits réservés</div>
-      <div class="fmono">MS</div>
-      <div class="flegal">
-        <a onclick="openModal('cgu')">CGU</a>
-        <a onclick="openModal('cgv')">CGV</a>
-        <a onclick="openModal('privacy')">Confidentialité</a>
-        <a onclick="openModal('mentions')">Mentions légales</a>
+
+    <!-- Grille ressources principales -->
+    <div class="lib-grid">
+      <div class="lib-card" data-cat="pdf ramadan">
+        <div class="lib-card-header">
+          <span class="lib-card-icon">📔</span>
+          <span class="lib-card-badge badge-vip">VIP</span>
+        </div>
+        <div class="lib-card-body">
+          <div class="lib-card-rub">Journal · Ramadan 1447</div>
+          <div class="lib-card-title">Journal spirituel de Ramadan</div>
+          <div class="lib-card-text">53 pages — journal de tadabbur luxe, réflexions quotidiennes, hadiths authentifiés et espaces de notation personnelle.</div>
+          <div class="lib-card-foot">
+            <span class="lib-card-format">PDF · 53 pages</span>
+            <span class="lib-card-link">Bientôt</span>
+          </div>
+        </div>
+      </div>
+      <div class="lib-card" data-cat="ramadan pdf">
+        <div class="lib-card-header">
+          <span class="lib-card-icon">📿</span>
+          <span class="lib-card-badge badge-member">Member</span>
+        </div>
+        <div class="lib-card-body">
+          <div class="lib-card-rub">Tadabbur · Ramadan 1447</div>
+          <div class="lib-card-title">Fiches Tadabbur — Sourates</div>
+          <div class="lib-card-text">Al-Fâtiha, Al-Baqarah et les sourates protectrices. Analyses de sens, vocabulaire coranique et réflexions guidées.</div>
+          <div class="lib-card-foot">
+            <span class="lib-card-format">PDF · Multi-pages</span>
+            <span class="lib-card-link">Bientôt</span>
+          </div>
+        </div>
+      </div>
+      <div class="lib-card" data-cat="ramadan pdf member">
+        <div class="lib-card-header">
+          <span class="lib-card-icon">🌙</span>
+          <span class="lib-card-badge badge-member">Member</span>
+        </div>
+        <div class="lib-card-body">
+          <div class="lib-card-rub">Kit · Ramadan 1447</div>
+          <div class="lib-card-title">Kit Ramadan interactif</div>
+          <div class="lib-card-text">Programme complet pour le mois — planning, objectifs, duas, suivi de lecture et journal de gratitude.</div>
+          <div class="lib-card-foot">
+            <span class="lib-card-format">PDF interactif</span>
+            <span class="lib-card-link">Bientôt</span>
+          </div>
+        </div>
       </div>
     </div>
-  </footer>
-<script>requireMember();</script>
+  </div>
+
+  <!-- II — GUIDES & PDF -->
+  <div class="sec-block">
+    <div class="sec-head">
+      <div class="sec-num">II</div>
+      <div>
+        <div class="sec-rub">Bibliothèque · Guides</div>
+        <div class="sec-title">Guides &amp; PDF</div>
+        <div class="sec-desc">Ressources téléchargeables de l'Institut Al Muta'allim</div>
+      </div>
+    </div>
+    <div class="lib-grid">
+      <div class="lib-card" data-cat="pdf fiqh">
+        <div class="lib-card-header">
+          <span class="lib-card-icon">⚖️</span>
+          <span class="lib-card-badge badge-member">Member</span>
+        </div>
+        <div class="lib-card-body">
+          <div class="lib-card-rub">Fiqh · Mariage islamique</div>
+          <div class="lib-card-title">Cours de Fiqh du Mariage</div>
+          <div class="lib-card-text">Conditions du contrat, droits et devoirs, questions contemporaines. Sources : Ibn Qudâma, Ibn Bâz, Ibn 'Uthaymîn.</div>
+          <div class="lib-card-foot">
+            <span class="lib-card-format">PDF · Cours complet</span>
+            <span class="lib-card-link">Bientôt</span>
+          </div>
+        </div>
+      </div>
+      <div class="lib-card" data-cat="pdf fiqh">
+        <div class="lib-card-header">
+          <span class="lib-card-icon">🕌</span>
+          <span class="lib-card-badge badge-vip">VIP</span>
+        </div>
+        <div class="lib-card-body">
+          <div class="lib-card-rub">Aqidah · Programme annuel</div>
+          <div class="lib-card-title">Programme Aqidah — Niveau 1</div>
+          <div class="lib-card-text">Cours annuel structuré — les piliers de la croyance selon la méthode des Salaf. Scripts de cours complets.</div>
+          <div class="lib-card-foot">
+            <span class="lib-card-format">PDF · Programme</span>
+            <span class="lib-card-link">Bientôt</span>
+          </div>
+        </div>
+      </div>
+      <div class="lib-card" data-cat="pdf fiqh">
+        <div class="lib-card-header">
+          <span class="lib-card-icon">📜</span>
+          <span class="lib-card-badge badge-vip">VIP</span>
+        </div>
+        <div class="lib-card-body">
+          <div class="lib-card-rub">Fiqh · Mu'âmalât</div>
+          <div class="lib-card-title">Fiqh des transactions</div>
+          <div class="lib-card-text">Ventes licites et illicites, finances islamiques, questions pratiques contemporaines. Adaptation pour femmes entrepreneuses.</div>
+          <div class="lib-card-foot">
+            <span class="lib-card-format">PDF · Module complet</span>
+            <span class="lib-card-link">Bientôt</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- III — LES CHRONIQUES (dark) -->
+<section class="dark-section">
+  <div class="dark-inner">
+    <div class="dark-head">
+      <div class="dark-num">III</div>
+      <div>
+        <div class="dark-rub">La Plume · Saison I</div>
+        <div class="dark-title">Les 30 chroniques</div>
+        <div class="dark-desc">Toutes disponibles dans La Plume — accès selon votre abonnement</div>
+      </div>
+    </div>
+    <div class="dark-grid">
+      <div class="dark-card">
+        <div class="dark-card-vol">Vol. I → XX · Les Sahabiyyat</div>
+        <div class="dark-card-title">Les Compagnes du Prophète ﷺ</div>
+        <div class="dark-card-text">De Khadija à Umm Kulthum — les femmes qui ont fondé l'Islam. Sources Ibn Kathîr et As-Sa'di.</div>
+        <div class="dark-card-foot">
+          <span class="dark-card-badge">Member &amp; VIP</span>
+          <a href="la-plume/index.html" class="dark-card-link">Lire →</a>
+        </div>
+      </div>
+      <div class="dark-card">
+        <div class="dark-card-vol">Vol. XXI → XXV · Histoire islamique</div>
+        <div class="dark-card-title">Grandes figures de l'Histoire</div>
+        <div class="dark-card-text">Khansa, Umm Waraqah, Fâtima bint Asad, Zaynab bint 'Ali, Sukayna — des femmes qui ont écrit l'Histoire.</div>
+        <div class="dark-card-foot">
+          <span class="dark-card-badge">Member &amp; VIP</span>
+          <a href="la-plume/index.html" class="dark-card-link">Lire →</a>
+        </div>
+      </div>
+      <div class="dark-card">
+        <div class="dark-card-vol">Vol. XXVI → XXX · Portraits</div>
+        <div class="dark-card-title">Portraits inspirants</div>
+        <div class="dark-card-text">Nafîsa du Caire, Umm Darda de Damas, Râbi'a l'amour pur, Lubna de Cordoue et la femme sans nom.</div>
+        <div class="dark-card-foot">
+          <span class="dark-card-badge">VIP</span>
+          <a href="la-plume/index.html" class="dark-card-link">Lire →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IV — COURS & PROGRAMMES -->
+<section class="cours-section">
+  <div class="cours-inner">
+    <div class="cours-head">
+      <div class="cours-num">IV</div>
+      <div>
+        <div class="cours-rub">Institut Al Muta'allim · Cours</div>
+        <div class="cours-title">Programmes &amp; cours</div>
+        <div class="cours-desc">Contenu pédagogique exclusif de l'Institut — en cours de déploiement</div>
+      </div>
+    </div>
+    <div class="cours-grid">
+      <div class="cours-card">
+        <div class="cours-card-rub">Programme annuel · Fiqh</div>
+        <div class="cours-card-title">Fiqh al-'Ibâdât — Niveau 1</div>
+        <div class="cours-card-text">Purification, prière, jeûne, zakat. Programme complet avec scripts de cours, évaluations et révisions.</div>
+        <div class="cours-card-tags"><span class="cours-card-tag">Annuel</span><span class="cours-card-tag">Niveau 1</span><span class="cours-card-tag">Scripts inclus</span></div>
+        <div class="cours-card-foot">
+          <span class="cours-badge badge-vip">VIP · Bientôt</span>
+          <span style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--faint)">En préparation</span>
+        </div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-rub">Programme annuel · Aqidah</div>
+        <div class="cours-card-title">Aqidah at-Tahâwiyya — Introduction</div>
+        <div class="cours-card-text">Étude structurée des fondements de la croyance islamique. Méthode salafie, sources primaires, exercices guidés.</div>
+        <div class="cours-card-tags"><span class="cours-card-tag">Annuel</span><span class="cours-card-tag">Intermédiaire</span><span class="cours-card-tag">PDF inclus</span></div>
+        <div class="cours-card-foot">
+          <span class="cours-badge badge-vip">VIP · Bientôt</span>
+          <span style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--faint)">En préparation</span>
+        </div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-rub">Cours spécialisé · Mariage</div>
+        <div class="cours-card-title">Mariage islamique — Droits &amp; devoirs</div>
+        <div class="cours-card-text">Contrat de mariage, wali, mahr, droits conjugaux. Questions contemporaines. Conçu pour femmes francophones.</div>
+        <div class="cours-card-tags"><span class="cours-card-tag">Spécialisé</span><span class="cours-card-tag">Pratique</span></div>
+        <div class="cours-card-foot">
+          <span class="cours-badge badge-member">Member · Bientôt</span>
+          <span style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--faint)">En préparation</span>
+        </div>
+      </div>
+      <div class="cours-card">
+        <div class="cours-card-rub">Tadabbur · Coran</div>
+        <div class="cours-card-title">Tadabbur Al-Qur'ân — Al-Fâtiha</div>
+        <div class="cours-card-text">Analyse profonde de Sourate Al-Fâtiha verset par verset. Tafsir As-Sa'di, vocabulaire, réflexions spirituelles.</div>
+        <div class="cours-card-tags"><span class="cours-card-tag">Tadabbur</span><span class="cours-card-tag">Al-Fâtiha</span></div>
+        <div class="cours-card-foot">
+          <span class="cours-badge badge-libre">Accès libre</span>
+          <a href="la-plume/index.html" style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--blue-deep)">Lire →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="ms-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="fc-logo">MUSLIMAH SOCIETY</div>
+      <div class="fc-logo-sub">Maison éditoriale pour les femmes musulmanes</div>
+      <p class="fc-desc">Savoir authentique, spiritualité et raffinement.</p>
+      <div class="fc-soc"><a href="#">IG</a><a href="#">TG</a><a href="#">YT</a></div>
+    </div>
+    <div><div class="fc-title">La Plume</div><ul class="fc-links">
+      <li><a href="la-plume/index.html">Toutes les chroniques</a></li>
+      <li><a href="la-plume/read_01.html">Vol. I — Khadija</a></li>
+    </ul></div>
+    <div><div class="fc-title">La Maison</div><ul class="fc-links">
+      <li><a href="audio.html">La Voix</a></li>
+      <li><a href="vip-events.html">Les Majalis</a></li>
+      <li><a href="library.html">La Bibliothèque</a></li>
+      <li><a href="pricing.html">Abonnements</a></li>
+    </ul></div>
+    <div><div class="fc-title">Contact</div>
+      <p style="font-size:14px;color:rgba(255,255,255,.65)"><a href="mailto:contact@muslimahsociety.com" style="color:rgba(255,255,255,.65)">contact@muslimahsociety.com</a></p>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span class="fcopy">© 2026 Institut Al Muta'allim — Muslimah Society</span>
+    <div class="flegal"><a href="legal.html">Mentions légales</a><a href="privacy.html">Confidentialité</a></div>
+  </div>
+</footer>
+
 <script>
-window.supabaseClient=window.supabase.createClient("https://lgxnejnihodyfgxlyycd.supabase.co","eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo");
-window.requireAuth=async function(){
-  var r=await window.supabaseClient.auth.getUser();
-  if(!r.data||!r.data.user){location.href="login.html";return null;}
-  return r.data.user;
-};
-window.getProfileSafe=async function(uid){
-  var r=await window.supabaseClient.from("profiles").select("subscription_status,subscription_tier").eq("id",uid).maybeSingle();
-  return r.data||{subscription_status:"inactive",subscription_tier:"none"};
-};
-window.logout=async function(){
-  await window.supabaseClient.auth.signOut();
-  location.href="index.html";
-};
-window.checkout=async function(plan){
-  var r=await window.supabaseClient.auth.getSession();
-  var token=r.data&&r.data.session&&r.data.session.access_token;
-  if(!token){location.href="login.html";return;}
-  var btn=window.event&&window.event.target;
-  if(btn&&btn.tagName==="BUTTON"){btn.disabled=true;btn.textContent="Redirection...";}
-  fetch("/api/create-checkout-session",{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Authorization":"Bearer "+token},
-    body:JSON.stringify({plan:plan})
-  }).then(function(res){return res.json();})
-  .then(function(d){
-    if(d.url){location.href=d.url;}
-    else{alert(d.error||"Erreur paiement");if(btn)btn.disabled=false;}
-  }).catch(function(e){alert("Erreur: "+e.message);if(btn)btn.disabled=false;});
-};
+function filterLib(cat, el) {
+  document.querySelectorAll('.filt-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.lib-card').forEach(c => {
+    if (cat === 'all') { c.style.display = ''; return; }
+    const cats = (c.dataset.cat || '').split(' ');
+    c.style.display = cats.includes(cat) ? '' : 'none';
+  });
+}
 </script>
 </body>
 </html>
