@@ -1,223 +1,208 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Khadija — Celle qui crut la première · La Plume des Sahabiyyat</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>La Plume s'éveille &mdash; Vol.&nbsp;I &mdash; La Plume des Sahabiyyat</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ivory:#fdf8f2;--cream:#faf4ec;--blush:#ead8d2;--blush-light:#f5ece8;
-  --rose:#cda9a0;--rose-deep:#b48a82;--gold:#c9a84c;--gold-soft:#edd8a6;
-  --text:#3f2d26;--text-soft:#7d6055;--text-faint:#a48a7d;
-  --shadow:0 18px 48px rgba(90,65,52,.12);--radius:6px;
+  --blue-deep:#8fa8bc;--blue-mid:#a8bfce;--blue-soft:#bccdd9;--blue-pale:#d4e2ea;--blue-whisper:#e8f0f4;--blue-bg:#f0f5f8;
+  --blush:#e8d5d0;--blush-d:#ddc8c2;--blush-l:#f5ede9;
+  --rose:#c9a8a0;--rose-d:#b08880;
+  --gold:#c9a84c;--gold-l:#e0c87a;--gold-p:#f0e4c0;
+  --ivory:#fdf8f2;--cream:#faf4ec;
+  --text:#3d2b25;--text-m:#7a5a50;--text-l:#a89080;
+  --mauve:#c4b0c0;--lavender:#d8d0e4;--sage:#c8d4c0;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Cormorant Garamond',serif;color:var(--text);background:linear-gradient(to bottom,var(--ivory),var(--cream));overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-button{font:inherit;cursor:pointer}
-
-body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");}
-
-.page-shell{position:relative;z-index:1}
-.page-shell::before,.page-shell::after{content:"";position:fixed;top:0;width:150px;height:150px;pointer-events:none;opacity:.38;z-index:1;background-repeat:no-repeat;background-size:contain;}
-.page-shell::before{left:0;background-image:url('../images/floral-corner-1.png')}
-.page-shell::after{right:0;background-image:url('../images/floral-corner-2.png')}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Cormorant Garamond',serif;background:var(--blue-bg);color:var(--text);overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;}
 
 /* ── HEADER ── */
-.ms-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:16px 42px;background:rgba(253,248,242,.94);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.18)}
-.ms-logo{display:flex;align-items:center;gap:12px}
-.ms-logo-mono{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:13px;background:radial-gradient(circle,rgba(255,248,238,.98),rgba(240,228,200,.55))}
-.ms-logo-name{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px}
-.ms-logo-sub{font-size:10px;color:var(--text-faint);font-style:italic;letter-spacing:1px}
-.ms-nav{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.ms-nav a{font-size:15px;color:var(--text-soft);font-style:italic;transition:.25s}
-.ms-nav a:hover{color:var(--gold)}
-.btn-outline{border-radius:40px;padding:8px 20px;border:1.5px solid var(--gold);color:var(--gold);background:transparent;font-size:14px;font-style:italic;display:inline-flex;align-items:center;transition:.25s}
-.btn-outline:hover{background:var(--gold);color:#fff}
-.btn-solid{border-radius:40px;padding:8px 20px;border:1.5px solid var(--rose-deep);background:var(--rose-deep);color:#fff;font-size:14px;font-style:italic;display:inline-flex;align-items:center;transition:.25s}
-.btn-solid:hover{background:var(--rose);border-color:var(--rose)}
+.ms-header{background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:500;backdrop-filter:blur(10px);}
+.ms-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.ms-logo-mono{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(255,248,238,1) 40%,rgba(240,228,200,.5) 100%);box-shadow:0 0 12px rgba(201,168,76,.15);flex-shrink:0;}
+.ms-logo-mono span{font-family:'Cinzel',serif;font-size:13px;font-weight:500;color:var(--gold);}
+.ms-logo-name{font-family:'Cinzel',serif;font-size:14px;color:var(--text);letter-spacing:3px;}
+.ms-logo-sub{font-family:'Cormorant Garamond',serif;font-size:10px;font-style:italic;color:var(--text-l);letter-spacing:1px;}
+.ms-nav{display:flex;gap:20px;align-items:center;}
+.ms-nav a{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-m);text-decoration:none;transition:color .3s;}
+.ms-nav a:hover{color:var(--gold);}
+.btn-member{padding:7px 20px;border:1.5px solid var(--gold);border-radius:30px;background:transparent;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;}
+.btn-member:hover{background:var(--gold);color:white;}
+.btn-vip{padding:7px 20px;border:1.5px solid var(--rose);border-radius:30px;background:var(--rose-d);color:white;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;}
+.btn-vip:hover{background:var(--rose);box-shadow:0 4px 16px rgba(176,136,128,.3);}
 
 /* ── BREADCRUMB ── */
-.breadcrumb{display:flex;align-items:center;gap:8px;padding:12px 42px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);border-bottom:1px solid rgba(201,168,76,.1);background:rgba(253,248,242,.7)}
-.breadcrumb a{color:var(--text-faint);transition:.2s}
-.breadcrumb a:hover{color:var(--gold)}
-.breadcrumb .sep{color:var(--gold);opacity:.5}
-.breadcrumb .vol{margin-left:auto;color:var(--gold)}
+.breadcrumb{padding:14px 48px;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);border-bottom:1px solid rgba(201,168,76,.12);background:var(--cream);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.breadcrumb a{color:var(--text-l);text-decoration:none;transition:color .3s;}
+.breadcrumb a:hover{color:var(--gold);}
+.breadcrumb span{color:var(--gold);}
 
-/* ── HERO ARTICLE ── */
-.ep-hero{
-  padding:68px 42px 56px;text-align:center;
-  background:linear-gradient(160deg,var(--blush-light) 0%,var(--blush) 45%,#edddd7 75%,#f0e8e4 100%);
-  border-bottom:1px solid rgba(201,168,76,.15);position:relative;overflow:hidden;
-}
-.ep-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(201,168,76,.06),transparent 65%);pointer-events:none}
-.ep-access{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:18px;background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.3);color:var(--gold)}
-.ep-access.member{background:rgba(80,140,80,.08);border-color:rgba(80,140,80,.25);color:#3a7a3a}
-.ep-access.vip{background:var(--gold);border-color:var(--gold);color:#fff}
-.ep-vol{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}
-.ep-series{font-size:14px;font-style:italic;color:var(--text-faint);margin-bottom:20px}
-.ep-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,54px);line-height:1.15;color:var(--text);margin-bottom:10px;letter-spacing:1px}
-.ep-subtitle{font-family:'Playfair Display',serif;font-size:clamp(17px,2vw,22px);font-style:italic;color:var(--rose-deep);margin-bottom:18px}
-.ep-tagline{font-size:clamp(17px,1.8vw,21px);font-style:italic;color:var(--text-soft);max-width:620px;margin:0 auto 24px;line-height:1.75}
-.ep-meta{display:flex;justify-content:center;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint);flex-wrap:wrap}
-.ep-meta-dot{color:var(--gold);opacity:.6}
+/* ── HERO ── */
+.ep-hero{position:relative;padding:64px 48px 56px;text-align:center;overflow:hidden;background:linear-gradient(160deg,#f5ede9 0%,#e8d5d0 40%,#d8d0e4 80%,#f5ede9 100%);}
+.ep-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,245,235,.6) 0%,transparent 60%);pointer-events:none;}
+.ep-vol{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold-p);border-radius:20px;padding:5px 18px;margin-bottom:22px;background:rgba(255,252,245,.8);position:relative;animation:fadeUp .9s ease both;}
+.ep-access{position:absolute;top:16px;right:20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;border-radius:20px;padding:4px 12px;background:rgba(200,212,192,.9);color:#4a6040;}
+.ep-series{font-family:'Cinzel',serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--rose-d);margin-bottom:16px;animation:fadeUp .9s .1s ease both;opacity:0;position:relative;}
+.ep-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);font-weight:500;color:var(--text);line-height:1.2;margin-bottom:18px;animation:fadeUp .9s .2s ease both;opacity:0;position:relative;}
+.ep-tagline{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,22px);font-style:italic;color:var(--text-m);line-height:1.75;max-width:580px;margin:0 auto 20px;animation:fadeUp .9s .3s ease both;opacity:0;position:relative;}
+.ep-meta{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;animation:fadeUp .9s .4s ease both;opacity:0;position:relative;}
+.ep-meta-item{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);display:flex;align-items:center;gap:5px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── ORNEMENT ── */
-.orn{text-align:center;padding:24px 0 8px}
+.orn{text-align:center;padding:24px 0;}
 
-/* ── CORPS DE L'ARTICLE ── */
-.ep-body{max-width:740px;margin:0 auto;padding:52px 42px 0}
-.ep-text p{font-size:19px;line-height:1.95;color:var(--text-soft);margin-bottom:22px}
-.ep-text p:first-child{font-size:21px;font-style:italic;color:var(--text)}
-.ep-quote{margin:32px 0;padding:28px 32px;background:rgba(255,252,248,.8);border-left:3px solid var(--gold);border-radius:0 var(--radius) var(--radius) 0;box-shadow:var(--shadow)}
-.ep-quote blockquote{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;line-height:1.7;color:var(--text);margin-bottom:10px}
-.ep-quote cite{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
-.ep-section-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin:40px 0 16px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.2)}
-.ep-hadith{background:linear-gradient(160deg,var(--blush-light),rgba(255,252,248,.7));border:1px solid rgba(201,168,76,.22);border-radius:var(--radius);padding:22px 26px;margin:28px 0}
-.ep-hadith-ar{font-size:20px;text-align:right;direction:rtl;color:var(--text);line-height:1.9;margin-bottom:12px;font-family:'Cormorant Garamond',serif}
-.ep-hadith-fr{font-size:16px;font-style:italic;color:var(--text-soft);line-height:1.7;margin-bottom:8px}
-.ep-hadith-src{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+/* ── CONTENU ── */
+.ep-body{max-width:720px;margin:0 auto;padding:48px 40px 0;}
+.ep-text p{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.95;color:var(--text-m);margin-bottom:22px;}
+.ep-quote{margin:32px 0;padding:24px 32px;border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 4px 4px 0;}
+.ep-quote blockquote{font-family:'Playfair Display',serif;font-size:clamp(18px,2.3vw,22px);font-style:italic;color:var(--text);line-height:1.65;margin-bottom:10px;}
+.ep-quote cite{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;}
 
-/* ── FONDU + PAYWALL ── */
-.ep-fade{position:relative;max-width:740px;margin:0 auto;padding:0 42px}
-.ep-fade::after{content:"";position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(transparent,var(--cream));pointer-events:none}
-.ep-fade .ep-text p{opacity:.5}
+/* ── FONDU PAYWALL ── */
+.ep-fade{position:relative;max-width:720px;margin:0 auto;padding:0 40px;}
+.ep-fade::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to bottom,transparent,var(--blue-bg));pointer-events:none;}
+.ep-fade .ep-text p{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.95;color:var(--text-m);margin-bottom:22px;}
 
-.ep-gate{max-width:580px;margin:0 auto;padding:0 42px 72px;text-align:center}
-.ep-gate-box{background:rgba(255,252,248,.95);border:1.5px solid rgba(201,168,76,.28);border-radius:var(--radius);padding:40px 36px;box-shadow:var(--shadow)}
-.ep-gate-icon{font-size:28px;margin-bottom:12px}
-.ep-gate-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:10px}
-.ep-gate-sub{font-size:17px;font-style:italic;color:var(--text-soft);line-height:1.7;margin-bottom:24px}
-.ep-gate-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.ep-gate-btns a{border-radius:40px;padding:12px 26px;font-family:'Cormorant Garamond',serif;font-size:16px;font-style:italic;display:inline-flex;align-items:center;border:1.5px solid transparent;transition:.25s}
-.ep-gate-member{border-color:var(--gold);color:var(--gold);background:transparent}
-.ep-gate-member:hover{background:var(--gold);color:#fff}
-.ep-gate-vip{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff}
-.ep-gate-vip:hover{background:var(--rose);border-color:var(--rose)}
+/* ── PAYWALL ── */
+.ep-paywall{max-width:760px;margin:0 auto 48px;padding:0 40px;position:relative;}
+.paywall-glow{position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:400px;height:80px;background:radial-gradient(ellipse,rgba(201,168,76,.1),transparent 70%);pointer-events:none;}
+.paywall-lock{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--gold-p);background:linear-gradient(135deg,rgba(255,252,245,.9),rgba(250,244,236,.8));display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--gold);}
+.paywall-vip-note{text-align:center;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--rose-d);margin-bottom:12px;}
+.paywall-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:500;color:var(--text);text-align:center;margin-bottom:10px;}
+.paywall-sub{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;color:var(--text-m);text-align:center;line-height:1.7;max-width:480px;margin:0 auto 32px;}
+.paywall-offers{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:16px;}
+.offer-card{background:rgba(253,248,242,.97);border:1.5px solid var(--gold-p);border-radius:4px;padding:28px 28px;width:220px;text-align:center;transition:all .3s;}
+.offer-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(201,168,76,.14);border-color:var(--gold);}
+.offer-card.featured{border-color:var(--gold);background:linear-gradient(145deg,rgba(255,252,245,.97),rgba(250,242,228,.9));}
+.offer-badge{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;background:var(--gold);color:white;border-radius:20px;padding:3px 10px;margin-bottom:10px;display:inline-block;}
+.offer-name{font-family:'Cinzel',serif;font-size:16px;color:var(--text);letter-spacing:2px;margin-bottom:12px;}
+.offer-prices{margin-bottom:14px;}
+.offer-price-row{font-family:'Playfair Display',serif;font-size:13px;color:var(--text-m);line-height:1.8;}
+.offer-price-row strong{font-size:20px;color:var(--gold);font-weight:400;}
+.offer-features{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--text-m);line-height:1.9;text-align:left;margin-bottom:18px;}
+.btn-offer-member{display:block;padding:10px 20px;border:1.5px solid var(--gold);border-radius:30px;background:transparent;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;text-align:center;}
+.btn-offer-member:hover{background:var(--gold);color:white;}
+.btn-offer-vip{display:block;padding:10px 20px;border:1.5px solid var(--rose-d);border-radius:30px;background:var(--rose-d);color:white;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;cursor:pointer;transition:all .3s;text-decoration:none;text-align:center;}
+.btn-offer-vip:hover{background:var(--rose);box-shadow:0 4px 16px rgba(176,136,128,.3);}
+.paywall-note{text-align:center;font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
 
-/* ── SECTION COMPLÈTE MEMBER ── */
-.ep-full{max-width:740px;margin:0 auto;padding:0 42px}
+/* ── CONTENU COMPLET (caché visuellement) ── */
+.ep-full{max-width:720px;margin:0 auto;padding:0 40px 48px;}
+.ep-full .ep-text p{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.95;color:var(--text-m);margin-bottom:22px;}
+.ep-full .ep-text .ep-quote{margin:32px 0;padding:24px 32px;border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 4px 4px 0;}
 
-/* ── SECTION VIP ── */
-.ep-vip-gate{max-width:580px;margin:32px auto;padding:0 42px}
-.ep-vip-gate-box{background:linear-gradient(160deg,rgba(201,168,76,.08),rgba(255,252,248,.95));border:1.5px solid var(--gold);border-radius:var(--radius);padding:36px;box-shadow:0 12px 36px rgba(201,168,76,.14);text-align:center}
-.ep-vip-badge{display:inline-block;background:var(--gold);color:#fff;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 16px;border-radius:20px;margin-bottom:14px}
-.ep-vip-gate-title{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px}
-.ep-vip-gate-sub{font-size:16px;font-style:italic;color:var(--text-soft);line-height:1.7;margin-bottom:22px}
+/* ── ACTIONS ── */
+.ep-actions{max-width:720px;margin:0 auto;padding:0 40px 56px;display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.action-block{background:linear-gradient(135deg,rgba(232,213,208,.2),rgba(216,208,228,.12));border:1px solid var(--gold-p);border-radius:4px;padding:28px 28px;}
+.action-label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.action-title{font-family:'Playfair Display',serif;font-size:19px;font-weight:500;color:var(--text);margin-bottom:14px;}
+.action-text{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text-m);line-height:1.85;}
+.dua-arabic{font-size:26px;text-align:right;direction:rtl;color:var(--text);margin-bottom:12px;line-height:1.8;font-family:'Cormorant Garamond',serif;}
+.dua-fr{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text-m);line-height:1.7;}
 
-/* ── SECTION VIP CONTENU ── */
-.ep-vip-section{max-width:740px;margin:0 auto;padding:0 42px}
-.ep-vip-label{display:flex;align-items:center;gap:14px;margin:48px 0 20px}
-.ep-vip-label-badge{background:var(--gold);color:#fff;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:5px 14px;border-radius:20px;white-space:nowrap}
-.ep-vip-label hr{flex:1;border:none;border-top:1px solid rgba(201,168,76,.25)}
+/* ── PARTAGE ── */
+.ep-share{max-width:720px;margin:0 auto;padding:0 40px 40px;text-align:center;}
+.share-text{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-l);margin-bottom:14px;}
+.share-btns{display:flex;justify-content:center;gap:10px;}
+.share-btn{width:40px;height:40px;border:1px solid var(--gold-p);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:10px;color:var(--gold);text-decoration:none;transition:all .3s;}
+.share-btn:hover{background:var(--gold);color:white;border-color:var(--gold);}
 
-/* ── LETTRE À MA SŒUR ── */
-.ep-letter{background:linear-gradient(160deg,var(--blush-light),rgba(255,252,248,.9));border:1.5px solid rgba(201,168,76,.22);border-radius:var(--radius);padding:40px 44px;margin:8px 0 32px;box-shadow:var(--shadow)}
-.ep-letter-head{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid rgba(201,168,76,.18)}
-.ep-letter p{font-size:18px;line-height:2;color:var(--text-soft);margin-bottom:18px;font-style:italic}
-.ep-letter p:first-of-type{font-size:19px;color:var(--text);font-style:normal}
-.ep-letter-sig{text-align:right;margin-top:24px}
-.ep-letter-sig-name{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--text)}
-.ep-letter-sig-title{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:4px}
-
-/* ── PROPOSITION MÉDIA ── */
-.ep-media-box{background:rgba(255,252,248,.92);border:1.5px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:32px 36px;margin-bottom:28px;box-shadow:var(--shadow)}
-.ep-media-box h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(201,168,76,.15)}
-.ep-media-row{display:flex;gap:8px;align-items:baseline;margin-bottom:8px}
-.ep-media-key{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);min-width:120px}
-.ep-media-val{font-size:16px;font-style:italic;color:var(--text-soft);line-height:1.6}
-
-/* ── SUGGESTION INTERVENANTE ── */
-.ep-speaker-box{background:linear-gradient(160deg,var(--blush-light),rgba(255,252,248,.85));border:1.5px solid rgba(201,168,76,.2);border-radius:var(--radius);padding:32px 36px;margin-bottom:28px;box-shadow:var(--shadow)}
-.ep-speaker-box h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(201,168,76,.15)}
-.ep-speaker-row{display:flex;gap:8px;align-items:baseline;margin-bottom:8px}
-.ep-speaker-key{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);min-width:120px}
-.ep-speaker-val{font-size:16px;font-style:italic;color:var(--text-soft);line-height:1.6}
-.ep-speaker-mail{display:inline-block;margin-top:14px;padding:8px 18px;border-radius:30px;border:1px solid rgba(201,168,76,.3);color:var(--gold);font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;background:rgba(255,252,248,.8)}
-
-/* ── NAVIGATION ÉPISODE ── */
-.ep-nav{display:flex;justify-content:space-between;align-items:center;max-width:740px;margin:48px auto 0;padding:22px 42px;border-top:1px solid rgba(201,168,76,.18)}
-.ep-nav a{font-size:15px;font-style:italic;color:var(--text-soft);transition:.2s;display:flex;align-items:center;gap:6px}
-.ep-nav a:hover{color:var(--gold)}
-.ep-nav-center{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--text-faint)}
+/* ── NAVIGATION ── */
+.ep-nav{display:flex;justify-content:space-between;align-items:stretch;gap:16px;max-width:720px;margin:0 auto;padding:24px 40px 56px;}
+.ep-nav-btn{flex:1;display:flex;flex-direction:column;gap:6px;padding:18px 22px;border:1px solid var(--gold-p);border-radius:4px;text-decoration:none;background:rgba(255,252,248,.8);transition:all .3s;max-width:calc(50% - 8px);}
+.ep-nav-btn:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,168,76,.12);}
+.ep-nav-dir{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.ep-nav-title{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--text-m);line-height:1.4;}
+.ep-nav-spacer{flex:1;}
 
 /* ── FOOTER ── */
-.ms-footer{padding:52px 42px 32px;background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid rgba(201,168,76,.18);margin-top:72px}
-.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:38px;max-width:1080px;margin:0 auto 32px}
-.fc-logo{font-family:'Cinzel',serif;font-size:15px;color:var(--gold);letter-spacing:3px;margin-bottom:4px}
-.fc-logo-sub{font-size:12px;font-style:italic;color:var(--text-faint);margin-bottom:12px}
-.fc-desc{font-size:14px;font-style:italic;color:var(--text-soft);line-height:1.74;margin-bottom:16px}
-.fc-soc{display:flex;gap:8px}
-.fc-soc a{width:32px;height:32px;border:1px solid rgba(201,168,76,.28);border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-size:9px;color:var(--gold)}
-.fc-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding-bottom:8px;margin-bottom:12px;border-bottom:1px solid rgba(201,168,76,.18)}
-.fc-links{list-style:none}
-.fc-links li{margin-bottom:6px}
-.fc-links a{font-size:14px;color:var(--text-soft)}
-.footer-bot{max-width:1080px;margin:0 auto;padding-top:20px;border-top:1px solid rgba(201,168,76,.18);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
-.fcopy{font-size:12px;font-style:italic;color:var(--text-faint)}
-.flegal{display:flex;gap:14px}
-.flegal a{font-size:12px;font-style:italic;color:var(--text-faint)}
-.flegal a:hover{color:var(--gold)}
+.ms-footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gold-p);padding:40px 48px 28px;}
+.footer-inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:28px;max-width:900px;margin:0 auto 28px;}
+.footer-col-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid rgba(201,168,76,.25);}
+.footer-col a,.footer-col p{display:block;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text-m);text-decoration:none;line-height:1.5;margin-bottom:6px;transition:color .3s;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bot{border-top:1px solid rgba(201,168,76,.2);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;max-width:900px;margin:0 auto;}
+.footer-copy{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
+.footer-legal{display:flex;gap:14px;flex-wrap:wrap;}
+.footer-legal a{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);text-decoration:none;transition:color .3s;cursor:pointer;}
+.footer-legal a:hover{color:var(--gold);}
 
-@media(max-width:860px){
-  .ms-header,.ep-hero,.ep-body,.ep-fade,.ep-gate,.ep-full,.ep-vip-section,.ep-nav,.ms-footer{padding-left:20px;padding-right:20px}
-  .ep-letter{padding:28px 24px}
-  .footer-grid{grid-template-columns:1fr}
-}
-@media(max-width:600px){
-  .ms-nav a:not(.btn-outline):not(.btn-solid){display:none}
-  .breadcrumb .vol{display:none}
-  .ep-gate-btns{flex-direction:column}
+/* ── MODALES ── */
+.modal-ov{position:fixed;inset:0;background:rgba(61,43,37,.6);backdrop-filter:blur(4px);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px;}
+.modal-ov.open{display:flex;}
+.modal-box{background:var(--blue-bg);border:1px solid rgba(140,180,205,.35);border-radius:4px;max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:40px 44px;position:relative;}
+.modal-x{position:absolute;top:16px;right:20px;font-size:22px;color:var(--text-l);cursor:pointer;font-family:'Cinzel',serif;transition:color .3s;}
+.modal-x:hover{color:var(--gold);}
+.modal-title{font-family:'Playfair Display',serif;font-size:22px;font-weight:500;color:var(--text);margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--gold-p);}
+.modal-body h3{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:18px 0 8px;}
+.modal-body p{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text-m);line-height:1.8;margin-bottom:12px;}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .ms-header{padding:14px 20px;}
+  .ms-nav{display:none;}
+  .breadcrumb{padding:12px 20px;}
+  .ep-hero{padding:48px 24px 40px;}
+  .ep-body,.ep-fade,.ep-full,.ep-actions,.ep-share,.ep-paywall{padding-left:20px;padding-right:20px;}
+  .ep-actions{grid-template-columns:1fr;}
+  .ep-nav{padding:16px 20px 40px;}
+  .ms-footer{padding:28px 20px 20px;}
+  .paywall-offers{gap:14px;}
+  .offer-card{width:100%;max-width:280px;}
 }
 </style>
 </head>
 <body>
-<div class="page-shell">
 
 <!-- HEADER -->
 <header class="ms-header">
-  <a class="ms-logo" href="../index.html">
-    <div class="ms-logo-mono">MS</div>
-    <div><div class="ms-logo-name">MUSLIMAH SOCIETY</div><div class="ms-logo-sub">by Institut Al Muta'allim</div></div>
+  <a class="ms-logo" href="muslimah_society_v3.html">
+    <div class="ms-logo-mono"><span>MS</span></div>
+    <div>
+      <div class="ms-logo-name">MUSLIMAH SOCIETY</div>
+      <div class="ms-logo-sub">by Institut Al Muta'allim</div>
+    </div>
   </a>
   <nav class="ms-nav">
-    <a href="../index.html">Accueil</a>
-    <a href="index.html">La Plume</a>
-    <a href="../quran-player.html">Qur'an</a>
-    <a href="../pricing.html">Abonnements</a>
-    <a href="../login.html" class="btn-outline">Connexion</a>
-    <a href="../pricing.html" class="btn-solid">VIP</a>
+    <a href="index_la_plume.html">La Plume</a>
+    <a href="muslimah_society_v3.html#espaces">Biblioth&egrave;que</a>
+    <a href="muslimah_society_v3.html#programmes">Programmes</a>
+    <a class="btn-member" href="muslimah_society_v3.html#programmes">Member</a>
+    <a class="btn-vip" href="muslimah_society_v3.html#programmes">VIP</a>
   </nav>
 </header>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
-  <a href="../index.html">Muslimah Society</a>
-  <span class="sep">›</span>
-  <a href="index.html">La Plume des Sahabiyyat</a>
-  <span class="sep">›</span>
-  <span>Khadija bint Khuwaylid</span>
-  <span class="vol">Volume I · Saison I</span>
+  <a href="muslimah_society_v3.html">Muslimah Society</a>
+  <span>&rsaquo;</span>
+  <a href="index_la_plume.html">La Plume des Sahabiyyat</a>
+  <span>&rsaquo;</span>
+  <span style="color:var(--text-m)">La Plume s'éveille</span>
+  <span style="margin-left:auto;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;color:var(--gold)">JOUR 1 · LUNDI</span>
 </div>
 
 <!-- HERO -->
 <section class="ep-hero">
-  <div class="ep-access" id="accessBadge">Extrait libre</div>
-  <div class="ep-vol">La Plume des Sahabiyyat &bull; Volume I</div>
-  <div class="ep-series">Série principale &bull; Saison I</div>
-  <h1 class="ep-title">Khadija bint Khuwaylid</h1>
-  <p class="ep-subtitle">Celle qui crut la première</p>
-  <p class="ep-tagline">Avant que l'Islam ait un nom, avant que le monde sache ce qui se levait, elle avait déjà dit : <em>« Je crois. »</em></p>
+  <span class="ep-access">Extrait libre</span>
+  <div class="ep-vol">La Plume des Sahabiyyat &bull; Volume&nbsp;I</div>
+  <div class="ep-series">S&eacute;rie principale &bull; Saison I</div>
+  <h1 class="ep-title">La Plume s'éveille</h1>
+  <p class="ep-tagline">Il y avait des femmes, avant nous, qui portaient la lumi&egrave;re sans faire de bruit.</p>
   <div class="ep-meta">
-    <span>8 min de lecture</span>
-    <span class="ep-meta-dot">•</span>
-    <span>Volume I</span>
-    <span class="ep-meta-dot">•</span>
-    <span>Chronique fondatrice</span>
+    <span class="ep-meta-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      5 min de lecture
+    </span>
+    <span class="ep-meta-item">&bull;</span>
+    <span class="ep-meta-item">Jour 1 · Lundi</span>
+    <span class="ep-meta-item">&bull;</span>
+    <span class="ep-meta-item">Extrait libre</span>
   </div>
 </section>
 
@@ -235,252 +220,120 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
   </svg>
 </div>
 
-<!-- ══════════════════════════════════════ -->
-<!-- EXTRAIT LIBRE (visible à tous)        -->
-<!-- ══════════════════════════════════════ -->
+<!-- EXTRAIT LIBRE -->
 <main class="ep-body">
   <div class="ep-text">
-    <p>Il y avait une femme, à La Mecque, il y a quinze siècles.</p>
-    <p>Elle n'attendait pas un prophète. Elle n'attendait pas une révélation. Elle gérait ses caravanes, honorait ses engagements, et vivait avec la dignité tranquille de quelqu'un qui n'a besoin de l'approbation de personne.</p>
-    <p>Et pourtant — c'est elle que Dieu a choisie pour être la première.</p>
-
-    <div class="ep-quote">
-      <blockquote>&ldquo; Dieu ne t'abandonnera jamais. Tu maintiens les liens familiaux, tu portes les fardeaux des autres, tu gagnes pour ceux qui sont dans le besoin, tu reçois les hôtes avec générosité, et tu soutiens les causes de la vérité. &rdquo;</blockquote>
-      <cite>Khadija à Muhammad ﷺ — Sahih Al-Bukhari, n° 3</cite>
-    </div>
-
-    <p>Ce n'était pas une déclaration de foi abstraite. C'était la parole d'une femme qui connaissait l'homme en face d'elle mieux que quiconque — et qui n'hésita pas.</p>
+    <p>Il y avait des femmes, avant nous.</p>
+      <p>Des femmes qui portaient la lumi&egrave;re sans faire de bruit.</p>
+      <p>Des femmes dont les noms ont travers&eacute; les si&egrave;cles &mdash; non pas parce qu'elles le cherchaient, mais parce que leurs actes &eacute;taient trop grands pour &ecirc;tre effac&eacute;s.</p>
+      <div class="ep-quote">
+        <blockquote>&ldquo; Elles n'avaient ni estrade, ni microphone. Elles avaient quelque chose de plus rare : une certitude qui ne vacillait pas. &rdquo;</blockquote>
+        <cite>La Plume des Sahabiyyat</cite>
+      </div>
+      <p>Cette s&eacute;rie est pour vous, qui cherchez autre chose.</p>
+      <p>Pas le bruit. Pas la pol&eacute;mique. Pas les d&eacute;bats qui &eacute;puisent.</p>
   </div>
 </main>
 
-<!-- FONDU avant paywall -->
+<!-- FONDU + SUITE -->
 <div class="ep-fade">
   <div class="ep-text">
-    <p>Elle fut la première à croire. La première à prier. La première à soutenir. Quinze ans aux côtés du Prophète ﷺ dans les années les plus difficiles, les plus solitaires, les plus décisives de l'histoire de l'Islam.</p>
-    <p>Ce que nous savons de Khadija tient en quelques lignes dans les livres d'histoire. Ce que nous ignorons encore, c'est ce que sa vie nous dit de la nôtre.</p>
+    <p>Vous qui cherchez une foi qui tient. Une &eacute;l&eacute;gance qui dure. Une mani&egrave;re d'&ecirc;tre femme musulmane qui ne s'excuse pas, mais qui rayonne.</p>
+      <p>La Plume des Sahabiyyat est une maison de m&eacute;moire.</p>
+      <p>Chaque volume est une chronique. Chaque chronique est une fen&ecirc;tre sur une femme qui, il y a des si&egrave;cles, a trac&eacute; un chemin que vous marchez peut-&ecirc;tre encore aujourd'hui.</p>
   </div>
 </div>
 
-<!-- PAYWALL membre non connecté -->
-<div class="ep-gate" id="gateSection">
-  <div class="ep-gate-box">
-    <div class="ep-gate-icon">✦</div>
-    <h2 class="ep-gate-title">Lire la suite de cette chronique</h2>
-    <p class="ep-gate-sub">La chronique complète — contexte historique, récit immersif, analyse spirituelle et conclusion — est réservée aux membres Muslimah Society.</p>
-    <div class="ep-gate-btns">
-      <a href="../login.html" class="ep-gate-member">Se connecter</a>
-      <a href="../pricing.html" class="ep-gate-vip">Rejoindre Member</a>
-    </div>
-  </div>
-</div>
 
-<!-- ══════════════════════════════════════════════════ -->
-<!-- CONTENU MEMBER (version complète 800-1200 mots)  -->
-<!-- ══════════════════════════════════════════════════ -->
-<div class="ep-full" id="memberContent" style="display:none">
+
+<!-- CONTENU COMPLET (pour abonnées connectées) -->
+<div class="ep-full" id="full-content">
   <div class="ep-text">
-
-    <div class="ep-section-title">Contexte historique</div>
-    <p>Khadija bint Khuwaylid naquit vers 555 après J.-C. dans la tribu des Quraysh, à La Mecque. Issue d'une lignée noble, elle grandit dans un milieu commerçant et développa très tôt un sens aigu des affaires. Elle fut mariée deux fois avant Muhammad ﷺ, et devint veuve avec enfants et une fortune considérable.</p>
-    <p>Dans une société où la femme était souvent réduite à un bien transmissible, Khadija dirigeait ses propres caravanes commerciales vers la Syrie et d'autres régions. Elle employait des hommes, négociait des contrats, et bâtissait sa réputation sur son intégrité. Les Arabes l'appelaient <em>Al-Tahira</em> — la Pure — bien avant que l'Islam n'entre dans sa vie.</p>
-    <p>C'est dans ce contexte qu'elle entendit parler d'un homme d'une honnêteté rare : Muhammad ibn Abdillah, que ses contemporains surnommaient Al-Amin — le Fiable. Elle lui confia une de ses caravanes. Elle envoya une servante l'observer. Puis elle fit ce qu'aucune femme de son rang ne faisait : elle proposa elle-même le mariage.</p>
-
-    <div class="ep-section-title">Récit principal</div>
-    <p>Il avait vingt-cinq ans. Elle en avait quarante. Le monde entier avait une opinion sur cette union. Elle n'en eut aucune — sauf la sienne, qui était favorable.</p>
-    <p>Pendant vingt-cinq ans, ils vécurent ensemble. Vingt-cinq ans d'une présence que le Prophète ﷺ ne cessera jamais d'évoquer, des années après sa mort. Elle lui donna six enfants. Elle fut sa confidente, sa première croyante, et le pilier sur lequel il s'appuya quand les révélations commencèrent à le terrifier.</p>
-    <p>La nuit de la première révélation — la nuit où l'ange Jibrîl étreint Muhammad ﷺ dans la grotte de Hirâ et lui dit <em>« Lis »</em> — ce fut vers Khadija qu'il courut. Tremblant. Couvert. Bouleversé. Il lui dit : <em>« Je crains pour moi-même. »</em></p>
-    <p>Et elle, sans hésitation, sans peur, sans besoin d'un signe ou d'une preuve supplémentaire, lui répondit par ces mots devenus immortels : <em>« Jamais. Par Dieu, Il ne t'humiliera jamais. »</em></p>
-
-    <div class="ep-hadith">
-      <div class="ep-hadith-ar">كَلَّا وَاللَّهِ، لَا يُخْزِيكَ اللَّهُ أَبَدًا</div>
-      <div class="ep-hadith-fr">« Jamais. Par Dieu, Il ne t'humiliera jamais. Tu maintiens les liens familiaux, tu portes le fardeau des autres, tu enrichis ceux qui sont dans le besoin, tu honores tes hôtes, et tu soutiens les causes de la vérité. »</div>
-      <div class="ep-hadith-src">Sahih Al-Bukhari, Kitab Bad' Al-Wahy, n° 3</div>
-    </div>
-
-    <p>Elle l'emmena chez son cousin Waraqah ibn Nawfal, un savant qui connaissait les Écritures, pour qu'il confirme ce qui se passait. Ce soir-là, Muhammad ﷺ avait besoin d'être cru. Et Khadija fut la première à lui offrir cela.</p>
-
-    <div class="ep-section-title">Analyse spirituelle</div>
-    <p>Ce qui est remarquable dans le témoignage de Khadija, c'est qu'il ne repose pas sur un miracle. Il repose sur une connaissance intime. Elle ne dit pas : <em>« Je t'ai vu marcher sur l'eau. »</em> Elle dit : <em>« Je te connais. »</em></p>
-    <p>Sa foi naquit de l'observation, de la proximité, de l'attention portée à un être humain avec toute la finesse dont une femme intelligente est capable. Elle avait scruté son caractère avant de scruter sa mission. Et cette fondation la rendit inébranlable.</p>
-    <p>Le Prophète ﷺ dira d'elle, longtemps après sa mort : <em>« Elle me crut quand les gens me traitaient de menteur. Elle m'aida de sa richesse quand les gens me refusèrent leurs biens. Et Dieu me donna des enfants par elle, et non par mes autres épouses. »</em> (Ahmad, 6/118, authentifié)</p>
-    <p>Elle mourut en l'an 619, l'année que le Prophète ﷺ appellera l'Année de la Tristesse — <em>Âm Al-Huzn</em>. Son départ et celui d'Abu Tâlib la même année plongèrent Muhammad ﷺ dans un deuil dont les récits disent qu'il ne se remit jamais tout à fait.</p>
-
-    <div class="ep-section-title">Conclusion</div>
-    <p>Khadija bint Khuwaylid est la première musulmane de l'histoire de l'Islam. Pas la première femme admirable. Pas simplement la première épouse du Prophète. La première.</p>
-    <p>Et cette primauté nous dit quelque chose d'essentiel : la foi, à son commencement, n'était pas portée par des armées, des conquêtes ou des foules. Elle était portée par une femme seule, assise en face d'un homme tremblant, qui lui tendit une main ferme dans l'obscurité.</p>
-    <p>Si vous vous demandez ce que cela signifie pour vous aujourd'hui — lisez la suite. La version VIP approfondit ce que sa vie nous enseigne concrètement, et vous attend avec une lettre écrite pour vous.</p>
-
-  </div>
-
-  <!-- PAYWALL VIP pour les membres non-VIP -->
-  <div class="ep-vip-gate" id="vipGateSection">
-    <div class="ep-vip-gate-box">
-      <div class="ep-vip-badge">✦ Exclusif VIP</div>
-      <h3 class="ep-vip-gate-title">Approfondissement VIP + Lettre à ma sœur</h3>
-      <p class="ep-vip-gate-sub">La version VIP contient une analyse étendue, des applications concrètes pour votre vie aujourd'hui, une lettre intime, une proposition média et une suggestion d'intervenante.</p>
-      <a href="../pricing.html" class="btn-solid" style="display:inline-flex;margin:0 auto">Passer en VIP — 60€/mois</a>
-    </div>
+    <p><em style="font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--gold)">&#10022; Contenu r&eacute;serv&eacute; aux membres &#10022;</em></p>
+    <p>Vous qui cherchez une foi qui tient. Une &eacute;l&eacute;gance qui dure. Une mani&egrave;re d'&ecirc;tre femme musulmane qui ne s'excuse pas, mais qui rayonne.</p>
+      <p>La Plume des Sahabiyyat est une maison de m&eacute;moire.</p>
+      <p>Chaque volume est une chronique. Chaque chronique est une fen&ecirc;tre sur une femme qui, il y a des si&egrave;cles, a trac&eacute; un chemin que vous marchez peut-&ecirc;tre encore aujourd'hui.</p>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;color:var(--text-l);text-align:center;margin-top:32px">
+      &mdash; Votre lecture continue avec un abonnement actif. Contactez-nous &agrave; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e4878b8a90858790a4899197888d89858c978b878d81909dca809e">[email&#160;protected]</a> &mdash;
+    </p>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════ -->
-<!-- CONTENU VIP (enrichissement + Lettre + Média + Speaker)  -->
-<!-- ══════════════════════════════════════════════════════════ -->
-<div class="ep-vip-section" id="vipContent" style="display:none">
-
-  <div class="ep-vip-label">
-    <div class="ep-vip-label-badge">✦ Approfondissement VIP</div>
-    <hr/>
+<!-- ACTIONS -->
+<section class="ep-actions">
+  <div class="action-block">
+    <div class="action-label">Action du Jour</div>
+    <div class="action-title">Votre action du jour</div>
+    <div class="action-text">Prenez un carnet &mdash; ou votre t&eacute;l&eacute;phone &mdash; et notez le nom d'une femme de votre famille qui vous a transmis quelque chose de pr&eacute;cieux. Une valeur. Une habitude. Une prière. <br><br>Cette femme, elle aussi, est une Sahabiyyat de votre histoire.</div>
   </div>
-
-  <div class="ep-text">
-    <p>Il y a une dimension de Khadija que l'histoire orthodoxe effleure à peine : sa solitude structurelle. Elle fut seule à croire pendant trois ans. Trois ans où les révélations n'étaient connues que d'elle, d'Ali et d'Abû Bakr. Trois ans où le Prophète ﷺ portait quelque chose que le monde n'était pas prêt à entendre.</p>
-    <p>Dans ces trois années, Khadija fut non seulement la première croyante, mais l'unique espace de sécurité du Prophète. Imaginez ce que cela représente : être le seul refuge d'un homme qui reçoit la Parole de Dieu, qui doute parfois de lui-même, qui traverse des moments où les révélations s'arrêtent — <em>fatrat al-wahy</em> — et où le silence devient insupportable.</p>
-    <p>Elle ne s'effondra pas. Elle ne chercha pas d'approbation extérieure. Elle tint. Et cette ténacité silencieuse, non spectaculaire, est peut-être sa leçon la plus précieuse pour nous.</p>
-
-    <div class="ep-quote">
-      <blockquote>&ldquo; Parmi les femmes, les meilleures sont Marie bint Imrân et Khadija bint Khuwaylid. &rdquo;</blockquote>
-      <cite>Sahih Al-Bukhari, n° 3432 &amp; Sahih Muslim, n° 2430</cite>
-    </div>
-
-    <p>Ce hadith n'est pas un classement. C'est une définition. La meilleure femme n'est pas celle qui parle le mieux de sa foi — c'est celle dont la foi a tenu sous la pression la plus silencieuse.</p>
-
-    <div class="ep-section-title">Applications concrètes pour aujourd'hui</div>
-    <p><strong>Premier enseignement :</strong> Soutenir avant de comprendre. Khadija ne demanda pas d'explication théologique complète avant de croire. Elle avait observé l'homme. Elle fit confiance à ce qu'elle avait construit comme connaissance. Dans votre vie, combien de fois attendez-vous d'avoir toutes les réponses avant d'avancer dans votre foi ?</p>
-    <p><strong>Deuxième enseignement :</strong> La richesse au service de la mission. Khadija consacra sa fortune à la cause de l'Islam à une époque où c'était dangereux. Non pas par imprudence — mais parce qu'elle avait identifié quelque chose de vrai. Dans votre vie, qu'est-ce que vous avez — temps, argent, compétences, influence — que vous pourriez mettre au service de quelque chose de plus grand que vous ?</p>
-    <p><strong>Troisième enseignement :</strong> La fidélité dans l'intimité. Le Prophète ﷺ parlait de Khadija des années après sa mort, au point que certaines de ses épouses en éprouvèrent de la jalousie. Ce que cela révèle : Khadija avait su bâtir une relation dont la qualité résistait à la mort. La vraie compagne n'est pas celle qui impressionne les gens dehors — c'est celle qui tient dans l'espace privé.</p>
+  <div class="action-block">
+    <div class="action-label">Du&rsquo;&acirc; du Jour</div>
+    <div class="action-title">Invoquez avec intention</div>
+    <div class="dua-arabic">اللّهُمَّ اجْعَلْنِي مِنَ النِّسَاءِ الصَّالِحَاتِ</div>
+    <div class="dua-fr">&laquo; O Allah, fais de moi une femme de bien. &raquo;</div>
   </div>
+</section>
 
-  <!-- LETTRE À MA SŒUR -->
-  <div class="ep-vip-label">
-    <div class="ep-vip-label-badge">Lettre à ma sœur</div>
-    <hr/>
+<!-- PARTAGE -->
+<div class="ep-share">
+  <p class="share-text">Partager cet &eacute;pisode avec une s&oelig;ur qui m&eacute;rite de le lire</p>
+  <div class="share-btns">
+    <a class="share-btn" href="https://instagram.com/muslimah.off" target="_blank" title="Instagram">IG</a>
+    <a class="share-btn" href="https://wa.me/?text=La%20Plume%20des%20Sahabiyyat%20%E2%80%94%20La%20Plume%20s'éveille" target="_blank" title="WhatsApp">WA</a>
+    <a class="share-btn" href="#" onclick="navigator.clipboard.writeText(window.location.href);this.textContent='✓';setTimeout(()=>this.textContent='CP',2000)" title="Copier le lien">CP</a>
   </div>
-
-  <div class="ep-letter">
-    <div class="ep-letter-head">Une lettre pour vous, de la part de la Maison</div>
-    <p>Ma sœur,</p>
-    <p>Je pense à vous souvent — à cette version de vous qui doute en silence, qui cherche quelque chose de solide dans un monde qui valorise le bruit et la surface. Khadija a quelque chose à vous dire ce soir.</p>
-    <p>Elle vous dit que la foi n'est pas toujours dramatique. Que croire, parfois, c'est simplement rester là — debout, présente, les yeux ouverts — pendant que tout le monde cherche encore. Elle ne fit rien d'extraordinaire le soir de la première révélation. Elle fit ce qu'elle avait toujours fait : elle fut là.</p>
-    <p>Et je sais que vous vous demandez parfois si ce que vous faites compte. Vos prières silencieuses, vos efforts invisibles, votre manière d'essayer d'être meilleure dans les petits gestes de chaque jour. Khadija vous répond : oui. Cela compte. Cela compte énormément. Dieu voit ce que le monde ne voit pas.</p>
-    <p>Elle vous dit aussi quelque chose de plus difficile à entendre : votre force est une amanah. Ce que vous portez — votre intelligence, votre clarté, votre capacité à tenir — n'est pas là pour votre confort personnel. Il est là pour quelqu'un. Peut-être votre famille. Peut-être votre communauté. Peut-être une sœur qui, un jour, aura besoin que vous soyez pour elle ce que Khadija fut pour lui.</p>
-    <p>Prenez soin de vous, ma sœur. Et soyez fière d'appartenir à cette lignée.</p>
-    <div class="ep-letter-sig">
-      <div class="ep-letter-sig-name">La Maison Muslimah Society</div>
-      <div class="ep-letter-sig-title">Institut Al Muta'allim · La Plume des Sahabiyyat</div>
-    </div>
-  </div>
-
-  <!-- PROPOSITION MÉDIA -->
-  <div class="ep-vip-label">
-    <div class="ep-vip-label-badge">Proposition Média</div>
-    <hr/>
-  </div>
-
-  <div class="ep-media-box">
-    <h3>Média associé à ce volume</h3>
-    <div class="ep-media-row"><span class="ep-media-key">Format</span><span class="ep-media-val">Narration audio — lecture de l'article avec mise en voix narrative, musique de fond douce (oud ou piano minimaliste)</span></div>
-    <div class="ep-media-row"><span class="ep-media-key">Ton de voix</span><span class="ep-media-val">Chaleureux, posé, légèrement grave — une voix qui raconte, pas qui annonce</span></div>
-    <div class="ep-media-row"><span class="ep-media-key">Durée estimée</span><span class="ep-media-val">12 à 15 minutes (version member) + 5 minutes pour la Lettre à ma sœur (version VIP)</span></div>
-    <div class="ep-media-row"><span class="ep-media-key">Profil idéal</span><span class="ep-media-val">Une femme à la voix douce et cultivée — enseignante islamique, étudiante en sciences religieuses, ou lectrice Coran avec diction française soignée</span></div>
-    <div class="ep-media-row"><span class="ep-media-key">Contact</span><span class="ep-media-val">Envoi des candidatures et propositions à podcast@muslimahsociety.com</span></div>
-  </div>
-
-  <!-- SUGGESTION INTERVENANTE -->
-  <div class="ep-vip-label">
-    <div class="ep-vip-label-badge">Suggestion Intervenante</div>
-    <hr/>
-  </div>
-
-  <div class="ep-speaker-box">
-    <h3>Idée de podcast ou d'invitée</h3>
-    <div class="ep-speaker-row"><span class="ep-speaker-key">Profil</span><span class="ep-speaker-val">Étudiante en sciences islamiques ou chercheuse spécialisée dans la biographie des femmes du Prophète — francophone ou capable d'intervenir en français</span></div>
-    <div class="ep-speaker-row"><span class="ep-speaker-key">Thème</span><span class="ep-speaker-val">« Ce que Khadija nous apprend sur le modèle de la femme musulmane accomplie — entre force, foi et présence »</span></div>
-    <div class="ep-speaker-row"><span class="ep-speaker-key">Format</span><span class="ep-speaker-val">Entretien de 30 à 45 minutes — conversation entre la directrice et l'invitée, format intimiste, non journalistique</span></div>
-    <div class="ep-speaker-row"><span class="ep-speaker-key">Diffusion</span><span class="ep-speaker-val">Replay audio réservé aux VIP + extrait de 3 min en accès libre pour promouvoir l'épisode</span></div>
-    <a href="mailto:podcast@muslimahsociety.com" class="ep-speaker-mail">podcast@muslimahsociety.com</a>
-  </div>
-
 </div>
 
-<!-- NAV ÉPISODE -->
-<div class="ep-nav">
-  <a href="index.html">← Retour à La Plume</a>
-  <span class="ep-nav-center">Volume I · Saison I</span>
-  <a href="read_02.html">Volume II →</a>
-</div>
+<!-- NAVIGATION -->
+<nav class="ep-nav">
+  <div class="ep-nav-spacer"></div>
+  <a class="ep-nav-btn" href="read_02.html" style="align-items:flex-end;text-align:right">
+      <div class="ep-nav-dir">&Eacute;pisode suivant &rarr;</div>
+      <div class="ep-nav-title">Vol.&nbsp;II &mdash; Elle fut la première</div>
+    </a>
+</nav>
 
 <!-- FOOTER -->
 <footer class="ms-footer">
-  <div class="footer-grid">
-    <div>
-      <div class="fc-logo">MUSLIMAH SOCIETY</div>
-      <div class="fc-logo-sub">by Institut Al Muta'allim</div>
-      <p class="fc-desc">Une maison éditoriale et spirituelle pour les femmes musulmanes qui aiment le savoir authentique, la douceur et le raffinement.</p>
-      <div class="fc-soc">
-        <a href="https://instagram.com/muslimah.off" target="_blank">IG</a>
-        <a href="#">TG</a><a href="#">YT</a>
-      </div>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-col-title">Muslimah Society</div>
+      <p>Un espace d'&eacute;l&eacute;vation pour la femme musulmane.</p>
+      <p style="margin-top:8px">&copy; 2026 Institut Al Muta'allim</p>
     </div>
-    <div><div class="fc-title">Navigation</div><ul class="fc-links">
-      <li><a href="../index.html">Accueil</a></li>
-      <li><a href="index.html">La Plume</a></li>
-      <li><a href="../quran-player.html">Lecteur du Qur'an</a></li>
-      <li><a href="../vip-events.html">Soirées VIP</a></li>
-    </ul></div>
-    <div><div class="fc-title">Offres</div><ul class="fc-links">
-      <li><a href="../pricing.html">Member — 17 €</a></li>
-      <li><a href="../pricing.html">VIP — 60 €</a></li>
-      <li><a href="../library.html">Bibliothèque</a></li>
-    </ul></div>
-    <div><div class="fc-title">Contact</div>
-      <div class="fc-ci"><strong>Email</strong><a href="mailto:contact@muslimahsociety.com">contact@muslimahsociety.com</a></div>
-      <div class="fc-ci"><strong>Podcast</strong><a href="mailto:podcast@muslimahsociety.com">podcast@muslimahsociety.com</a></div>
+    <div class="footer-col">
+      <div class="footer-col-title">La Plume</div>
+      <a href="index_la_plume.html">Toutes les chroniques</a>
+      <a href="index_la_plume.html#sem1">Semaine I</a>
+      <a href="index_la_plume.html#sem2">Semaine II</a>
+      <a href="index_la_plume.html#sem3">Semaine III</a>
+      <a href="index_la_plume.html#sem4">Semaine IV</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Abonnements</div>
+      <a href="muslimah_society_v3.html#programmes">Member &mdash; 2&nbsp;500 DZD &bull; 17&nbsp;&euro;</a>
+      <a href="muslimah_society_v3.html#programmes">VIP &mdash; 9&nbsp;000 DZD &bull; 60&nbsp;&euro;</a>
+      <a href="muslimah_society_v3.html#contact">Nous contacter</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Suivez-nous</div>
+      <a href="https://instagram.com/muslimah.off" target="_blank">Instagram : @muslimah.off</a>
+      <a href="muslimah_society_v3.html#contact">Contact</a>
     </div>
   </div>
   <div class="footer-bot">
-    <span class="fcopy">© 2026 Institut Al Muta'allim — Muslimah Society</span>
-    <div class="flegal">
-      <a href="../legal.html">Mentions légales</a>
-      <a href="../privacy.html">Confidentialité</a>
-      <a href="../terms.html">CGU</a>
+    <div class="footer-copy">Muslimah Society &bull; Institut Al Muta'allim &bull; Alger</div>
+    <div class="footer-legal">
+      <a onclick="openModal('cgu')">CGU</a>
+      <a onclick="openModal('cgv')">CGV</a>
+      <a onclick="openModal('privacy')">Confidentialit&eacute;</a>
+      <a onclick="openModal('mentions')">Mentions l&eacute;gales</a>
     </div>
   </div>
 </footer>
 
-</div><!-- page-shell -->
-
-<script>
-const SB_URL = "https://lgxnejnihodyfgxlyycd.supabase.co";
-const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
-const sb = window.supabase.createClient(SB_URL, SB_KEY);
-
-(async function(){
-  const { data:{ session } } = await sb.auth.getSession();
-
-  if (!session) {
-    // Visiteur non connecté — extrait seulement
-    return;
-  }
-
-  const { data: profile } = await sb.from('profiles')
-    .select('role').eq('id', session.user.id).single();
-  const tier = profile?.role || 'visitor';
-
-  // Member ou VIP : montrer le contenu complet
-  if (tier === 'member' || tier === 'vip') {
-    document.getElementById('gateSection').style.display = 'none';
-    document.getElementById('memberContent').style.display = 'block';
-    document.getElementById('accessBadge').textContent = tier === 'vip' ? '✦ VIP' : 'Member';
-    document.getElementById('accessBadge').className = 'ep-access ' + tier;
-  }
-
-  // VIP uniquement : montrer le contenu VIP
-  if (tier === 'vip') {
-    document.getElementById('vipGateSection').style.display = 'none';
-    document.getElementById('vipContent').style.display = 'block';
-  }
-})();
-</script>
-</body>
-</html>
+<!-- MODALES -->
+<div class="modal-ov" id="modal-cgu"><div class="modal-box"><span class="modal-x" onclick="closeModal('cgu')">&#215;</span><div class="modal-title">Conditions G&eacute;n&eacute;rales d'Utilisation</div><div class="modal-body"><h3>1. Objet</h3><p>Les pr&eacute;sentes CGU r&eacute;gissent l'utilisation de Muslimah Society, &eacute;dit&eacute;e par Institut Al Muta'allim, Alger.</p><h3>2. Propri&eacute;t&eacute; intellectuelle</h3><p>Tous les contenus de La Plume des Sahabiyyat sont la propri&eacute;t&eacute; exclusive d'Institut Al Muta'allim. Toute reproduction est interdite.</p></div></div></div>
+<div class="modal-ov" id="modal-cgv"><div class="modal-box"><span class="modal-x" onclick="closeModal('cgv')">&#215;</span><div class="modal-title">Conditions G&eacute;n&eacute;rales de Vente</div><div class="modal-body"><h3>Tarifs</h3><p>Member&nbsp;: 2&nbsp;500 DZD / 17&euro; / 65 ر.س par mois.<br>VIP&nbsp;: 9&nbsp;000 DZD / 60&euro; / 225 ر.س par mois.<br>Annuel&nbsp;: 90&nbsp;000 DZD / 600&euro;.</p><h3>R&eacute;siliation</h3><p>Member&nbsp;: sans engagement. VIP&nbsp;: 3 mois minimum.</p></div></div></div>
+<div class="modal-ov" id="modal-privacy"><div class="modal-box"><span class="modal-x" onclick="closeModal('privacy')">&#215;</span><div class="modal-title">Politique de Confidentialit&eacute;</div><div class="modal-body"><h3>Donn&eacute;es</h3><p>Nous collectons uniquement votre pr&eacute;nom et adresse e-mail pour la gestion de votre abonnement.</p><h3>Contact</h3><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d5b6babba1b4b6a195b8a0a6b9bcb8b4bda6bab6bcb0a1acfbb1af">[email&#160;protected]</a></p></div></div></div>
+<div class="modal-ov" id="modal-mentions"><div class="modal-box"><span class="modal-x" onclick="closeModal('mentions')">&#215;</span><div class="modal-title">Mentions L&eacute;gales</div><div class="modal-body"><h3>&Eacute;diteur</h3><p>Institut Al Muta'allim &bull; Alger &bull; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="086b67667c696b7c48657d7b64616569607b676b616d7c71266c72">[email&#160;protected]</a></p><h3>Directrice</h3><p>Ustadha Zina &bull; Fondat
