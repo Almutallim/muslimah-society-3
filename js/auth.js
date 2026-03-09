@@ -28,6 +28,7 @@ async function getProfile(){
   const user = await getUser();
   if(!user) return null;
 
+  // ✅ maybeSingle évite le crash si le profil n’existe pas encore
   const { data, error } = await supabaseClient
     .from("profiles")
     .select("subscription_status, subscription_tier, email, stripe_customer_id")
@@ -36,6 +37,7 @@ async function getProfile(){
 
   if (error) throw error;
 
+  // ✅ Si pas de profil, on renvoie un fallback propre
   if (!data) {
     return {
       email: user.email,
@@ -45,5 +47,18 @@ async function getProfile(){
     };
   }
 
+  return data;
+}
+async function getProfile(){
+  const user = await getUser();
+  if(!user) return null;
+
+  const { data, error } = await supabaseClient
+    .from("profiles")
+    .select("subscription_status, subscription_tier, email")
+    .eq("id", user.id)
+    .single();
+
+  if (error) throw error;
   return data;
 }
