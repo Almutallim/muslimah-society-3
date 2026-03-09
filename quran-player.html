@@ -1,187 +1,1252 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Lecteur Coran — Muslimah Society</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <style>
-:root{--gold:#c9a84c;--gold-p:#f0e4c0;--blush:#e8d5d0;--blush-l:#f5ede9;--ivory:#fdf8f2;--text:#3d2b25;--text-m:#7a5a50;--text-l:#a89080;--rose-d:#b08880;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Cormorant Garamond',serif;background:var(--ivory);color:var(--text);}
-a{color:inherit;text-decoration:none;}
-.wrap{max-width:900px;margin:0 auto;padding:0 24px;}
-.ms-header{position:sticky;top:0;z-index:800;background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);backdrop-filter:blur(10px);}
-.ms-header .inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
-.ms-logo{display:flex;align-items:center;gap:10px;}
-.ms-logo-mark{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,rgba(255,252,245,1),rgba(240,228,200,.55));}
-.ms-logo-mark span{font-family:'Cinzel',serif;font-size:12px;color:var(--gold);}
-.ms-logo-name{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--text);}
-.ms-nav{display:flex;gap:10px;align-items:center;}
-.btn{display:inline-flex;align-items:center;padding:8px 18px;min-height:38px;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;border:1.5px solid transparent;cursor:pointer;transition:all .3s;}
-.btn-ghost{border-color:rgba(201,168,76,.3);color:var(--text-m);background:transparent;}.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.btn-gold{border-color:var(--gold);background:var(--gold);color:#fff;}.btn-gold:hover{background:#b8923e;}
-.btn-vip{border-color:var(--rose-d);background:var(--rose-d);color:#fff;}.btn-vip:hover{background:#9a7068;}
-.btn-danger{border-color:rgba(180,60,60,.3);color:#8b3a3a;background:transparent;}.btn-danger:hover{background:rgba(180,60,60,.08);}
-.page{padding:32px 0 64px;}
-.hero-sm{padding:36px 0 28px;background:linear-gradient(160deg,var(--blush-l),var(--blush) 40%,rgba(216,208,228,.5) 80%,var(--blush-l));border-bottom:1px solid rgba(201,168,76,.12);text-align:center;}
-.chip{display:inline-block;padding:5px 14px;border-radius:20px;border:1px solid var(--gold-p);background:rgba(255,252,245,.85);font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-.hero-title{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,32px);font-weight:500;letter-spacing:2px;margin-bottom:8px;}
-.hero-sub{font-size:clamp(15px,2vw,18px);font-style:italic;color:var(--text-m);}
-.card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;box-shadow:0 8px 28px rgba(61,43,37,.08);overflow:hidden;position:relative;margin-bottom:16px;}
-.card::before{content:'';position:absolute;top:6px;left:6px;width:12px;height:12px;border-top:1px solid var(--gold-p);border-left:1px solid var(--gold-p);}
-.card::after{content:'';position:absolute;bottom:6px;right:6px;width:12px;height:12px;border-bottom:1px solid var(--gold-p);border-right:1px solid var(--gold-p);}
-.card-head{padding:16px 22px;background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.18));border-bottom:1px solid rgba(201,168,76,.14);display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.card-head h2,.card-head h3{font-family:'Cinzel',serif;font-size:15px;font-weight:500;letter-spacing:1px;}
-.card-body{padding:22px 24px 26px;}
-.card-body p{font-size:17px;line-height:1.9;color:var(--text-m);margin-bottom:12px;}
-.card-body h2,.card-body h3{font-family:'Cinzel',serif;font-size:16px;font-weight:500;letter-spacing:1px;color:var(--text);margin:20px 0 10px;}
-.card-body h2:first-child,.card-body h3:first-child{margin-top:0;}
-.card-body ul{list-style:none;margin:8px 0 14px;}
-.card-body li{font-size:16px;color:var(--text-m);padding:6px 0 6px 20px;position:relative;border-bottom:1px solid rgba(201,168,76,.08);}
-.card-body li:last-child{border-bottom:none;}
-.card-body li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:9px;top:10px;}
-.kicker{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
-.badge{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
-.badge.member{background:rgba(201,168,76,.12);color:#9a7830;border:1px solid rgba(201,168,76,.28);}
-.badge.vip{background:rgba(176,136,128,.15);color:var(--rose-d);border:1px solid rgba(176,136,128,.28);}
-.badge.active{background:rgba(80,140,100,.1);color:#3a6b4a;border:1px solid rgba(80,140,100,.25);}
-.badge.inactive{background:rgba(160,144,128,.1);color:var(--text-l);border:1px solid rgba(160,144,128,.2);}
-.badge.none{background:rgba(160,144,128,.08);color:var(--text-l);border:1px solid rgba(160,144,128,.18);}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-@media(max-width:600px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
-@media(min-width:601px) and (max-width:800px){.grid4{grid-template-columns:repeat(2,1fr);}}
-.stat-card{background:rgba(240,228,192,.15);border:1px solid rgba(201,168,76,.18);border-radius:3px;padding:20px;text-align:center;}
-.stat-value{font-family:'Cinzel',serif;font-size:28px;font-weight:500;color:var(--gold);margin-bottom:6px;}
-.stat-label{font-size:13px;font-style:italic;color:var(--text-l);}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
-.note{padding:14px 18px;border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 3px 3px 0;font-size:16px;font-style:italic;color:var(--text-m);margin-bottom:14px;}
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px;}
-.info-item{padding:16px;background:rgba(240,228,192,.12);border:1px solid rgba(201,168,76,.15);border-radius:3px;}
-.info-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-l);margin-bottom:8px;}
-.info-value{font-size:20px;font-family:'Cinzel',serif;color:var(--gold);}
-table{width:100%;border-collapse:collapse;}
-th{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(201,168,76,.2);background:rgba(240,228,192,.1);}
-td{padding:10px 12px;font-size:15px;color:var(--text-m);border-bottom:1px solid rgba(201,168,76,.08);}
-tr:last-child td{border-bottom:none;}
-input,select{width:100%;padding:10px 14px;border:1px solid rgba(201,168,76,.25);border-radius:3px;background:rgba(255,252,245,.8);font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);outline:none;transition:border-color .3s;}
-input:focus,select:focus{border-color:rgba(201,168,76,.6);}
-.search-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
-.search-bar input{flex:1;min-width:180px;}
-.search-bar select{width:160px;flex-shrink:0;}
-.reward-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-@media(max-width:600px){.reward-grid{grid-template-columns:1fr;}}
-.reward-card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:18px;text-align:center;}
-.reward-card.locked{opacity:.55;filter:grayscale(.4);}
-.reward-card h3{font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;margin:10px 0 6px;}
-.reward-card p{font-size:14px;font-style:italic;color:var(--text-m);}
-.reward-icon{font-size:28px;margin-bottom:4px;}
-.code-box{background:rgba(240,228,192,.2);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:16px 20px;font-family:'Cinzel',serif;font-size:22px;letter-spacing:4px;text-align:center;color:var(--gold);margin:14px 0;}
-.quran-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-.quran-controls select{width:auto;min-width:140px;}
-.audio-player{width:100%;margin:14px 0;}
-.verse-display{font-size:22px;line-height:2.2;text-align:right;direction:rtl;color:var(--text);padding:20px;background:rgba(240,228,192,.1);border-radius:3px;border:1px solid rgba(201,168,76,.15);margin-bottom:12px;}
-.verse-trans{font-size:16px;font-style:italic;color:var(--text-m);line-height:1.8;padding:0 4px;}
-.nav-verse{display:flex;justify-content:space-between;margin-top:12px;}
-.ms-footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gold-p);padding:22px 0;margin-top:32px;}
-.ft-copy{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
-@media(max-width:719px){.ms-logo-name{display:none;}}
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Lecteur du Saint Coran — Muslimah Society</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#fdf8f2;
+  --cream:#faf4ec;
+  --blush:#ead8d2;
+  --blush-light:#f5ece8;
+  --rose:#cda9a0;
+  --rose-deep:#b48a82;
+  --gold:#c9a84c;
+  --gold-soft:#edd8a6;
+  --text:#3f2d26;
+  --text-soft:#7d6055;
+  --text-faint:#a48a7d;
+  --shadow:0 18px 48px rgba(90,65,52,.12);
+  --radius:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--text);
+  background:linear-gradient(to bottom,var(--ivory),var(--cream));
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit}
+
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.45'/%3E%3C/svg%3E");
+}
+
+.page-shell{position:relative;z-index:1}
+.page-shell::before,
+.page-shell::after{
+  content:"";position:fixed;top:0;width:150px;height:150px;pointer-events:none;opacity:.42;z-index:1;
+  background-repeat:no-repeat;background-size:contain;
+}
+.page-shell::before{left:0;background-image:url('images/floral-corner-1.png')}
+.page-shell::after{right:0;background-image:url('images/floral-corner-2.png')}
+
+.container{max-width:1180px;margin:0 auto}
+
+.ms-header{
+  position:sticky;top:0;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:18px 42px;
+  background:rgba(253,248,242,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(201,168,76,.18);
+}
+.ms-logo{display:flex;align-items:center;gap:12px}
+.ms-logo-mono{
+  width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:13px;
+  background:radial-gradient(circle,rgba(255,248,238,.98),rgba(240,228,200,.55));
+  box-shadow:0 0 14px rgba(201,168,76,.16);
+}
+.ms-logo-name{font-family:'Cinzel',serif;font-size:14px;letter-spacing:3px}
+.ms-logo-sub{font-size:11px;color:var(--text-faint);font-style:italic;letter-spacing:1px}
+.ms-nav{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.ms-nav a{font-size:16px;color:var(--text-soft);font-style:italic;transition:.25s}
+.ms-nav a:hover{color:var(--gold)}
+.btn-outline,.btn-solid,.btn-soft{
+  border-radius:40px;display:inline-flex;align-items:center;justify-content:center;
+  padding:12px 28px;transition:.28s;border:1.5px solid transparent;
+}
+.btn-outline{border-color:var(--gold);color:var(--gold);background:transparent}
+.btn-outline:hover{background:var(--gold);color:#fff}
+.btn-solid{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff}
+.btn-solid:hover{transform:translateY(-2px);background:var(--rose);border-color:var(--rose)}
+.btn-soft{background:rgba(255,252,248,.72);border-color:rgba(201,168,76,.45);color:var(--text)}
+.btn-soft:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
+
+.hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  padding:88px 24px 110px;
+  background:
+    linear-gradient(rgba(253,248,242,.52),rgba(253,248,242,.78)),
+    url('images/hero-main.jpg') center/cover no-repeat;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;background:radial-gradient(circle at center,rgba(255,248,240,.04),rgba(61,43,37,.18));
+}
+.hero-card{
+  position:relative;z-index:2;max-width:760px;padding:46px 34px;
+  background:rgba(253,248,242,.72);backdrop-filter:blur(8px);
+  border:1.5px solid rgba(201,168,76,.4);border-radius:var(--radius);box-shadow:var(--shadow);
+}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(30px,5vw,58px);letter-spacing:4px;line-height:1.18;margin-bottom:14px}
+.hero-sub{font-size:clamp(20px,2.5vw,28px);line-height:1.7;font-style:italic;color:var(--text-soft);margin-bottom:28px}
+.hero-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+
+.sec-nav{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:30px;
+  padding:16px 24px;border-top:1px solid rgba(201,168,76,.18);border-bottom:1px solid rgba(201,168,76,.18);
+  background:rgba(250,244,236,.92)
+}
+.sec-nav a{font-size:16px;font-style:italic;color:var(--text-soft)}
+.sec-nav a:hover{color:var(--gold)}
+
+.divider{padding:22px 0;text-align:center;background:linear-gradient(to bottom,var(--cream),var(--ivory))}
+.divider img{width:min(360px,70vw);margin:0 auto;opacity:.7}
+
+.section{padding:84px 42px;position:relative}
+.section.alt{background:linear-gradient(to bottom,var(--cream),var(--ivory))}
+.section.wash{background:linear-gradient(160deg,var(--blush-light),var(--blush),#f2e5e0 65%,#efe7f1)}
+.label{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:12px}
+.title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,42px);text-align:center;margin-bottom:14px}
+.subtitle{max-width:780px;margin:0 auto 44px;text-align:center;font-size:21px;line-height:1.75;font-style:italic;color:var(--text-faint)}
+
+.about-grid{
+  display:grid;grid-template-columns:1.04fr .96fr;gap:54px;align-items:center;max-width:1120px;margin:0 auto;
+}
+.figure-frame{background:rgba(255,252,248,.7);border:1px solid rgba(201,168,76,.34);padding:14px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.figure-frame img{width:100%;height:510px;object-fit:cover;border-radius:3px}
+.about-copy p{font-size:22px;line-height:1.9;color:var(--text-soft);font-style:italic;margin-bottom:26px}
+
+.membership-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:22px;max-width:1180px;margin:0 auto;
+}
+.card{
+  background:rgba(255,252,248,.92);border:1.5px solid rgba(201,168,76,.28);border-radius:var(--radius);
+  padding:12px 12px 22px;box-shadow:var(--shadow);transition:.3s;
+}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 52px rgba(90,65,52,.14)}
+.card-image{height:220px;overflow:hidden;border-radius:4px;margin-bottom:16px}
+.card-image img{width:100%;height:100%;object-fit:cover}
+.card-kicker{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);text-align:center;margin-bottom:8px}
+.card-title{font-family:'Playfair Display',serif;font-size:28px;text-align:center;margin-bottom:10px}
+.card-text{font-size:18px;line-height:1.65;color:var(--text-soft);font-style:italic;text-align:center;margin-bottom:16px}
+.card-actions{text-align:center}
+
+.quran-band{
+  max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.02fr .98fr;gap:34px;align-items:center;
+}
+.quran-box{
+  background:rgba(255,252,248,.92);border:1.5px solid rgba(201,168,76,.3);padding:36px 34px;border-radius:var(--radius);box-shadow:var(--shadow);
+}
+.quran-box h3{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:14px}
+.quran-box p{font-size:21px;line-height:1.82;font-style:italic;color:var(--text-soft);margin-bottom:20px}
+.quran-list{list-style:none;margin:0 0 22px 0}
+.quran-list li{font-size:17px;line-height:1.8;color:var(--text-soft);padding-left:18px;position:relative}
+.quran-list li::before{content:'✦';position:absolute;left:0;top:0;color:var(--gold)}
+.quran-visual{
+  border-radius:var(--radius);min-height:380px;padding:34px;background:
+    linear-gradient(rgba(253,248,242,.52),rgba(253,248,242,.72)),
+    url('images/library-card.jpg') center/cover no-repeat;
+  display:flex;align-items:flex-end;box-shadow:var(--shadow);border:1px solid rgba(201,168,76,.26)
+}
+.quran-overlay{background:rgba(255,252,248,.72);backdrop-filter:blur(8px);padding:26px 24px;border-radius:4px;border:1px solid rgba(201,168,76,.24)}
+.quran-overlay strong{display:block;font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--gold);margin-bottom:8px}
+.quran-overlay span{display:block;font-size:19px;font-style:italic;color:var(--text-soft);line-height:1.7}
+
+.plume-layout,.chronicle-wrap,.events-layout{
+  max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center;
+}
+.media-frame img{width:100%;height:100%;min-height:430px;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow)}
+.copy-panel{
+  background:rgba(255,252,248,.9);padding:34px 32px;border-radius:var(--radius);border:1.5px solid rgba(201,168,76,.25);box-shadow:var(--shadow)
+}
+.copy-badge{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);border-radius:24px;padding:6px 16px;margin-bottom:18px;background:rgba(255,252,248,.7)}
+.copy-panel h3{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);margin-bottom:14px}
+.copy-panel h3 em{font-style:italic;color:var(--rose-deep)}
+.copy-panel p{font-size:21px;line-height:1.86;color:var(--text-soft);font-style:italic;margin-bottom:22px}
+.stat-row{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+.stat{min-width:85px}
+.stat strong{display:block;font-family:'Playfair Display',serif;font-size:30px;color:var(--gold)}
+.stat span{font-size:14px;font-style:italic;color:var(--text-faint)}
+
+.community-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1120px;margin:0 auto}
+.community-card{background:rgba(255,252,248,.92);border:1px solid rgba(201,168,76,.24);padding:12px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.community-card img{width:100%;height:275px;object-fit:cover;border-radius:3px;margin-bottom:12px}
+.community-card p{text-align:center;font-size:18px;font-style:italic;color:var(--text-soft);line-height:1.62}
+
+.price-grid{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;max-width:1100px;margin:0 auto}
+.price-card{width:312px;background:rgba(255,252,248,.95);border:1.5px solid rgba(201,168,76,.28);border-radius:var(--radius);padding:34px 28px;box-shadow:var(--shadow);position:relative}
+.price-card.featured{border-color:var(--gold);box-shadow:0 12px 34px rgba(201,168,76,.18)}
+.pop-badge{position:absolute;top:-1px;right:22px;background:var(--gold);color:#fff;padding:4px 12px;border-radius:0 0 4px 4px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase}
+.price-kicker{display:inline-block;padding:4px 12px;border-radius:18px;border:1px solid rgba(201,168,76,.28);color:var(--gold);font-size:12px;font-style:italic;margin-bottom:14px}
+.price-title{font-family:'Cinzel',serif;font-size:18px;margin-bottom:10px}
+.price-desc{font-size:16px;line-height:1.72;color:var(--text-soft);font-style:italic;margin-bottom:16px}
+.price-list{list-style:none;margin-bottom:18px}
+.price-list li{position:relative;padding-left:16px;font-size:15px;line-height:1.8;color:var(--text-soft)}
+.price-list li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:8px;top:7px}
+.price-amount{font-family:'Playfair Display',serif;font-size:14px;color:var(--text-soft);line-height:1.8}
+.price-amount strong{font-size:22px;color:var(--gold);font-weight:400}
+.price-note{font-size:12px;font-style:italic;color:var(--text-faint);margin:12px 0 18px}
+
+.s-contact{padding:82px 42px;background:linear-gradient(to bottom,var(--cream),var(--ivory))}
+.contact-wrap{display:flex;gap:56px;flex-wrap:wrap;max-width:940px;margin:0 auto}
+.c-info,.c-form{min-width:280px}
+.c-info{flex:1}
+.c-form{flex:1.2}
+.c-info-title,.c-form-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:24px}
+.c-item{display:flex;gap:14px;align-items:flex-start;margin-bottom:18px}
+.c-item-ic{font-size:18px;line-height:1;margin-top:2px}
+.c-item-txt{font-size:17px;line-height:1.7;color:var(--text-soft)}
+.c-item-txt strong{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:3px;font-weight:400}
+.c-item-txt a{color:var(--text-soft)}
+.soc-links{display:flex;gap:10px;margin-top:22px}
+.soc-link{width:36px;height:36px;border:1px solid rgba(201,168,76,.28);border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-size:10px;color:var(--gold)}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:13px;letter-spacing:2px;color:var(--text-faint);font-style:italic;margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:1px solid rgba(201,168,76,.28);background:rgba(255,252,248,.85);border-radius:2px;font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--text);outline:none}
+.fg textarea{height:126px;resize:vertical}
+.btn-submit{display:block;width:100%;padding:14px;border-radius:32px;border:1.5px solid var(--gold);background:var(--gold);color:#fff;font-size:17px;font-style:italic;cursor:pointer}
+#contact-msg{display:none;margin-top:12px;padding:10px 16px;border-radius:4px;font-size:15px;font-style:italic}
+
+.s-nl{padding:72px 42px;text-align:center;background:linear-gradient(160deg,var(--blush),#e9dde7 60%,var(--blush))}
+.nl-box{max-width:580px;margin:0 auto}
+.nl-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,38px);margin-bottom:14px}
+.nl-sub{font-size:19px;line-height:1.75;color:var(--text-soft);font-style:italic;margin-bottom:28px}
+.nl-form{display:flex;max-width:460px;margin:0 auto 14px;border:1.5px solid rgba(201,168,76,.28);border-radius:40px;overflow:hidden;background:rgba(255,252,248,.92)}
+.nl-form input{flex:1;padding:12px 18px;border:none;background:transparent;outline:none;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic}
+.nl-form button{padding:12px 26px;border:none;background:var(--gold);color:#fff;font-size:16px;font-style:italic;cursor:pointer}
+.nl-note{font-size:13px;color:var(--text-faint);font-style:italic}
+
+.ms-footer{padding:56px 42px 34px;background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid rgba(201,168,76,.18)}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:38px;max-width:1080px;margin:0 auto 36px}
+.fc-logo{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);letter-spacing:3px;margin-bottom:4px}
+.fc-logo-sub{font-size:13px;font-style:italic;color:var(--text-faint);margin-bottom:14px}
+.fc-desc{font-size:15px;font-style:italic;color:var(--text-soft);line-height:1.74;margin-bottom:18px}
+.fc-soc{display:flex;gap:8px}
+.fc-soc a{width:34px;height:34px;border:1px solid rgba(201,168,76,.28);border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-size:9px;color:var(--gold)}
+.fc-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding-bottom:8px;margin-bottom:14px;border-bottom:1px solid rgba(201,168,76,.18)}
+.fc-links{list-style:none}
+.fc-links li{margin-bottom:6px}
+.fc-links a{font-size:15px;color:var(--text-soft)}
+.fc-ci{font-size:14px;color:var(--text-soft);line-height:1.6;margin-bottom:10px}
+.fc-ci strong{display:block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:2px}
+.footer-bot{max-width:1080px;margin:0 auto;padding-top:22px;border-top:1px solid rgba(201,168,76,.18);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.fcopy,.flegal a{font-size:13px;color:var(--text-faint);font-style:italic}
+.fmono{font-family:'Cinzel',serif;font-size:18px;color:var(--gold);opacity:.5;letter-spacing:2px}
+.flegal{display:flex;gap:16px;flex-wrap:wrap}
+
+.modal-ov{position:fixed;inset:0;background:rgba(61,43,37,.6);backdrop-filter:blur(4px);z-index:9000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-ov.open{display:flex}
+.modal-box{background:var(--ivory);border:1px solid rgba(201,168,76,.28);border-radius:var(--radius);max-width:560px;width:100%;max-height:80vh;overflow-y:auto;padding:40px 44px;position:relative}
+.modal-x{position:absolute;top:16px;right:20px;font-size:22px;color:var(--text-faint);cursor:pointer;font-family:'Cinzel',serif}
+.modal-title{font-family:'Playfair Display',serif;font-size:24px;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid rgba(201,168,76,.22)}
+.modal-body h3{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:18px 0 8px}
+.modal-body p{font-size:17px;color:var(--text-soft);line-height:1.8;margin-bottom:12px}
+
+@media (max-width:1080px){
+  .membership-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:980px){
+  .about-grid,.quran-band,.plume-layout,.community-grid,.events-layout,.chronicle-wrap,.footer-grid{grid-template-columns:1fr !important}
+  .membership-grid{grid-template-columns:repeat(2,1fr)}
+  .ms-header,.section,.s-contact,.s-nl,.ms-footer{padding-left:24px;padding-right:24px}
+  .figure-frame img{height:420px}
+}
+@media (max-width:640px){
+  .ms-nav{display:none}
+  .membership-grid,.community-grid{grid-template-columns:1fr}
+  .hero-card{padding:34px 20px}
+  .hero-btns,.nl-form{flex-direction:column}
+  .nl-form{border-radius:18px}
+  .page-shell::before,.page-shell::after{width:92px;height:92px}
+}
+
+/* ── compat classes ── */
+.chip{display:inline-block;font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);border-radius:20px;padding:5px 18px;margin-bottom:16px;background:rgba(255,252,248,.8)}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);color:var(--text);margin-bottom:10px;letter-spacing:2px}
+.hero-sub{font-size:18px;font-style:italic;color:var(--text-soft)}
+.page{padding:52px 42px 72px}
+.plan{background:rgba(255,252,248,.95);border:1.5px solid rgba(201,168,76,.24);border-radius:var(--radius);padding:0;box-shadow:var(--shadow);width:340px;overflow:hidden;transition:.3s}
+.plan:hover{transform:translateY(-4px)}
+.plan.featured{border-color:var(--gold)}
+.plan-head{background:linear-gradient(160deg,var(--blush-light),rgba(255,252,248,.85));padding:28px 28px 22px;border-bottom:1px solid rgba(201,168,76,.15)}
+.plan-badge{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:4px 14px;border-radius:20px;margin-bottom:12px}
+.plan-badge.vip{background:var(--gold);color:#fff;border-color:var(--gold)}
+.plan-name{font-family:'Playfair Display',serif;font-size:34px;color:var(--text);margin-bottom:4px}
+.plan-desc{font-size:16px;font-style:italic;color:var(--text-soft);margin-bottom:16px}
+.plan-amount{font-family:'Playfair Display',serif;font-size:42px;color:var(--gold)}
+.plan-period{font-size:15px;color:var(--text-soft);margin-left:4px}
+.plan-alt{font-size:13px;font-style:italic;color:var(--text-faint);margin-top:4px}
+.plan-body{padding:24px 28px 28px}
+.plan-body ul{list-style:none;margin:0 0 22px 0}
+.plan-body li{font-size:16px;line-height:1.85;color:var(--text-soft);padding-left:18px;position:relative}
+.plan-body li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:8px;top:7px}
+.btn-plan{display:block;width:100%;padding:13px;border-radius:40px;font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;cursor:pointer;transition:.25s;border:1.5px solid transparent}
+.btn-member{background:transparent;border-color:var(--gold);color:var(--gold)}
+.btn-member:hover{background:var(--gold);color:#fff}
+.btn-vip-plan{background:var(--rose-deep);border-color:var(--rose-deep);color:#fff}
+.btn-vip-plan:hover{background:var(--rose);border-color:var(--rose)}
+.pricing-note{text-align:center;margin-top:24px;font-size:14px;font-style:italic;color:var(--text-faint)}
+.text-content{max-width:820px;margin:0 auto;padding:52px 42px}
+.text-content h2{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);margin:24px 0 10px}
+.text-content h3{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:18px 0 8px}
+.text-content p{font-size:17px;line-height:1.85;color:var(--text-soft);margin-bottom:14px}
+.text-content ul{margin:0 0 14px 18px}
+.text-content li{font-size:17px;line-height:1.85;color:var(--text-soft)}
+.text-content .note{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:12px 16px;margin:16px 0;font-style:italic;color:var(--text-soft)}
+.card-body{padding:8px 0}
+.card-body h2{font-family:'Playfair Display',serif;font-size:20px;color:var(--text);margin:20px 0 8px}
+.card-body h3{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin:14px 0 6px}
+.card-body p{font-size:17px;line-height:1.85;color:var(--text-soft);margin-bottom:12px}
+.card-body ul{margin:0 0 14px 18px}
+.card-body li{font-size:17px;line-height:1.85;color:var(--text-soft)}
+.card-body .note{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.2);padding:12px 16px;margin:12px 0;border-radius:4px;font-style:italic;color:var(--text-soft)}
+
+</style>
 </head>
 <body>
-<header class="ms-header">
-  <div class="wrap"><div class="inner">
-    <a class="ms-logo" href="index.html">
-      <div class="ms-logo-mark"><span>MS</span></div>
-      <div class="ms-logo-name">MUSLIMAH SOCIETY</div>
+
+<header class="ms-header" id="top">
+    <a class="ms-logo" href="#">
+      <div class="ms-logo-mono">MS</div>
+      <div>
+        <div class="ms-logo-name">MUSLIMAH SOCIETY</div>
+        <div class="ms-logo-sub">by Institut Al Muta'allim</div>
+      </div>
     </a>
-    <div class="ms-nav">
-      <a class="btn btn-ghost" href="dashboard.html">Mon espace</a>
-    </div>
-  </div></div>
-</header>
-<section class="hero-sm">
-  <div class="wrap">
-    <div class="chip">Espace Member</div>
-    <div class="hero-title">Lecteur du Saint Coran</div>
-    <div class="hero-sub">Écoutez et lisez le Coran noble</div>
-  </div>
-</section>
-<main class="page">
-  <div class="wrap">
-<div class="card">
-  <div class="card-head"><h2>Sourates</h2></div>
-  <div class="card-body">
-    <div class="quran-controls">
-      <select id="surahSel" onchange="loadSurah()"><option value="">Choisir une sourate…</option></select>
-      <select id="verseSel" onchange="loadVerse()"><option value="">Verset</option></select>
-    </div>
-    <div class="verse-display" id="arabicText">Sélectionnez une sourate pour commencer</div>
-    <div class="verse-trans" id="transText"></div>
-    <audio class="audio-player" id="audioPlayer" controls></audio>
-    <div class="nav-verse">
-      <button class="btn btn-ghost" onclick="prevVerse()">← Précédent</button>
-      <button class="btn btn-ghost" onclick="nextVerse()">Suivant →</button>
-    </div>
-  </div>
+    <nav class="ms-nav">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#offres">Espaces</a>
+      <a href="quran-player.html">Qur'an</a>
+      <a href="la-plume/index.html">La Plume</a>
+      <a href="community.html">Communauté</a>
+      <a href="pricing.html">Abonnements</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="login.html" class="btn-outline" style="padding:8px 18px">Connexion</a>
+      <a href="pricing.html" class="btn-solid" style="padding:8px 18px">VIP</a>
+    </nav>
+  </header>
+
+<div class="hero">
+  <div class="chip">Espace Member</div>
+  <h1 class="hero-title">Lecteur du Saint <span>Coran</span></h1>
+  <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+  <p class="hero-sub">Lisez, écoutez et méditez le Noble Coran</p>
 </div>
+
+<main>
+  <div class="layout">
+    <div>
+      <div class="panel">
+        <div class="ph">Récitateur</div>
+        <div class="pb">
+          <!-- IMPORTANT: valeurs = identifiants API (sans "ar.") -->
+          <select class="rs" id="rec" onchange="chgRec()">
+            <option value="alafasy">Mishary Al-Afasy</option>
+            <option value="abdurrahmaansudais">Abdurrahman As-Sudais</option>
+            <option value="husary">Mahmoud Khalil Al-Husary</option>
+            <!-- Minshawi verse-by-verse n'est pas toujours dispo partout; on le garde, avec fallback -->
+            <option value="minshawi">Mohamed Siddiq Al-Minshawi</option>
+          </select>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="ph">Sourates — 114</div>
+        <div class="pb">
+          <input class="sb" id="srch" placeholder="Rechercher..." oninput="filtr()">
+          <div class="sl" id="slist"></div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div id="wc" class="welcome">
+        <div class="welcome-icon">☽</div>
+        <h2>Sélectionnez une sourate</h2>
+        <p>Choisissez dans la liste à gauche<br>pour commencer votre lecture.</p>
+      </div>
+
+      <div id="pc" style="display:none">
+        <div class="sh-card">
+          <div>
+            <div class="sh-n" id="shn">SOURATE</div>
+            <div class="sh-name" id="shname">—</div>
+            <div class="sh-meta" id="shmeta">—</div>
+          </div>
+          <div style="text-align:right">
+            <div class="sh-ar" id="shar">—</div>
+            <div class="sh-vs" id="shvs">—</div>
+          </div>
+        </div>
+
+        <div id="tadc" class="tc" style="display:none">
+          <div class="tct">
+            <h3>Tadabbur disponible ✦</h3>
+            <p id="tadp">Analyse et méditation par Ustadha Zina</p>
+          </div>
+          <button class="tad-btn" onclick="openTad()">Lire le Tadabbur →</button>
+        </div>
+
+        <div class="ac" id="surahAudioCard">
+          <div class="al">
+            <span>Récitation complète</span>
+            <span class="badge" id="surahAudioBadge">—</span>
+          </div>
+          <audio id="audSurah" controls preload="none"></audio>
+        </div>
+
+        <div class="ac">
+          <div class="al">
+            <span>Verset par verset</span>
+            <span class="badge" id="ayahAudioBadge">—</span>
+          </div>
+          <audio id="audAyah" controls preload="none"></audio>
+          <div class="ar">
+            <button class="tb" id="apb" onclick="togAuto()">Auto</button>
+            <span class="al2">Lecture automatique verset par verset</span>
+          </div>
+          <div class="err" id="ayahErr">Impossible de charger l'audio verset par verset. Vérifiez la connexion ou changez de récitateur.</div>
+        </div>
+
+        <div class="vc">
+          <div class="vh">
+            <span class="vh-t">Versets</span>
+            <span class="vh-c" id="vhc">—</span>
+          </div>
+          <div class="vbw" id="vbw"><div class="ld">Chargement des versets...</div></div>
+          <div class="pi" id="pginf"></div>
+          <div class="vn2" id="vnavd"></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </main>
-<footer class="ms-footer">
-  <div class="wrap"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <span class="ft-copy">© 2026 Institut Al Muta&#8217;allim — Muslimah Society</span>
-    <span class="ft-copy" style="display:flex;gap:16px;">
-      <a href="index.html" style="color:var(--text-l);">Accueil</a>
-      <a href="privacy.html" style="color:var(--text-l);">Confidentialité</a>
-      <a href="terms.html" style="color:var(--text-l);">CGU</a>
-    </span>
-  </div></div>
-</footer>
-<script src="js/supabaseClient.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/gate.js"></script>
+
+<footer><p>© 2026 Institut Al Muta'allim — Muslimah Society · muslimahsociety.dz</p></footer>
+
 <script>
-requireMember();
-let currentSurah=1, currentVerse=1, maxVerse=7;
-async function loadSurahs(){
+// ═══ LISTE 114 SOURATES EMBARQUÉE (aucun chargement réseau) ═══
+var SURAHS=[{n:1,fr:"Al-Fatiha",tr:"L'Ouverture",ar:"الفاتحة",v:7,type:"MK"},{n:2,fr:"Al-Baqarah",tr:"La Vache",ar:"البقرة",v:286,type:"MD"},{n:3,fr:"Al-Imran",tr:"La Famille d'Imran",ar:"آل عمران",v:200,type:"MD"},{n:4,fr:"An-Nisa",tr:"Les Femmes",ar:"النساء",v:176,type:"MD"},{n:5,fr:"Al-Maida",tr:"La Table Servie",ar:"المائدة",v:120,type:"MD"},{n:6,fr:"Al-An'am",tr:"Les Bestiaux",ar:"الأنعام",v:165,type:"MK"},{n:7,fr:"Al-A'raf",tr:"Les Murailles",ar:"الأعراف",v:206,type:"MK"},{n:8,fr:"Al-Anfal",tr:"Le Butin",ar:"الأنفال",v:75,type:"MD"},{n:9,fr:"At-Tawba",tr:"Le Repentir",ar:"التوبة",v:129,type:"MD"},{n:10,fr:"Yunus",tr:"Jonas",ar:"يونس",v:109,type:"MK"},{n:11,fr:"Hud",tr:"Hud",ar:"هود",v:123,type:"MK"},{n:12,fr:"Yusuf",tr:"Joseph",ar:"يوسف",v:111,type:"MK"},{n:13,fr:"Ar-Ra'd",tr:"Le Tonnerre",ar:"الرعد",v:43,type:"MD"},{n:14,fr:"Ibrahim",tr:"Abraham",ar:"إبراهيم",v:52,type:"MK"},{n:15,fr:"Al-Hijr",tr:"La Roche",ar:"الحجر",v:99,type:"MK"},{n:16,fr:"An-Nahl",tr:"Les Abeilles",ar:"النحل",v:128,type:"MK"},{n:17,fr:"Al-Isra",tr:"Le Voyage Nocturne",ar:"الإسراء",v:111,type:"MK"},{n:18,fr:"Al-Kahf",tr:"La Caverne",ar:"الكهف",v:110,type:"MK"},{n:19,fr:"Maryam",tr:"Marie",ar:"مريم",v:98,type:"MK"},{n:20,fr:"Ta-Ha",tr:"Ta-Ha",ar:"طه",v:135,type:"MK"},{n:21,fr:"Al-Anbiya",tr:"Les Prophètes",ar:"الأنبياء",v:112,type:"MK"},{n:22,fr:"Al-Hajj",tr:"Le Pèlerinage",ar:"الحج",v:78,type:"MD"},{n:23,fr:"Al-Muminun",tr:"Les Croyants",ar:"المؤمنون",v:118,type:"MK"},{n:24,fr:"An-Nur",tr:"La Lumière",ar:"النور",v:64,type:"MD"},{n:25,fr:"Al-Furqan",tr:"Le Discernement",ar:"الفرقان",v:77,type:"MK"},{n:26,fr:"Ash-Shu'ara",tr:"Les Poètes",ar:"الشعراء",v:227,type:"MK"},{n:27,fr:"An-Naml",tr:"Les Fourmis",ar:"النمل",v:93,type:"MK"},{n:28,fr:"Al-Qasas",tr:"Le Récit",ar:"القصص",v:88,type:"MK"},{n:29,fr:"Al-Ankabut",tr:"L'Araignée",ar:"العنكبوت",v:69,type:"MK"},{n:30,fr:"Ar-Rum",tr:"Les Romains",ar:"الروم",v:60,type:"MK"},{n:31,fr:"Luqman",tr:"Luqman",ar:"لقمان",v:34,type:"MK"},{n:32,fr:"As-Sajda",tr:"La Prosternation",ar:"السجدة",v:30,type:"MK"},{n:33,fr:"Al-Ahzab",tr:"Les Coalisés",ar:"الأحزاب",v:73,type:"MD"},{n:34,fr:"Saba",tr:"Saba",ar:"سبأ",v:54,type:"MK"},{n:35,fr:"Fatir",tr:"Le Créateur",ar:"فاطر",v:45,type:"MK"},{n:36,fr:"Ya-Sin",tr:"Ya-Sin",ar:"يس",v:83,type:"MK"},{n:37,fr:"As-Saffat",tr:"Les Rangés",ar:"الصافات",v:182,type:"MK"},{n:38,fr:"Sad",tr:"Sad",ar:"ص",v:88,type:"MK"},{n:39,fr:"Az-Zumar",tr:"Les Groupes",ar:"الزمر",v:75,type:"MK"},{n:40,fr:"Ghafir",tr:"Le Pardonneur",ar:"غافر",v:85,type:"MK"},{n:41,fr:"Fussilat",tr:"Les Versets Détaillés",ar:"فصلت",v:54,type:"MK"},{n:42,fr:"Ash-Shura",tr:"La Concertation",ar:"الشورى",v:53,type:"MK"},{n:43,fr:"Az-Zukhruf",tr:"Les Ornements",ar:"الزخرف",v:89,type:"MK"},{n:44,fr:"Ad-Dukhan",tr:"La Fumée",ar:"الدخان",v:59,type:"MK"},{n:45,fr:"Al-Jathiya",tr:"L'Agenouillée",ar:"الجاثية",v:37,type:"MK"},{n:46,fr:"Al-Ahqaf",tr:"Les Dunes",ar:"الأحقاف",v:35,type:"MK"},{n:47,fr:"Muhammad",tr:"Muhammad",ar:"محمد",v:38,type:"MD"},{n:48,fr:"Al-Fath",tr:"La Victoire",ar:"الفتح",v:29,type:"MD"},{n:49,fr:"Al-Hujurat",tr:"Les Appartements",ar:"الحجرات",v:18,type:"MD"},{n:50,fr:"Qaf",tr:"Qaf",ar:"ق",v:45,type:"MK"},{n:51,fr:"Adh-Dhariyat",tr:"Les Vents Dispersants",ar:"الذاريات",v:60,type:"MK"},{n:52,fr:"At-Tur",tr:"Le Mont Sinaï",ar:"الطور",v:49,type:"MK"},{n:53,fr:"An-Najm",tr:"L'Étoile",ar:"النجم",v:62,type:"MK"},{n:54,fr:"Al-Qamar",tr:"La Lune",ar:"القمر",v:55,type:"MK"},{n:55,fr:"Ar-Rahman",tr:"Le Tout Miséricordieux",ar:"الرحمن",v:78,type:"MD"},{n:56,fr:"Al-Waqi'a",tr:"L'Événement",ar:"الواقعة",v:96,type:"MK"},{n:57,fr:"Al-Hadid",tr:"Le Fer",ar:"الحديد",v:29,type:"MD"},{n:58,fr:"Al-Mujadila",tr:"La Discussion",ar:"المجادلة",v:22,type:"MD"},{n:59,fr:"Al-Hashr",tr:"L'Exode",ar:"الحشر",v:24,type:"MD"},{n:60,fr:"Al-Mumtahana",tr:"L'Éprouvée",ar:"الممتحنة",v:13,type:"MD"},{n:61,fr:"As-Saf",tr:"Le Rang",ar:"الصف",v:14,type:"MD"},{n:62,fr:"Al-Jumu'a",tr:"Le Vendredi",ar:"الجمعة",v:11,type:"MD"},{n:63,fr:"Al-Munafiqun",tr:"Les Hypocrites",ar:"المنافقون",v:11,type:"MD"},{n:64,fr:"At-Taghabun",tr:"La Spoliation",ar:"التغابن",v:18,type:"MD"},{n:65,fr:"At-Talaq",tr:"Le Divorce",ar:"الطلاق",v:12,type:"MD"},{n:66,fr:"At-Tahrim",tr:"L'Interdiction",ar:"التحريم",v:12,type:"MD"},{n:67,fr:"Al-Mulk",tr:"La Royauté",ar:"الملك",v:30,type:"MK"},{n:68,fr:"Al-Qalam",tr:"Le Calame",ar:"القلم",v:52,type:"MK"},{n:69,fr:"Al-Haqqa",tr:"La Réalité",ar:"الحاقة",v:52,type:"MK"},{n:70,fr:"Al-Ma'arij",tr:"Les Voies d'Ascension",ar:"المعارج",v:44,type:"MK"},{n:71,fr:"Nuh",tr:"Noé",ar:"نوح",v:28,type:"MK"},{n:72,fr:"Al-Jinn",tr:"Les Djinns",ar:"الجن",v:28,type:"MK"},{n:73,fr:"Al-Muzzammil",tr:"L'Enveloppé",ar:"المزمل",v:20,type:"MK"},{n:74,fr:"Al-Muddaththir",tr:"Le Revêtu",ar:"المدثر",v:56,type:"MK"},{n:75,fr:"Al-Qiyama",tr:"La Résurrection",ar:"القيامة",v:40,type:"MK"},{n:76,fr:"Al-Insan",tr:"L'Homme",ar:"الإنسان",v:31,type:"MD"},{n:77,fr:"Al-Mursalat",tr:"Les Envoyés",ar:"المرسلات",v:50,type:"MK"},{n:78,fr:"An-Naba",tr:"La Nouvelle",ar:"النبأ",v:40,type:"MK"},{n:79,fr:"An-Nazi'at",tr:"Les Arracheurs",ar:"النازعات",v:46,type:"MK"},{n:80,fr:"Abasa",tr:"Il S'est Rembruni",ar:"عبس",v:42,type:"MK"},{n:81,fr:"At-Takwir",tr:"L'Enroulement",ar:"التكوير",v:29,type:"MK"},{n:82,fr:"Al-Infitar",tr:"La Déchirure",ar:"الانفطار",v:19,type:"MK"},{n:83,fr:"Al-Mutaffifin",tr:"Les Fraudeurs",ar:"المطففين",v:36,type:"MK"},{n:84,fr:"Al-Inshiqaq",tr:"La Fissure",ar:"الانشقاق",v:25,type:"MK"},{n:85,fr:"Al-Buruj",tr:"Les Constellations",ar:"البروج",v:22,type:"MK"},{n:86,fr:"At-Tariq",tr:"L'Astre Nocturne",ar:"الطارق",v:17,type:"MK"},{n:87,fr:"Al-A'la",tr:"Le Très-Haut",ar:"الأعلى",v:19,type:"MK"},{n:88,fr:"Al-Ghashiya",tr:"L'Enveloppante",ar:"الغاشية",v:26,type:"MK"},{n:89,fr:"Al-Fajr",tr:"L'Aube",ar:"الفجر",v:30,type:"MK"},{n:90,fr:"Al-Balad",tr:"La Cité",ar:"البلد",v:20,type:"MK"},{n:91,fr:"Ash-Shams",tr:"Le Soleil",ar:"الشمس",v:15,type:"MK"},{n:92,fr:"Al-Layl",tr:"La Nuit",ar:"الليل",v:21,type:"MK"},{n:93,fr:"Ad-Duha",tr:"La Matinée",ar:"الضحى",v:11,type:"MK"},{n:94,fr:"Ash-Sharh",tr:"L'Expansion",ar:"الشرح",v:8,type:"MK"},{n:95,fr:"At-Tin",tr:"Le Figuier",ar:"التين",v:8,type:"MK"},{n:96,fr:"Al-Alaq",tr:"L'Adhérence",ar:"العلق",v:19,type:"MK"},{n:97,fr:"Al-Qadr",tr:"La Destinée",ar:"القدر",v:5,type:"MK"},{n:98,fr:"Al-Bayyina",tr:"La Preuve",ar:"البينة",v:8,type:"MD"},{n:99,fr:"Az-Zalzala",tr:"Le Séisme",ar:"الزلزلة",v:8,type:"MD"},{n:100,fr:"Al-Adiyat",tr:"Les Coursiers",ar:"العاديات",v:11,type:"MK"},{n:101,fr:"Al-Qari'a",tr:"Le Fracas",ar:"القارعة",v:11,type:"MK"},{n:102,fr:"At-Takathur",tr:"La Rivalité",ar:"التكاثر",v:8,type:"MK"},{n:103,fr:"Al-Asr",tr:"Le Temps",ar:"العصر",v:3,type:"MK"},{n:104,fr:"Al-Humaza",tr:"Le Calomniateur",ar:"الهمزة",v:9,type:"MK"},{n:105,fr:"Al-Fil",tr:"L'Éléphant",ar:"الفيل",v:5,type:"MK"},{n:106,fr:"Quraysh",tr:"Quraysh",ar:"قريش",v:4,type:"MK"},{n:107,fr:"Al-Ma'un",tr:"L'Ustensile",ar:"الماعون",v:7,type:"MK"},{n:108,fr:"Al-Kawthar",tr:"L'Abondance",ar:"الكوثر",v:3,type:"MK"},{n:109,fr:"Al-Kafirun",tr:"Les Mécréants",ar:"الكافرون",v:6,type:"MK"},{n:110,fr:"An-Nasr",tr:"Le Secours",ar:"النصر",v:3,type:"MD"},{n:111,fr:"Al-Masad",tr:"Les Fibres",ar:"المسد",v:5,type:"MK"},{n:112,fr:"Al-Ikhlas",tr:"La Sincérité",ar:"الإخلاص",v:4,type:"MK"},{n:113,fr:"Al-Falaq",tr:"L'Aube Naissante",ar:"الفلق",v:5,type:"MK"},{n:114,fr:"An-Nas",tr:"Les Hommes",ar:"الناس",v:6,type:"MK"}];
+
+var CUR=0,DATA=null,AUTO=false,AV=0,REC="alafasy",PG=0,PPG=10;
+
+// Qualité (kbps) — ordre de préférence
+var SURAH_KBPS_PREF=["128","64"];
+var AYAH_KBPS_PREF_BY_REC={
+  "alafasy":["128","64"],
+  "abdurrahmaansudais":["64","128"],
+  "husary":["64","128"],
+  "minshawi":["64","128"]
+};
+
+// Certains identifiants peuvent varier selon les collections.
+// On essaie plusieurs "aliases" par réciteur (du plus probable au moins probable).
+var REC_ALIASES={
+  "alafasy":["alafasy"],
+  "abdurrahmaansudais":["abdurrahmaansudais"],
+  "husary":["husary","husarymujawwad"],
+  "minshawi":["minshawi","minshawimujawwad"]
+};
+
+var TAD={1:{p:"la-plume/index.html"},2:{p:"la-plume/index.html"},112:{p:"la-plume/index.html"},113:{p:"la-plume/index.html"},114:{p:"la-plume/index.html"}};
+
+// cumulative ayah counts for absolute ayah number
+var CUMUL=[0,7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
+
+// ─── Helpers ───────────────────────────────────────────────
+function $(id){return document.getElementById(id);}
+function setText(id,t){$(id).textContent=t;}
+function show(id,yes){$(id).style.display=yes?"block":"none";}
+function stopAudio(el){try{el.pause();}catch(e){} el.removeAttribute("src"); el.load();}
+
+function absV(s,v){var b=0;for(var i=1;i<s;i++)b+=CUMUL[i]||0;return b+v;}
+
+// Chargement audio avec fallback direct sur l'élément audio
+// (pas de fetch probe — bloqué par CORS sur mobile)
+function buildSurahUrls(surahNum){
+  var aliases = REC_ALIASES[REC] || [REC];
+  var urls=[];
+  SURAH_KBPS_PREF.forEach(function(kbps){
+    aliases.forEach(function(a){
+      urls.push("https://cdn.islamic.network/quran/audio-surah/"+kbps+"/ar."+a+"/"+surahNum+".mp3");
+    });
+  });
+  return urls;
+}
+
+function buildAyahUrls(absAyah){
+  var kbpsPref = AYAH_KBPS_PREF_BY_REC[REC] || ["64","128"];
+  var aliases = REC_ALIASES[REC] || [REC];
+  var urls=[];
+  kbpsPref.forEach(function(kbps){
+    aliases.forEach(function(a){
+      urls.push("https://cdn.islamic.network/quran/audio/"+kbps+"/ar."+a+"/"+absAyah+".mp3");
+    });
+  });
+  return urls;
+}
+
+function tryNextUrl(audio, urls, idx, onSuccess, onFail){
+  if(idx >= urls.length){ onFail(); return; }
+  audio.removeEventListener("canplay", audio._onCanPlay);
+  audio.removeEventListener("error",   audio._onError);
+  audio._onCanPlay = function(){ onSuccess(urls[idx]); };
+  audio._onError   = function(){ tryNextUrl(audio, urls, idx+1, onSuccess, onFail); };
+  audio.addEventListener("canplay", audio._onCanPlay, {once:true});
+  audio.addEventListener("error",   audio._onError,   {once:true});
+  audio.src = urls[idx];
+  audio.load();
+}
+
+function loadSurahAudio(surahNum){
+  // Récitation complète uniquement disponible pour Mishary Al-Afasy
+  var card = $("surahAudioCard");
+  if(REC !== "alafasy"){
+    card.style.display = "none";
+    return;
+  }
+  card.style.display = "block";
+  var audio = $("audSurah");
+  stopAudio(audio);
+  setText("surahAudioBadge","chargement...");
+  var urls = buildSurahUrls(surahNum);
+  tryNextUrl(audio, urls, 0,
+    function(url){
+      var parts = url.split("/audio-surah/")[1].split("/");
+      setText("surahAudioBadge", parts[0]+" kbps");
+    },
+    function(){
+      setText("surahAudioBadge","indisponible");
+    }
+  );
+}
+
+function loadAyahAudio(absAyah, verseNum, autoplay){
+  var audio = $("audAyah");
+  stopAudio(audio);
+  show("ayahErr", false);
+  setText("ayahAudioBadge","chargement...");
+  var urls = buildAyahUrls(absAyah);
+  tryNextUrl(audio, urls, 0,
+    function(url){
+      var parts = url.split("/audio/")[1].split("/");
+      setText("ayahAudioBadge", parts[0]+" kbps · v"+verseNum);
+      if(autoplay) audio.play().catch(function(){});
+    },
+    function(){
+      setText("ayahAudioBadge","indisponible");
+      show("ayahErr", true);
+    }
+  );
+}
+
+// ─── UI liste ──────────────────────────────────────────────
+function renderList(list){
+  var h="";
+  list.forEach(function(s){
+    var a=s.n===CUR?" act":"";
+    h+="<div class='si"+a+"' id='si-"+s.n+"' onclick='sel("+s.n+")'>"
+     +"<div><span class='si-n'>"+s.n+" · "+(s.type==="MK"?"Makkiyya":"Madaniyya")+"</span>"
+     +"<span class='si-f'>"+s.fr+" — "+s.tr+"</span></div>"
+     +"<span class='si-a'>"+s.ar+"</span></div>";
+  });
+  $("slist").innerHTML=h||"<p style='font-style:italic;color:var(--tl);padding:10px'>Aucun résultat.</p>";
+}
+
+function filtr(){
+  var q=$("srch").value.toLowerCase();
+  renderList(SURAHS.filter(function(s){
+    return s.fr.toLowerCase().includes(q)||s.tr.toLowerCase().includes(q)||s.ar.includes(q)||String(s.n).includes(q);
+  }));
+}
+
+// ─── Sélectionner sourate ──────────────────────────────────
+async function sel(n){
+  if(n===CUR)return;
+  CUR=n; PG=0; AV=0; AUTO=false; $("apb").classList.remove("on"); $("apb").textContent="Auto";
+
+  document.querySelectorAll(".si").forEach(function(e){e.classList.remove("act");});
+  var el=$("si-"+n);
+  if(el){el.classList.add("act");el.scrollIntoView({block:"nearest",behavior:"smooth"});}
+
+  $("wc").style.display="none";
+  $("pc").style.display="block";
+  $("vbw").innerHTML="<div class='ld'>Chargement des versets...</div>";
+
+  var s=SURAHS.find(function(x){return x.n===n;});
+  setText("shn","SOURATE "+n);
+  setText("shname",s.fr);
+  setText("shar",s.ar);
+  setText("shmeta",s.tr+" · "+s.v+" versets · "+(s.type==="MK"?"Makkiyya":"Madaniyya"));
+  setText("shvs",s.v+" VERSETS");
+  setText("vhc",s.v+" versets");
+
+  if(TAD[n]){
+    $("tadc").style.display="flex";
+    setText("tadp",s.fr+" — analyse et méditation par Ustadha Zina");
+  }else{
+    $("tadc").style.display="none";
+  }
+
+  // Charger l'audio "surah" avec fallback intelligent
+  loadSurahAudio(n);
+
+  // Charger les versets (arabe + traduction FR)
   try{
-    const r = await fetch('https://api.alquran.cloud/v1/surah');
-    const d = await r.json();
-    const sel = document.getElementById('surahSel');
-    d.data.forEach(s=>{ const o=document.createElement('option'); o.value=s.number; o.textContent=s.number+'. '+s.englishName+' ('+s.name+')'; sel.appendChild(o); });
-  }catch(e){ console.error(e); }
+    var r=await fetch("https://api.alquran.cloud/v1/surah/"+n+"/editions/quran-uthmani,fr.hamidullah");
+    var d=await r.json();
+    var ar=d.data[0].ayahs, fr=d.data[1].ayahs;
+    DATA={n:n,ayahs:ar.map(function(a,i){return{num:a.numberInSurah,arabic:a.text,french:fr[i]?fr[i].text:""};})};
+    renderV();
+  }catch(e){
+    $("vbw").innerHTML="<p style='font-style:italic;color:var(--tl);text-align:center;padding:24px'>Impossible de charger les versets. Vérifiez votre connexion.</p>";
+  }
 }
-async function loadSurah(){
-  currentSurah = document.getElementById('surahSel').value;
-  if(!currentSurah) return;
-  currentVerse=1;
-  const r=await fetch('https://api.alquran.cloud/v1/surah/'+currentSurah);
-  const d=await r.json();
-  maxVerse=d.data.numberOfAyahs;
-  const vs=document.getElementById('verseSel');
-  vs.innerHTML='<option>Verset</option>';
-  for(let i=1;i<=maxVerse;i++){ const o=document.createElement('option');o.value=i;o.textContent='Verset '+i;vs.appendChild(o); }
-  loadVerse();
+
+// ─── Afficher versets ─────────────────────────────────────
+function renderV(){
+  if(!DATA)return;
+  var ay=DATA.ayahs,tot=ay.length,pgs=Math.ceil(tot/PPG);
+  var st=PG*PPG,en=Math.min(st+PPG,tot),sl=ay.slice(st,en);
+  var h="";
+  sl.forEach(function(v){
+    var a=v.num===AV?" actv":"";
+    h+="<div class='vb"+a+"' id='vb-"+v.num+"' onclick='playV("+v.num+")'>"
+     +"<div class='at'>"+v.arabic+" <span class='vnum'>"+v.num+"</span></div>"
+     +"<div class='ft'>"+v.french+"</div>"
+     +"<button class='pvb"+(v.num===AV?" pl":"")+"'>"+(v.num===AV?"▶ En lecture":"▶ Écouter")+"</button>"
+     +"</div>";
+  });
+  $("vbw").innerHTML=h;
+  setText("pginf","Versets "+(st+1)+" à "+en+" sur "+tot);
+  var nh="";
+  for(var i=0;i<pgs;i++) nh+="<button class='vpb"+(i===PG?" ap":"")+"' onclick='goPg("+i+")'>"+(i+1)+"</button>";
+  $("vnavd").innerHTML=nh;
 }
-async function loadVerse(){
-  const v=document.getElementById('verseSel').value||currentVerse;
-  currentVerse=parseInt(v)||1;
+
+function goPg(p){PG=p;renderV();$("vbw").scrollIntoView({behavior:"smooth",block:"start"});}
+
+function playV(vn){
+  if(!DATA)return;
+  AV=vn;
+  PG=Math.floor((vn-1)/PPG);
+  renderV();
+  var absAyah = absV(DATA.n, vn);
+  loadAyahAudio(absAyah, vn, true);
+  var el=$("vb-"+vn);
+  if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
+}
+
+function togAuto(){
+  AUTO=!AUTO;
+  var b=$("apb");
+  b.classList.toggle("on",AUTO); b.textContent=AUTO?"Auto ✦":"Auto";
+
+  var audio=$("audAyah");
+  if(AUTO){
+    audio.onended=function(){
+      if(!AUTO||!DATA)return;
+      var nx=AV+1;
+      if(nx<=DATA.ayahs.length){
+        playV(nx);
+      }else{
+        AUTO=false; b.classList.remove("on"); b.textContent="Auto";
+      }
+    };
+    if(!AV && DATA) playV(1);
+  }else{
+    audio.onended=null;
+  }
+}
+
+function chgRec(){
+  REC=$("rec").value;
+  if(CUR) loadSurahAudio(CUR);
+  if(CUR && AV>0) loadAyahAudio(absV(CUR, AV), AV, false);
+}
+
+function openTad(){if(TAD[CUR])location.href=TAD[CUR].p;}
+
+// Afficher la liste dès le chargement — aucune API nécessaire
+renderList(SURAHS);
+
+// Bonus: gérer les erreurs HTMLAudioElement (sur certains Android)
+// surahErr listener removed - card hidden for non-Mishary reciters
+$("audAyah").addEventListener("error", function(){ show("ayahErr", true); });
+</script>
+</body>
+</html>
+
+/* ── HEADER ── */
+header{position:sticky;top:0;z-index:900;background:rgba(253,248,242,.97);border-bottom:1px solid var(--gp);backdrop-filter:blur(10px);}
+.nav{max-width:960px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;}
+.lm{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:Cinzel,serif;font-size:11px;color:var(--gold);}
+.ln{font-family:Cinzel,serif;font-size:11px;letter-spacing:3px;color:var(--text);}
+.btn-back{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:7px 16px;border-radius:20px;border:1px solid var(--gp);color:var(--tm);background:transparent;cursor:pointer;transition:all .2s;}
+.btn-back:hover{border-color:var(--gold);color:var(--gold);}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,var(--blush-l),var(--blush) 40%,rgba(216,208,228,.5) 80%,var(--blush-l));border-bottom:1px solid var(--gp);padding:40px 20px 32px;text-align:center;}
+.hero-chip{display:inline-block;padding:5px 16px;border-radius:20px;border:1px solid var(--gp);background:rgba(255,252,245,.85);font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:var(--gold);margin-bottom:14px;}
+.hero-title{font-family:Cinzel,serif;font-size:clamp(20px,4vw,30px);letter-spacing:2px;margin-bottom:8px;}
+.hero-title span{color:var(--gold);}
+.hero-bismillah{font-size:clamp(22px,4vw,32px);color:var(--gold);margin:10px 0 6px;line-height:1.8;direction:rtl;}
+.hero-sub{font-size:16px;font-style:italic;color:var(--tm);}
+
+/* ── LAYOUT ── */
+main{max-width:960px;margin:0 auto;padding:28px 20px 80px;}
+.layout{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start;}
+@media(max-width:700px){.layout{grid-template-columns:1fr;}}
+
+/* ── SIDEBAR ── */
+.sidebar{}
+.panel{background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;overflow:hidden;margin-bottom:16px;position:relative;}
+.panel::before{content:"";position:absolute;top:5px;left:5px;width:10px;height:10px;border-top:1px solid var(--gp);border-left:1px solid var(--gp);}
+.panel-head{padding:12px 18px;background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.18));border-bottom:1px solid var(--gp);font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:var(--gold);}
+.panel-body{padding:16px 18px;}
+
+/* Sélecteur sourate */
+.search-box{width:100%;padding:9px 12px;border:1px solid var(--gp);border-radius:3px;background:rgba(255,252,245,.9);font-family:"Cormorant Garamond",serif;font-size:15px;color:var(--text);outline:none;margin-bottom:10px;}
+.search-box:focus{border-color:var(--gold);}
+.surah-list{max-height:360px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--gp) transparent;}
+.surah-item{padding:10px 12px;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .15s;border-bottom:1px solid rgba(201,168,76,.06);}
+.surah-item:hover{background:var(--gpl);}
+.surah-item.active{background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(176,136,128,.1));border-color:var(--gp);}
+.si-left{}
+.si-num{font-family:Cinzel,serif;font-size:10px;color:var(--tl);display:block;margin-bottom:2px;}
+.si-fr{font-size:15px;color:var(--text);}
+.si-ar{font-size:16px;color:var(--gold);font-weight:500;}
+
+/* Récitateur */
+select.reciter-sel{width:100%;padding:9px 12px;border:1px solid var(--gp);border-radius:3px;background:rgba(255,252,245,.9);font-family:"Cormorant Garamond",serif;font-size:15px;color:var(--text);outline:none;}
+select.reciter-sel:focus{border-color:var(--gold);}
+
+/* ── MAIN PLAYER ── */
+.player-area{}
+
+/* Info sourate */
+.surah-header{background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.2));border:1px solid var(--gp);border-radius:4px;padding:22px 24px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+.sh-left{}
+.sh-num{font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:var(--tl);margin-bottom:4px;}
+.sh-name{font-family:Cinzel,serif;font-size:22px;color:var(--text);margin-bottom:4px;}
+.sh-meta{font-size:15px;font-style:italic;color:var(--tm);}
+.sh-right{text-align:right;}
+.sh-arabic{font-size:32px;color:var(--gold);line-height:1.4;direction:rtl;}
+.sh-verses{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;color:var(--tl);margin-top:4px;}
+
+/* Audio player */
+.audio-card{background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;padding:18px 22px;margin-bottom:16px;}
+.audio-label{font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:var(--tl);margin-bottom:10px;}
+audio{width:100%;height:40px;border-radius:20px;outline:none;}
+audio::-webkit-media-controls-panel{background:rgba(240,228,192,.2);}
+.auto-row{display:flex;align-items:center;gap:10px;margin-top:10px;}
+.toggle-btn{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:6px 14px;border-radius:14px;border:1px solid var(--gp);background:transparent;color:var(--tm);cursor:pointer;transition:all .2s;}
+.toggle-btn.on{background:var(--gold);border-color:var(--gold);color:#fff;}
+.auto-label{font-size:14px;font-style:italic;color:var(--tl);}
+
+/* Versets */
+.verses-card{background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;overflow:hidden;margin-bottom:16px;}
+.verses-head{padding:12px 22px;background:linear-gradient(155deg,rgba(232,213,208,.3),rgba(216,208,228,.15));border-bottom:1px solid var(--gp);display:flex;align-items:center;justify-content:space-between;}
+.vh-title{font-family:Cinzel,serif;font-size:10px;letter-spacing:3px;color:var(--gold);}
+.vh-counter{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;color:var(--tl);}
+.verses-body{padding:20px 24px;}
+
+.verse-block{padding:18px 0;border-bottom:1px solid rgba(201,168,76,.1);cursor:pointer;transition:background .15s;border-radius:3px;}
+.verse-block:last-child{border-bottom:none;}
+.verse-block:hover{background:rgba(201,168,76,.04);padding-left:8px;padding-right:8px;margin:0 -8px;}
+.verse-block.active-v{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(176,136,128,.05));padding-left:8px;padding-right:8px;margin:0 -8px;}
+
+.arabic-text{font-size:clamp(20px,3vw,26px);line-height:2;text-align:right;direction:rtl;color:var(--text);margin-bottom:10px;}
+.verse-num-badge{display:inline-block;width:26px;height:26px;border-radius:50%;border:1px solid var(--gp);font-family:Cinzel,serif;font-size:10px;color:var(--gold);text-align:center;line-height:24px;vertical-align:middle;margin-left:8px;}
+.trans-text{font-size:15px;font-style:italic;color:var(--tm);line-height:1.8;margin-bottom:6px;}
+.play-verse-btn{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:5px 12px;border-radius:14px;border:1px solid var(--gp);background:transparent;color:var(--gold);cursor:pointer;transition:all .2s;}
+.play-verse-btn:hover{background:var(--gold);color:#fff;border-color:var(--gold);}
+.play-verse-btn.playing{background:var(--gold);color:#fff;border-color:var(--gold);}
+
+/* Nav versets */
+.nav-btns{display:flex;justify-content:space-between;gap:10px;margin-top:16px;}
+.nbtn{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;padding:10px 20px;border-radius:20px;border:1px solid var(--gp);background:transparent;color:var(--tm);cursor:pointer;transition:all .2s;flex:1;text-align:center;}
+.nbtn:hover{border-color:var(--gold);color:var(--gold);}
+.nbtn:disabled{opacity:.3;cursor:default;}
+
+/* Tadabbur link */
+.tadabbur-card{background:linear-gradient(155deg,rgba(232,213,208,.3),rgba(216,208,228,.2));border:1px solid var(--gp);border-radius:4px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;}
+.tad-text h3{font-family:Cinzel,serif;font-size:13px;letter-spacing:1px;color:var(--text);margin-bottom:4px;}
+.tad-text p{font-size:14px;font-style:italic;color:var(--tm);}
+.tad-btn{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:8px 18px;border-radius:20px;background:var(--gold);color:#fff;border:none;cursor:pointer;white-space:nowrap;}
+
+/* Loading */
+.loading-state{text-align:center;padding:60px 20px;font-style:italic;color:var(--tl);}
+.loading-state::after{content:"...";animation:dots 1.5s infinite;}
+@keyframes dots{0%,100%{content:"...";}33%{content:"."}66%{content:"..";};}
+
+/* Pagination versets */
+.page-info{font-family:Cinzel,serif;font-size:10px;letter-spacing:2px;color:var(--tl);text-align:center;margin:12px 0;}
+.verse-nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:12px;}
+.vpage-btn{font-family:Cinzel,serif;font-size:10px;padding:5px 12px;border-radius:14px;border:1px solid var(--gp);background:transparent;color:var(--tm);cursor:pointer;}
+.vpage-btn.active-p{background:var(--gold);border-color:var(--gold);color:#fff;}
+
+/* Footer */
+footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gp);padding:20px;text-align:center;}
+footer p{font-size:13px;font-style:italic;color:var(--tl);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="logo" href="index.html">
+      <div class="lm">MS</div>
+      <div class="ln">MUSLIMAH SOCIETY</div>
+    </a>
+    <button class="btn-back" onclick="location.href='dashboard.html'">Mon espace</button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-chip">Espace Member</div>
+  <h1 class="hero-title">Lecteur du Saint <span>Coran</span></h1>
+  <div class="hero-bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
+  <p class="hero-sub">Lisez, écoutez et méditez le Noble Coran</p>
+</div>
+
+<main>
+  <div id="loadingMsg" class="loading-state">Chargement des sourates</div>
+
+  <div class="layout" id="mainLayout" style="display:none">
+
+    <!-- ── SIDEBAR ── -->
+    <div class="sidebar">
+
+      <!-- Récitateur -->
+      <div class="panel">
+        <div class="panel-head">Récitateur</div>
+        <div class="panel-body">
+          <select class="reciter-sel" id="reciterSel" onchange="onReciterChange()">
+            <option value="ar.alafasy">Mishary Al-Afasy</option>
+            <option value="ar.abdurrahmaansudais">Abdurrahman Al-Sudais</option>
+            <option value="ar.husary">Mahmoud Khalil Al-Husary</option>
+            <option value="ar.minshawi">Mohamed Siddiq Al-Minshawi</option>
+            <option value="ar.saoodshuraym">Saoud Al-Shuraym</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Liste sourates -->
+      <div class="panel">
+        <div class="panel-head">Sourates</div>
+        <div class="panel-body">
+          <input class="search-box" id="searchBox" placeholder="Rechercher une sourate..." oninput="filterSurahs()" />
+          <div class="surah-list" id="surahList">
+            <!-- Rempli par JS -->
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /sidebar -->
+
+    <!-- ── PLAYER PRINCIPAL ── -->
+    <div class="player-area">
+
+      <!-- Placeholder -->
+      <div id="welcomeCard" class="panel" style="text-align:center;padding:40px 20px;">
+        <div style="font-size:40px;color:var(--gold);margin-bottom:16px;">☽</div>
+        <h2 style="font-family:Cinzel,serif;font-size:16px;letter-spacing:1px;margin-bottom:10px;">Sélectionnez une sourate</h2>
+        <p style="font-size:15px;font-style:italic;color:var(--tm);">Choisissez une sourate dans la liste pour commencer votre lecture.</p>
+      </div>
+
+      <!-- Contenu chargé -->
+      <div id="playerContent" style="display:none">
+
+        <!-- En-tête sourate -->
+        <div class="surah-header">
+          <div class="sh-left">
+            <div class="sh-num" id="shNum">SOURATE 1</div>
+            <div class="sh-name" id="shName">Al-Fatiha</div>
+            <div class="sh-meta" id="shMeta">La Mère du Livre · 7 versets · Makkiyya</div>
+          </div>
+          <div class="sh-right">
+            <div class="sh-arabic" id="shArabic">الفاتحة</div>
+            <div class="sh-verses" id="shVerses">7 VERSETS</div>
+          </div>
+        </div>
+
+        <!-- Lien tadabbur si disponible -->
+        <div class="tadabbur-card" id="tadabburCard" style="display:none">
+          <div class="tad-text">
+            <h3>Tadabbur disponible ✦</h3>
+            <p id="tadabburDesc">Analyse et méditation sur cette sourate par Ustadha Zina</p>
+          </div>
+          <button class="tad-btn" id="tadabburBtn" onclick="openTadabbur()">Lire le Tadabbur →</button>
+        </div>
+
+        <!-- Lecteur audio -->
+        <div class="audio-card">
+          <div class="audio-label">Récitation complète de la sourate</div>
+          <audio id="mainAudio" controls preload="none">
+            Votre navigateur ne supporte pas l'audio.
+          </audio>
+          <div class="auto-row">
+            <button class="toggle-btn" id="autoPlayBtn" onclick="toggleAuto()">Auto</button>
+            <span class="auto-label">Lecture automatique verset par verset</span>
+          </div>
+        </div>
+
+        <!-- Versets -->
+        <div class="verses-card">
+          <div class="verses-head">
+            <span class="vh-title">Lecture verset par verset</span>
+            <span class="vh-counter" id="vhCounter">— versets</span>
+          </div>
+          <div class="verses-body" id="versesBody">
+            <div class="loading-state">Chargement des versets</div>
+          </div>
+          <div style="padding:0 22px 16px">
+            <div class="page-info" id="pageInfo"></div>
+            <div class="verse-nav" id="verseNav"></div>
+          </div>
+        </div>
+
+      </div><!-- /playerContent -->
+
+    </div><!-- /player-area -->
+  </div><!-- /layout -->
+</main>
+
+<footer class="ms-footer">
+    <div class="footer-grid">
+      <div>
+        <div class="fc-logo">MUSLIMAH SOCIETY</div>
+        <div class="fc-logo-sub">by Institut Al Muta'allim</div>
+        <p class="fc-desc">Une maison éditoriale et spirituelle pour les femmes musulmanes qui aiment le savoir authentique, la douceur et le raffinement.</p>
+        <div class="fc-soc">
+          <a href="https://instagram.com/muslimah.off" target="_blank">IG</a>
+          <a href="#">TG</a>
+          <a href="#">YT</a>
+        </div>
+      </div>
+      <div>
+        <div class="fc-title">Navigation</div>
+        <ul class="fc-links">
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="index.html#offres">Nos espaces</a></li>
+          <li><a href="quran-player.html">Lecteur du Qur'an</a></li>
+          <li><a href="la-plume/index.html">La Plume</a></li>
+          <li><a href="community.html">Communauté</a></li>
+          <li><a href="vip-events.html">Soirées</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fc-title">Offres</div>
+        <ul class="fc-links">
+          <li><a href="pricing.html">Member — 17 €</a></li>
+          <li><a href="pricing.html">VIP — 60 €</a></li>
+          <li><a href="pricing.html">Annuel — 600 €</a></li>
+          <li><a href="library.html">Bibliothèque</a></li>
+          <li><a href="audio.html">Podcast</a></li>
+          <li><a href="quran-player.html">Qur'an Player</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="fc-title">Contact</div>
+        <div class="fc-ci"><strong>Email général</strong><a href="mailto:contact@muslimahsociety.com">contact@muslimahsociety.com</a></div>
+        <div class="fc-ci"><strong>Podcast</strong><a href="mailto:podcast@muslimahsociety.com">podcast@muslimahsociety.com</a></div>
+        <div class="fc-ci"><strong>Support</strong><a href="mailto:support@muslimahsociety.com">support@muslimahsociety.com</a></div>
+        <div class="fc-ci"><strong>Instagram</strong>@muslimah.off</div>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <div class="fcopy">© 2026 Muslimah Society • Institut Al Muta'allim • Tous droits réservés</div>
+      <div class="fmono">MS</div>
+      <div class="flegal">
+        <a onclick="openModal('cgu')">CGU</a>
+        <a onclick="openModal('cgv')">CGV</a>
+        <a onclick="openModal('privacy')">Confidentialité</a>
+        <a onclick="openModal('mentions')">Mentions légales</a>
+      </div>
+    </div>
+  </footer>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+// CONFIG
+// ═══════════════════════════════════════════════════════════
+var SU = "https://lgxnejnihodyfgxlyycd.supabase.co";
+var SK = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
+
+// ═══════════════════════════════════════════════════════════
+// TADABBUR — sourates avec analyse disponible
+// ═══════════════════════════════════════════════════════════
+var TADABBUR = {
+  1:  { label:"Sourate Al-Fatiha",       path:"../la-plume/index.html" },
+  2:  { label:"Sourate Al-Baqarah",      path:"../la-plume/index.html" },
+  112:{ label:"Sourate Al-Ikhlas",       path:"../la-plume/index.html" },
+  113:{ label:"Sourate Al-Falaq",        path:"../la-plume/index.html" },
+  114:{ label:"Sourate An-Nas",          path:"../la-plume/index.html" },
+};
+
+// ═══════════════════════════════════════════════════════════
+// ETAT
+// ═══════════════════════════════════════════════════════════
+var allSurahs   = [];
+var currentNum  = 0;
+var currentData = null;   // {number, name, arabicName, verses:[]}
+var autoPlay    = false;
+var activeVerse = 0;
+var reciter     = "ar.alafasy";
+var VERSES_PER_PAGE = 10;
+var currentPage = 0;
+
+// ═══════════════════════════════════════════════════════════
+// AUTH — vérifier que la sœur est connectée
+// ═══════════════════════════════════════════════════════════
+window.addEventListener("load", async function(){
+  var cli = window.supabase.createClient(SU, SK);
+  var r = await cli.auth.getUser();
+  if(!r || !r.data || !r.data.user){ location.href="../login.html"; return; }
+  // Charger les sourates
+  loadSurahList();
+});
+
+// ═══════════════════════════════════════════════════════════
+// CHARGER LA LISTE DES SOURATES
+// ═══════════════════════════════════════════════════════════
+async function loadSurahList(){
   try{
-    const r=await fetch('https://api.alquran.cloud/v1/ayah/'+currentSurah+':'+currentVerse+'/editions/quran-uthmani,en.sahih');
-    const d=await r.json();
-    document.getElementById('arabicText').textContent=d.data[0]?.text||'';
-    document.getElementById('transText').textContent=d.data[1]?.text||'';
-    const audio=document.getElementById('audioPlayer');
-    audio.src='https://cdn.islamic.network/quran/audio/128/ar.alafasy/'+((parseInt(currentSurah)-1)*6236+currentVerse)+'.mp3';
-    audio.load();
-  }catch(e){ console.error(e); }
+    var r = await fetch("https://api.alquran.cloud/v1/surah");
+    var d = await r.json();
+    allSurahs = d.data;
+    renderSurahList(allSurahs);
+    document.getElementById("loadingMsg").style.display = "none";
+    document.getElementById("mainLayout").style.display = "grid";
+  } catch(e){
+    document.getElementById("loadingMsg").textContent = "Erreur de chargement. Vérifiez votre connexion.";
+  }
 }
-function nextVerse(){ if(currentVerse<maxVerse){ currentVerse++; document.getElementById('verseSel').value=currentVerse; loadVerse(); } }
-function prevVerse(){ if(currentVerse>1){ currentVerse--; document.getElementById('verseSel').value=currentVerse; loadVerse(); } }
-loadSurahs();
+
+function renderSurahList(list){
+  var html = "";
+  list.forEach(function(s){
+    var active = s.number === currentNum ? " active" : "";
+    html += "<div class='surah-item" + active + "' onclick='selectSurah(" + s.number + ")' id='si-" + s.number + "'>"
+      + "<div class='si-left'>"
+      + "<span class='si-num'>Sourate " + s.number + " — " + (s.revelationType === "Meccan" ? "Makkiyya" : "Madaniyya") + "</span>"
+      + "<span class='si-fr'>" + s.englishName + " · " + s.englishNameTranslation + "</span>"
+      + "</div>"
+      + "<span class='si-ar'>" + s.name + "</span>"
+      + "</div>";
+  });
+  document.getElementById("surahList").innerHTML = html;
+}
+
+function filterSurahs(){
+  var q = document.getElementById("searchBox").value.toLowerCase();
+  var filtered = allSurahs.filter(function(s){
+    return s.englishName.toLowerCase().includes(q)
+        || s.englishNameTranslation.toLowerCase().includes(q)
+        || s.name.includes(q)
+        || String(s.number).includes(q);
+  });
+  renderSurahList(filtered);
+}
+
+// ═══════════════════════════════════════════════════════════
+// SÉLECTIONNER UNE SOURATE
+// ═══════════════════════════════════════════════════════════
+async function selectSurah(num){
+  if(num === currentNum) return;
+  currentNum  = num;
+  currentPage = 0;
+  activeVerse = 0;
+
+  // UI actif dans la liste
+  document.querySelectorAll(".surah-item").forEach(function(el){ el.classList.remove("active"); });
+  var el = document.getElementById("si-" + num);
+  if(el){ el.classList.add("active"); el.scrollIntoView({block:"nearest",behavior:"smooth"}); }
+
+  // Afficher le player
+  document.getElementById("welcomeCard").style.display  = "none";
+  document.getElementById("playerContent").style.display = "block";
+  document.getElementById("versesBody").innerHTML        = "<div class='loading-state'>Chargement des versets</div>";
+
+  // Métadonnées
+  var meta = allSurahs.find(function(s){ return s.number === num; }) || {};
+
+  document.getElementById("shNum").textContent    = "SOURATE " + num;
+  document.getElementById("shName").textContent   = meta.englishName || "";
+  document.getElementById("shArabic").textContent = meta.name || "";
+  document.getElementById("shMeta").textContent   =
+    (meta.englishNameTranslation || "") + " · " +
+    (meta.numberOfAyahs || "?") + " versets · " +
+    (meta.revelationType === "Meccan" ? "Makkiyya" : "Madaniyya");
+  document.getElementById("shVerses").textContent = (meta.numberOfAyahs || "?") + " VERSETS";
+  document.getElementById("vhCounter").textContent = (meta.numberOfAyahs || "?") + " versets";
+
+  // Audio sourate complète (Evosuite audio)
+  var audioUrl = "https://download.quranicaudio.com/quran/" + reciter.replace("ar.", "") + "/" + String(num).padStart(3,"0") + ".mp3";
+  var mainAudio = document.getElementById("mainAudio");
+  mainAudio.src = audioUrl;
+  mainAudio.load();
+
+  // Tadabbur
+  if(TADABBUR[num]){
+    document.getElementById("tadabburCard").style.display = "flex";
+    document.getElementById("tadabburDesc").textContent = TADABBUR[num].label + " — analyse et méditation par Ustadha Zina";
+  } else {
+    document.getElementById("tadabburCard").style.display = "none";
+  }
+
+  // Charger versets (arabe + traduction FR)
+  try{
+    var res  = await fetch("https://api.alquran.cloud/v1/surah/" + num + "/editions/quran-uthmani,fr.hamidullah");
+    var data = await res.json();
+    var arabicVerses = data.data[0].ayahs;
+    var frVerses     = data.data[1].ayahs;
+
+    currentData = { number: num, ayahs: arabicVerses.map(function(a, i){
+      return { num: a.numberInSurah, arabic: a.text, french: frVerses[i] ? frVerses[i].text : "" };
+    })};
+
+    renderVerses();
+  } catch(e){
+    document.getElementById("versesBody").innerHTML = "<p style='font-style:italic;color:var(--tl);text-align:center;padding:30px'>Erreur de chargement des versets.</p>";
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// AFFICHER LES VERSETS (pagination par 10)
+// ═══════════════════════════════════════════════════════════
+function renderVerses(){
+  if(!currentData) return;
+  var ayahs  = currentData.ayahs;
+  var total  = ayahs.length;
+  var pages  = Math.ceil(total / VERSES_PER_PAGE);
+  var start  = currentPage * VERSES_PER_PAGE;
+  var end    = Math.min(start + VERSES_PER_PAGE, total);
+  var slice  = ayahs.slice(start, end);
+
+  var html = "";
+  slice.forEach(function(v){
+    var isActive = v.num === activeVerse ? " active-v" : "";
+    html += "<div class='verse-block" + isActive + "' id='vb-" + v.num + "' onclick='playVerse(" + v.num + ")'>"
+      + "<div class='arabic-text'>" + v.arabic + " <span class='verse-num-badge'>" + v.num + "</span></div>"
+      + "<div class='trans-text'>" + v.french + "</div>"
+      + "<button class='play-verse-btn" + (v.num === activeVerse ? " playing" : "") + "' id='pvb-" + v.num + "'>"
+      + (v.num === activeVerse ? "▶ En lecture" : "▶ Écouter") + "</button>"
+      + "</div>";
+  });
+  document.getElementById("versesBody").innerHTML = html;
+
+  // Pagination
+  document.getElementById("pageInfo").textContent = "Versets " + (start+1) + " à " + end + " sur " + total;
+  var navHtml = "";
+  for(var i=0; i<pages; i++){
+    navHtml += "<button class='vpage-btn" + (i===currentPage?" active-p":"") + "' onclick='goPage(" + i + ")'>" + (i+1) + "</button>";
+  }
+  document.getElementById("verseNav").innerHTML = navHtml;
+}
+
+function goPage(p){
+  currentPage = p;
+  renderVerses();
+  document.getElementById("versesBody").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+// ═══════════════════════════════════════════════════════════
+// LIRE UN VERSET
+// ═══════════════════════════════════════════════════════════
+function playVerse(verseNum){
+  if(!currentData) return;
+  activeVerse = verseNum;
+
+  // Calculer l'index absolu du verset dans le Quran
+  // (numéro de sourate - 1) * versets avant + numéro de verset dans la sourate
+  // On utilise l'API pour l'audio verset par verset
+  var surahNum = currentData.number;
+  var audioNum = getAbsoluteVerseNumber(surahNum, verseNum);
+  var url = "https://cdn.islamic.network/quran/audio/128/" + reciter + "/" + audioNum + ".mp3";
+
+  var audio = document.getElementById("mainAudio");
+  audio.src = url;
+  audio.play();
+
+  // Mettre à jour l'UI
+  renderVerses();
+
+  // Faire défiler vers le verset
+  var el = document.getElementById("vb-" + verseNum);
+  if(el) el.scrollIntoView({behavior:"smooth", block:"center"});
+}
+
+// Calcul numéro absolu de verset (simplifié — utilise les données chargées)
+function getAbsoluteVerseNumber(surahNum, verseNum){
+  // Tableau des versets par sourate (précalculé)
+  var cumul = [0,7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
+  if(surahNum < 1 || surahNum > 114) return 1;
+  var before = 0;
+  for(var i=1; i<surahNum; i++) before += cumul[i] || 0;
+  return before + verseNum;
+}
+
+// ═══════════════════════════════════════════════════════════
+// AUTO-PLAY
+// ═══════════════════════════════════════════════════════════
+function toggleAuto(){
+  autoPlay = !autoPlay;
+  var btn = document.getElementById("autoPlayBtn");
+  btn.classList.toggle("on", autoPlay);
+  btn.textContent = autoPlay ? "Auto ✦" : "Auto";
+
+  if(autoPlay){
+    document.getElementById("mainAudio").onended = function(){
+      if(!autoPlay || !currentData) return;
+      var next = activeVerse + 1;
+      if(next <= currentData.ayahs.length){
+        // Changer de page si nécessaire
+        var newPage = Math.floor((next-1) / VERSES_PER_PAGE);
+        if(newPage !== currentPage){ currentPage = newPage; }
+        playVerse(next);
+      } else {
+        autoPlay = false;
+        document.getElementById("autoPlayBtn").classList.remove("on");
+        document.getElementById("autoPlayBtn").textContent = "Auto";
+      }
+    };
+    // Démarrer sur le premier verset si aucun actif
+    if(!activeVerse && currentData) playVerse(1);
+  } else {
+    document.getElementById("mainAudio").onended = null;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════
+// CHANGER RÉCITATEUR
+// ═══════════════════════════════════════════════════════════
+function onReciterChange(){
+  reciter = document.getElementById("reciterSel").value;
+  if(currentNum) selectSurah(currentNum);
+}
+
+// ═══════════════════════════════════════════════════════════
+// TADABBUR
+// ═══════════════════════════════════════════════════════════
+function openTadabbur(){
+  if(TADABBUR[currentNum]) location.href = TADABBUR[currentNum].path;
+}
 </script>
 </body>
 </html>
