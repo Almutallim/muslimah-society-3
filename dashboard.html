@@ -163,8 +163,7 @@ button{font:inherit;cursor:pointer;border:none;background:none}
     <a href="la-plume/index.html">La Plume</a>
     <a href="audio.html">La Voix</a>
     <a href="vip-events.html">Les Majalis</a>
-    <a href="login.html" class="btn-o">Connexion</a>
-    <a href="pricing.html" class="btn-s">VIP</a>
+    <span id="nav-auth"><a href="login.html" class="btn-o">Connexion</a><a href="pricing.html" class="btn-s">VIP</a></span>
   </nav>
 </header>
 
@@ -348,6 +347,13 @@ function buildLectureGrid(tier){
   document.getElementById('compteSince').textContent=since;
   const badge=document.getElementById('sidebarBadge');
   const aboBadge=document.getElementById('aboBadge');
+  // Navbar dynamique
+  const navAuth = document.getElementById('nav-auth');
+  if(navAuth){
+    if(tier==='vip'||tier==='admin') navAuth.innerHTML='<a href="dashboard.html" class="btn-s">✦ VIP</a>';
+    else if(tier==='member') navAuth.innerHTML='<a href="dashboard.html" class="btn-o">Mon espace</a>';
+    else navAuth.innerHTML='<a href="pricing.html" class="btn-o">S\'abonner</a>';
+  }
   if(tier==='vip'){badge.className='sb-badge vip';badge.textContent='✦ VIP';aboBadge.className='abo-badge vip';aboBadge.textContent='✦ Membre VIP';document.getElementById('aboDesc').textContent='Accès intégral — chroniques, approfondissements, Lettre à ma sœur, audio et événements.';document.getElementById('statAccess').textContent='VIP';}
   else if(tier==='member'){badge.className='sb-badge member';badge.textContent='Member';aboBadge.className='abo-badge member';aboBadge.textContent='Member';document.getElementById('aboDesc').textContent='Accès aux chroniques complètes des 30 volumes.';document.getElementById('aboDetail').textContent='Pour les approfondissements VIP, passez en VIP.';document.getElementById('upgradeBox').style.display='block';document.getElementById('statAccess').textContent='Member';}
   else{badge.className='sb-badge visitor';badge.textContent='Visiteur';aboBadge.className='abo-badge visitor';aboBadge.textContent='Extrait libre';document.getElementById('aboDesc').textContent='Accès aux extraits libres uniquement.';document.getElementById('aboDetail').textContent='Rejoignez la Maison pour accéder aux 30 volumes.';document.getElementById('upgradeBox').style.display='block';document.getElementById('statAccess').textContent='Libre';}
