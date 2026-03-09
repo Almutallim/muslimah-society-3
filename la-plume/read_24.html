@@ -375,13 +375,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div class="modal-ov" id="modal-cgv"><div class="modal-box"><span class="modal-x" onclick="closeModal('cgv')">&#215;</span><div class="modal-title">Conditions G&eacute;n&eacute;rales de Vente</div><div class="modal-body"><h3>Tarifs</h3><p>Member&nbsp;: 2&nbsp;500 DZD / 17&euro; / 65 ر.س par mois.<br>VIP&nbsp;: 9&nbsp;000 DZD / 60&euro; / 225 ر.س par mois.<br>Annuel&nbsp;: 90&nbsp;000 DZD / 600&euro;.</p><h3>R&eacute;siliation</h3><p>Member&nbsp;: sans engagement. VIP&nbsp;: 3 mois minimum.</p></div></div></div>
 <div class="modal-ov" id="modal-privacy"><div class="modal-box"><span class="modal-x" onclick="closeModal('privacy')">&#215;</span><div class="modal-title">Politique de Confidentialit&eacute;</div><div class="modal-body"><h3>Donn&eacute;es</h3><p>Nous collectons uniquement votre pr&eacute;nom et adresse e-mail pour la gestion de votre abonnement.</p><h3>Contact</h3><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6f0c00011b0e0c1b2f021a1c0306020e071c000c060a1b16410b15">[email&#160;protected]</a></p></div></div></div>
 <div class="modal-ov" id="modal-mentions"><div class="modal-box"><span class="modal-x" onclick="closeModal('mentions')">&#215;</span><div class="modal-title">Mentions L&eacute;gales</div><div class="modal-body"><h3>&Eacute;diteur</h3><p>Institut Al Muta'allim &bull; Alger &bull; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b7d4d8d9c3d6d4c3f7dac2c4dbdedad6dfc4d8d4ded2c3ce99d3cd">[email&#160;protected]</a></p><h3>Directrice</h3><p>Ustadha Zina &bull; Fondat
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 (async function(){
-  if(typeof window.supabase==="undefined")return;
   var SB_URL="https://lgxnejnihodyfgxlyycd.supabase.co";
   var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
-  var sb=window.supabase.createClient(SB_URL,SB_KEY);
   try{
+    var sb=window.supabase.createClient(SB_URL,SB_KEY);
     var s=await sb.auth.getSession();
     if(!s.data.session)return;
     var p=await sb.from("profiles").select("role").eq("id",s.data.session.user.id).single();
@@ -395,6 +395,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       var full=document.getElementById("full-content");
       if(full)full.style.display="block";
     }
-  }catch(e){}
+  }catch(e){ console.log("Auth error:",e); }
 })();
 </script>
