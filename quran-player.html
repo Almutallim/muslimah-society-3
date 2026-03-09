@@ -1,478 +1,187 @@
 <!doctype html>
 <html lang="fr">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Lecteur du Saint Coran — Muslimah Society</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<style>
-:root{--gold:#c9a84c;--gp:rgba(201,168,76,.2);--gpl:rgba(201,168,76,.1);--ivory:#fdf8f2;--blush:#e8d5d0;--blush-l:#f5ede9;--text:#3d2b25;--tm:#7a5a50;--tl:#a89080;}
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Lecteur Coran — Muslimah Society</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <style>
+:root{--gold:#c9a84c;--gold-p:#f0e4c0;--blush:#e8d5d0;--blush-l:#f5ede9;--ivory:#fdf8f2;--text:#3d2b25;--text-m:#7a5a50;--text-l:#a89080;--rose-d:#b08880;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:"Cormorant Garamond",serif;background:var(--ivory);color:var(--text);}
-
-header{position:sticky;top:0;z-index:900;background:rgba(253,248,242,.97);border-bottom:1px solid var(--gp);backdrop-filter:blur(10px);}
-.nav{max-width:960px;margin:0 auto;padding:0 20px;height:62px;display:flex;align-items:center;justify-content:space-between;}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.lm{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:Cinzel,serif;font-size:11px;color:var(--gold);}
-.ln{font-family:Cinzel,serif;font-size:11px;letter-spacing:3px;color:var(--text);}
-.btn-dash{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:7px 14px;border-radius:18px;border:1px solid var(--gp);color:var(--tm);background:transparent;cursor:pointer;transition:.2s;}
-.btn-dash:hover{border-color:var(--gold);color:var(--gold);}
-
-.hero{background:linear-gradient(160deg,var(--blush-l),var(--blush) 40%,rgba(216,208,228,.5) 80%,var(--blush-l));border-bottom:1px solid var(--gp);padding:36px 20px 28px;text-align:center;}
-.chip{display:inline-block;padding:4px 14px;border-radius:20px;border:1px solid var(--gp);background:rgba(255,252,245,.85);font-family:Cinzel,serif;font-size:9px;letter-spacing:4px;color:var(--gold);margin-bottom:12px;}
-.hero-title{font-family:Cinzel,serif;font-size:clamp(18px,4vw,28px);letter-spacing:2px;margin-bottom:6px;}
-.hero-title span{color:var(--gold);}
-.bismillah{font-size:clamp(22px,4vw,32px);color:var(--gold);margin:10px 0 5px;line-height:1.8;direction:rtl;}
-.hero-sub{font-size:15px;font-style:italic;color:var(--tm);}
-
-main{max-width:960px;margin:0 auto;padding:22px 20px 60px;}
-.layout{display:grid;grid-template-columns:280px 1fr;gap:16px;align-items:start;}
-@media(max-width:680px){.layout{grid-template-columns:1fr;}}
-
-.panel{background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;overflow:hidden;margin-bottom:14px;}
-.ph{padding:10px 16px;background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.18));border-bottom:1px solid var(--gp);font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:var(--gold);}
-.pb{padding:12px 14px;}
-
-input.sb,select.rs{width:100%;padding:8px 11px;border:1px solid var(--gp);border-radius:3px;background:rgba(255,252,245,.9);font-family:"Cormorant Garamond",serif;font-size:15px;color:var(--text);outline:none;margin-bottom:8px;}
-input.sb:focus,select.rs:focus{border-color:var(--gold);}
-select.rs{margin-bottom:0;}
-
-.sl{max-height:380px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--gp) transparent;}
-.si{padding:9px 11px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(201,168,76,.06);transition:background .12s;}
-.si:hover{background:var(--gpl);}
-.si.act{background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(176,136,128,.1));}
-.si-n{font-family:Cinzel,serif;font-size:9px;color:var(--tl);display:block;margin-bottom:2px;}
-.si-f{font-size:14px;color:var(--text);}
-.si-a{font-size:15px;color:var(--gold);}
-
-.sh-card{background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.2));border:1px solid var(--gp);border-radius:4px;padding:18px 22px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;}
-.sh-n{font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:var(--tl);margin-bottom:4px;}
-.sh-name{font-family:Cinzel,serif;font-size:20px;color:var(--text);margin-bottom:3px;}
-.sh-meta{font-size:14px;font-style:italic;color:var(--tm);}
-.sh-ar{font-size:28px;color:var(--gold);direction:rtl;line-height:1.4;}
-.sh-vs{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:var(--tl);margin-top:3px;}
-
-.ac{background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;padding:14px 18px;margin-bottom:14px;}
-.al{font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:var(--tl);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;}
-.badge{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;border:1px solid var(--gp);border-radius:999px;padding:3px 10px;color:var(--tm);}
-audio{width:100%;height:38px;border-radius:20px;outline:none;}
-.ar{display:flex;align-items:center;gap:8px;margin-top:9px;}
-.tb{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:5px 12px;border-radius:12px;border:1px solid var(--gp);background:transparent;color:var(--tm);cursor:pointer;transition:.2s;}
-.tb.on{background:var(--gold);border-color:var(--gold);color:#fff;}
-.al2{font-size:13px;font-style:italic;color:var(--tl);}
-.err{margin-top:8px;font-size:13px;font-style:italic;color:#8a5a55;display:none;}
-
-.tc{background:linear-gradient(155deg,rgba(232,213,208,.3),rgba(216,208,228,.2));border:1px solid var(--gp);border-radius:4px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
-.tct h3{font-family:Cinzel,serif;font-size:12px;letter-spacing:1px;margin-bottom:3px;}
-.tct p{font-size:13px;font-style:italic;color:var(--tm);}
-.tad-btn{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:7px 16px;border-radius:18px;background:var(--gold);color:#fff;border:none;cursor:pointer;white-space:nowrap;}
-
-.vc{background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;overflow:hidden;margin-bottom:14px;}
-.vh{padding:10px 18px;background:linear-gradient(155deg,rgba(232,213,208,.3),rgba(216,208,228,.15));border-bottom:1px solid var(--gp);display:flex;align-items:center;justify-content:space-between;}
-.vh-t{font-family:Cinzel,serif;font-size:9px;letter-spacing:3px;color:var(--gold);}
-.vh-c{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:var(--tl);}
-.vbw{padding:14px 18px;}
-.vb{padding:14px 0;border-bottom:1px solid rgba(201,168,76,.1);cursor:pointer;transition:all .12s;border-radius:3px;}
-.vb:last-child{border-bottom:none;}
-.vb:hover{background:rgba(201,168,76,.04);padding-left:8px;padding-right:8px;margin:0 -8px;}
-.vb.actv{background:linear-gradient(135deg,rgba(201,168,76,.1),rgba(176,136,128,.05));padding-left:8px;padding-right:8px;margin:0 -8px;}
-.at{font-size:clamp(18px,2.5vw,24px);line-height:2;text-align:right;direction:rtl;color:var(--text);margin-bottom:8px;}
-.vnum{display:inline-block;width:24px;height:24px;border-radius:50%;border:1px solid var(--gp);font-family:Cinzel,serif;font-size:9px;color:var(--gold);text-align:center;line-height:22px;vertical-align:middle;margin-left:6px;}
-.ft{font-size:14px;font-style:italic;color:var(--tm);line-height:1.7;margin-bottom:6px;}
-.pvb{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;padding:4px 10px;border-radius:12px;border:1px solid var(--gp);background:transparent;color:var(--gold);cursor:pointer;}
-.pvb:hover,.pvb.pl{background:var(--gold);color:#fff;border-color:var(--gold);}
-
-.pi{font-family:Cinzel,serif;font-size:9px;letter-spacing:2px;color:var(--tl);text-align:center;margin:10px 0 6px;padding:0 18px;}
-.vn2{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;padding:0 18px 14px;}
-.vpb{font-family:Cinzel,serif;font-size:9px;padding:4px 10px;border-radius:12px;border:1px solid var(--gp);background:transparent;color:var(--tm);cursor:pointer;}
-.vpb.ap{background:var(--gold);border-color:var(--gold);color:#fff;}
-
-.welcome{text-align:center;padding:50px 20px;background:rgba(255,252,248,.95);border:1px solid var(--gp);border-radius:4px;}
-.welcome-icon{font-size:36px;color:var(--gold);margin-bottom:14px;}
-.welcome h2{font-family:Cinzel,serif;font-size:15px;letter-spacing:1px;margin-bottom:8px;}
-.welcome p{font-size:15px;font-style:italic;color:var(--tm);}
-.ld{text-align:center;padding:30px;font-style:italic;color:var(--tl);}
-
-footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gp);padding:16px 20px;text-align:center;}
-footer p{font-size:12px;font-style:italic;color:var(--tl);}
-</style>
+body{font-family:'Cormorant Garamond',serif;background:var(--ivory);color:var(--text);}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+.ms-header{position:sticky;top:0;z-index:800;background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);backdrop-filter:blur(10px);}
+.ms-header .inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
+.ms-logo{display:flex;align-items:center;gap:10px;}
+.ms-logo-mark{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,rgba(255,252,245,1),rgba(240,228,200,.55));}
+.ms-logo-mark span{font-family:'Cinzel',serif;font-size:12px;color:var(--gold);}
+.ms-logo-name{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--text);}
+.ms-nav{display:flex;gap:10px;align-items:center;}
+.btn{display:inline-flex;align-items:center;padding:8px 18px;min-height:38px;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;border:1.5px solid transparent;cursor:pointer;transition:all .3s;}
+.btn-ghost{border-color:rgba(201,168,76,.3);color:var(--text-m);background:transparent;}.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-gold{border-color:var(--gold);background:var(--gold);color:#fff;}.btn-gold:hover{background:#b8923e;}
+.btn-vip{border-color:var(--rose-d);background:var(--rose-d);color:#fff;}.btn-vip:hover{background:#9a7068;}
+.btn-danger{border-color:rgba(180,60,60,.3);color:#8b3a3a;background:transparent;}.btn-danger:hover{background:rgba(180,60,60,.08);}
+.page{padding:32px 0 64px;}
+.hero-sm{padding:36px 0 28px;background:linear-gradient(160deg,var(--blush-l),var(--blush) 40%,rgba(216,208,228,.5) 80%,var(--blush-l));border-bottom:1px solid rgba(201,168,76,.12);text-align:center;}
+.chip{display:inline-block;padding:5px 14px;border-radius:20px;border:1px solid var(--gold-p);background:rgba(255,252,245,.85);font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,32px);font-weight:500;letter-spacing:2px;margin-bottom:8px;}
+.hero-sub{font-size:clamp(15px,2vw,18px);font-style:italic;color:var(--text-m);}
+.card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;box-shadow:0 8px 28px rgba(61,43,37,.08);overflow:hidden;position:relative;margin-bottom:16px;}
+.card::before{content:'';position:absolute;top:6px;left:6px;width:12px;height:12px;border-top:1px solid var(--gold-p);border-left:1px solid var(--gold-p);}
+.card::after{content:'';position:absolute;bottom:6px;right:6px;width:12px;height:12px;border-bottom:1px solid var(--gold-p);border-right:1px solid var(--gold-p);}
+.card-head{padding:16px 22px;background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.18));border-bottom:1px solid rgba(201,168,76,.14);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.card-head h2,.card-head h3{font-family:'Cinzel',serif;font-size:15px;font-weight:500;letter-spacing:1px;}
+.card-body{padding:22px 24px 26px;}
+.card-body p{font-size:17px;line-height:1.9;color:var(--text-m);margin-bottom:12px;}
+.card-body h2,.card-body h3{font-family:'Cinzel',serif;font-size:16px;font-weight:500;letter-spacing:1px;color:var(--text);margin:20px 0 10px;}
+.card-body h2:first-child,.card-body h3:first-child{margin-top:0;}
+.card-body ul{list-style:none;margin:8px 0 14px;}
+.card-body li{font-size:16px;color:var(--text-m);padding:6px 0 6px 20px;position:relative;border-bottom:1px solid rgba(201,168,76,.08);}
+.card-body li:last-child{border-bottom:none;}
+.card-body li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:9px;top:10px;}
+.kicker{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+.badge{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
+.badge.member{background:rgba(201,168,76,.12);color:#9a7830;border:1px solid rgba(201,168,76,.28);}
+.badge.vip{background:rgba(176,136,128,.15);color:var(--rose-d);border:1px solid rgba(176,136,128,.28);}
+.badge.active{background:rgba(80,140,100,.1);color:#3a6b4a;border:1px solid rgba(80,140,100,.25);}
+.badge.inactive{background:rgba(160,144,128,.1);color:var(--text-l);border:1px solid rgba(160,144,128,.2);}
+.badge.none{background:rgba(160,144,128,.08);color:var(--text-l);border:1px solid rgba(160,144,128,.18);}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+@media(max-width:600px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
+@media(min-width:601px) and (max-width:800px){.grid4{grid-template-columns:repeat(2,1fr);}}
+.stat-card{background:rgba(240,228,192,.15);border:1px solid rgba(201,168,76,.18);border-radius:3px;padding:20px;text-align:center;}
+.stat-value{font-family:'Cinzel',serif;font-size:28px;font-weight:500;color:var(--gold);margin-bottom:6px;}
+.stat-label{font-size:13px;font-style:italic;color:var(--text-l);}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
+.note{padding:14px 18px;border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 3px 3px 0;font-size:16px;font-style:italic;color:var(--text-m);margin-bottom:14px;}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px;}
+.info-item{padding:16px;background:rgba(240,228,192,.12);border:1px solid rgba(201,168,76,.15);border-radius:3px;}
+.info-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-l);margin-bottom:8px;}
+.info-value{font-size:20px;font-family:'Cinzel',serif;color:var(--gold);}
+table{width:100%;border-collapse:collapse;}
+th{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(201,168,76,.2);background:rgba(240,228,192,.1);}
+td{padding:10px 12px;font-size:15px;color:var(--text-m);border-bottom:1px solid rgba(201,168,76,.08);}
+tr:last-child td{border-bottom:none;}
+input,select{width:100%;padding:10px 14px;border:1px solid rgba(201,168,76,.25);border-radius:3px;background:rgba(255,252,245,.8);font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);outline:none;transition:border-color .3s;}
+input:focus,select:focus{border-color:rgba(201,168,76,.6);}
+.search-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
+.search-bar input{flex:1;min-width:180px;}
+.search-bar select{width:160px;flex-shrink:0;}
+.reward-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+@media(max-width:600px){.reward-grid{grid-template-columns:1fr;}}
+.reward-card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:18px;text-align:center;}
+.reward-card.locked{opacity:.55;filter:grayscale(.4);}
+.reward-card h3{font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;margin:10px 0 6px;}
+.reward-card p{font-size:14px;font-style:italic;color:var(--text-m);}
+.reward-icon{font-size:28px;margin-bottom:4px;}
+.code-box{background:rgba(240,228,192,.2);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:16px 20px;font-family:'Cinzel',serif;font-size:22px;letter-spacing:4px;text-align:center;color:var(--gold);margin:14px 0;}
+.quran-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
+.quran-controls select{width:auto;min-width:140px;}
+.audio-player{width:100%;margin:14px 0;}
+.verse-display{font-size:22px;line-height:2.2;text-align:right;direction:rtl;color:var(--text);padding:20px;background:rgba(240,228,192,.1);border-radius:3px;border:1px solid rgba(201,168,76,.15);margin-bottom:12px;}
+.verse-trans{font-size:16px;font-style:italic;color:var(--text-m);line-height:1.8;padding:0 4px;}
+.nav-verse{display:flex;justify-content:space-between;margin-top:12px;}
+.ms-footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gold-p);padding:22px 0;margin-top:32px;}
+.ft-copy{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
+@media(max-width:719px){.ms-logo-name{display:none;}}
+  </style>
 </head>
 <body>
-
-<header>
-  <div class="nav">
-    <a class="logo" href="index.html">
-      <div class="lm">MS</div>
-      <div class="ln">MUSLIMAH SOCIETY</div>
+<header class="ms-header">
+  <div class="wrap"><div class="inner">
+    <a class="ms-logo" href="index.html">
+      <div class="ms-logo-mark"><span>MS</span></div>
+      <div class="ms-logo-name">MUSLIMAH SOCIETY</div>
     </a>
-    <button class="btn-dash" onclick="location.href='dashboard.html'">Mon espace</button>
-  </div>
+    <div class="ms-nav">
+      <a class="btn btn-ghost" href="dashboard.html">Mon espace</a>
+    </div>
+  </div></div>
 </header>
-
-<div class="hero">
-  <div class="chip">Espace Member</div>
-  <h1 class="hero-title">Lecteur du Saint <span>Coran</span></h1>
-  <div class="bismillah">بِسْمِ ٱللَّهِ ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ</div>
-  <p class="hero-sub">Lisez, écoutez et méditez le Noble Coran</p>
+<section class="hero-sm">
+  <div class="wrap">
+    <div class="chip">Espace Member</div>
+    <div class="hero-title">Lecteur du Saint Coran</div>
+    <div class="hero-sub">Écoutez et lisez le Coran noble</div>
+  </div>
+</section>
+<main class="page">
+  <div class="wrap">
+<div class="card">
+  <div class="card-head"><h2>Sourates</h2></div>
+  <div class="card-body">
+    <div class="quran-controls">
+      <select id="surahSel" onchange="loadSurah()"><option value="">Choisir une sourate…</option></select>
+      <select id="verseSel" onchange="loadVerse()"><option value="">Verset</option></select>
+    </div>
+    <div class="verse-display" id="arabicText">Sélectionnez une sourate pour commencer</div>
+    <div class="verse-trans" id="transText"></div>
+    <audio class="audio-player" id="audioPlayer" controls></audio>
+    <div class="nav-verse">
+      <button class="btn btn-ghost" onclick="prevVerse()">← Précédent</button>
+      <button class="btn btn-ghost" onclick="nextVerse()">Suivant →</button>
+    </div>
+  </div>
 </div>
-
-<main>
-  <div class="layout">
-
-    <div>
-      <div class="panel">
-        <div class="ph">Récitateur</div>
-        <div class="pb">
-          <select class="rs" id="rec" onchange="chgRec()">
-            <option value="alafasy">Mishary Al-Afasy</option>
-            <option value="abdurrahmaansudais">Abdurrahman As-Sudais</option>
-            <option value="husary">Mahmoud Khalil Al-Husary</option>
-            <option value="minshawi">Mohamed Siddiq Al-Minshawi</option>
-          </select>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="ph">Sourates — 114</div>
-        <div class="pb">
-          <input class="sb" id="srch" placeholder="Rechercher..." oninput="filtr()">
-          <div class="sl" id="slist"></div>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <div id="wc" class="welcome">
-        <div class="welcome-icon">☽</div>
-        <h2>Sélectionnez une sourate</h2>
-        <p>Choisissez dans la liste à gauche<br>pour commencer votre lecture.</p>
-      </div>
-
-      <div id="pc" style="display:none">
-
-        <div class="sh-card">
-          <div>
-            <div class="sh-n" id="shn">SOURATE</div>
-            <div class="sh-name" id="shname">—</div>
-            <div class="sh-meta" id="shmeta">—</div>
-          </div>
-          <div style="text-align:right">
-            <div class="sh-ar" id="shar">—</div>
-            <div class="sh-vs" id="shvs">—</div>
-          </div>
-        </div>
-
-        <div id="tadc" class="tc" style="display:none">
-          <div class="tct">
-            <h3>Tadabbur disponible ✦</h3>
-            <p id="tadp">—</p>
-          </div>
-          <button class="tad-btn" onclick="openTad()">Lire le Tadabbur →</button>
-        </div>
-
-        <!-- Audio sourate complète (Mishary uniquement) -->
-        <div class="ac" id="surahAC">
-          <div class="al">
-            <span>Récitation complète</span>
-            <span class="badge" id="surahBadge">—</span>
-          </div>
-          <audio id="audSurah" controls preload="none"></audio>
-        </div>
-
-        <!-- Audio verset par verset -->
-        <div class="ac">
-          <div class="al">
-            <span>Verset par verset</span>
-            <span class="badge" id="ayahBadge">—</span>
-          </div>
-          <audio id="audAyah" controls preload="none"></audio>
-          <div class="ar">
-            <button class="tb" id="apb" onclick="togAuto()">Auto</button>
-            <span class="al2">Lecture automatique verset par verset</span>
-          </div>
-          <div class="err" id="ayahErr">Audio indisponible pour ce récitateur. Essayez Mishary Al-Afasy.</div>
-        </div>
-
-        <!-- Versets -->
-        <div class="vc">
-          <div class="vh">
-            <span class="vh-t">Versets</span>
-            <span class="vh-c" id="vhc">—</span>
-          </div>
-          <div class="vbw" id="vbw"><div class="ld">Chargement…</div></div>
-          <div class="pi" id="pginf"></div>
-          <div class="vn2" id="vnavd"></div>
-        </div>
-
-      </div>
-    </div>
-
   </div>
 </main>
-
-<footer><p>© 2026 Institut Al Muta'allim — Muslimah Society</p></footer>
-
+<footer class="ms-footer">
+  <div class="wrap"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span class="ft-copy">© 2026 Institut Al Muta&#8217;allim — Muslimah Society</span>
+    <span class="ft-copy" style="display:flex;gap:16px;">
+      <a href="index.html" style="color:var(--text-l);">Accueil</a>
+      <a href="privacy.html" style="color:var(--text-l);">Confidentialité</a>
+      <a href="terms.html" style="color:var(--text-l);">CGU</a>
+    </span>
+  </div></div>
+</footer>
+<script src="js/supabaseClient.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/gate.js"></script>
 <script>
-// ── 114 SOURATES EMBARQUÉES ──
-var S=[
-{n:1,fr:"Al-Fatiha",tr:"L'Ouverture",ar:"الفاتحة",v:7,t:"MK"},
-{n:2,fr:"Al-Baqarah",tr:"La Vache",ar:"البقرة",v:286,t:"MD"},
-{n:3,fr:"Al-Imran",tr:"La Famille d'Imran",ar:"آل عمران",v:200,t:"MD"},
-{n:4,fr:"An-Nisa",tr:"Les Femmes",ar:"النساء",v:176,t:"MD"},
-{n:5,fr:"Al-Maida",tr:"La Table Servie",ar:"المائدة",v:120,t:"MD"},
-{n:6,fr:"Al-An'am",tr:"Les Bestiaux",ar:"الأنعام",v:165,t:"MK"},
-{n:7,fr:"Al-A'raf",tr:"Les Murailles",ar:"الأعراف",v:206,t:"MK"},
-{n:8,fr:"Al-Anfal",tr:"Le Butin",ar:"الأنفال",v:75,t:"MD"},
-{n:9,fr:"At-Tawba",tr:"Le Repentir",ar:"التوبة",v:129,t:"MD"},
-{n:10,fr:"Yunus",tr:"Jonas",ar:"يونس",v:109,t:"MK"},
-{n:11,fr:"Hud",tr:"Hud",ar:"هود",v:123,t:"MK"},
-{n:12,fr:"Yusuf",tr:"Joseph",ar:"يوسف",v:111,t:"MK"},
-{n:13,fr:"Ar-Ra'd",tr:"Le Tonnerre",ar:"الرعد",v:43,t:"MD"},
-{n:14,fr:"Ibrahim",tr:"Abraham",ar:"إبراهيم",v:52,t:"MK"},
-{n:15,fr:"Al-Hijr",tr:"La Roche",ar:"الحجر",v:99,t:"MK"},
-{n:16,fr:"An-Nahl",tr:"Les Abeilles",ar:"النحل",v:128,t:"MK"},
-{n:17,fr:"Al-Isra",tr:"Le Voyage Nocturne",ar:"الإسراء",v:111,t:"MK"},
-{n:18,fr:"Al-Kahf",tr:"La Caverne",ar:"الكهف",v:110,t:"MK"},
-{n:19,fr:"Maryam",tr:"Marie",ar:"مريم",v:98,t:"MK"},
-{n:20,fr:"Ta-Ha",tr:"Ta-Ha",ar:"طه",v:135,t:"MK"},
-{n:21,fr:"Al-Anbiya",tr:"Les Prophètes",ar:"الأنبياء",v:112,t:"MK"},
-{n:22,fr:"Al-Hajj",tr:"Le Pèlerinage",ar:"الحج",v:78,t:"MD"},
-{n:23,fr:"Al-Muminun",tr:"Les Croyants",ar:"المؤمنون",v:118,t:"MK"},
-{n:24,fr:"An-Nur",tr:"La Lumière",ar:"النور",v:64,t:"MD"},
-{n:25,fr:"Al-Furqan",tr:"Le Discernement",ar:"الفرقان",v:77,t:"MK"},
-{n:26,fr:"Ash-Shu'ara",tr:"Les Poètes",ar:"الشعراء",v:227,t:"MK"},
-{n:27,fr:"An-Naml",tr:"Les Fourmis",ar:"النمل",v:93,t:"MK"},
-{n:28,fr:"Al-Qasas",tr:"Le Récit",ar:"القصص",v:88,t:"MK"},
-{n:29,fr:"Al-Ankabut",tr:"L'Araignée",ar:"العنكبوت",v:69,t:"MK"},
-{n:30,fr:"Ar-Rum",tr:"Les Romains",ar:"الروم",v:60,t:"MK"},
-{n:31,fr:"Luqman",tr:"Luqman",ar:"لقمان",v:34,t:"MK"},
-{n:32,fr:"As-Sajda",tr:"La Prosternation",ar:"السجدة",v:30,t:"MK"},
-{n:33,fr:"Al-Ahzab",tr:"Les Coalisés",ar:"الأحزاب",v:73,t:"MD"},
-{n:34,fr:"Saba",tr:"Saba",ar:"سبأ",v:54,t:"MK"},
-{n:35,fr:"Fatir",tr:"Le Créateur",ar:"فاطر",v:45,t:"MK"},
-{n:36,fr:"Ya-Sin",tr:"Ya-Sin",ar:"يس",v:83,t:"MK"},
-{n:37,fr:"As-Saffat",tr:"Les Rangés",ar:"الصافات",v:182,t:"MK"},
-{n:38,fr:"Sad",tr:"Sad",ar:"ص",v:88,t:"MK"},
-{n:39,fr:"Az-Zumar",tr:"Les Groupes",ar:"الزمر",v:75,t:"MK"},
-{n:40,fr:"Ghafir",tr:"Le Pardonneur",ar:"غافر",v:85,t:"MK"},
-{n:41,fr:"Fussilat",tr:"Les Versets Détaillés",ar:"فصلت",v:54,t:"MK"},
-{n:42,fr:"Ash-Shura",tr:"La Concertation",ar:"الشورى",v:53,t:"MK"},
-{n:43,fr:"Az-Zukhruf",tr:"Les Ornements",ar:"الزخرف",v:89,t:"MK"},
-{n:44,fr:"Ad-Dukhan",tr:"La Fumée",ar:"الدخان",v:59,t:"MK"},
-{n:45,fr:"Al-Jathiya",tr:"L'Agenouillée",ar:"الجاثية",v:37,t:"MK"},
-{n:46,fr:"Al-Ahqaf",tr:"Les Dunes",ar:"الأحقاف",v:35,t:"MK"},
-{n:47,fr:"Muhammad",tr:"Muhammad",ar:"محمد",v:38,t:"MD"},
-{n:48,fr:"Al-Fath",tr:"La Victoire",ar:"الفتح",v:29,t:"MD"},
-{n:49,fr:"Al-Hujurat",tr:"Les Appartements",ar:"الحجرات",v:18,t:"MD"},
-{n:50,fr:"Qaf",tr:"Qaf",ar:"ق",v:45,t:"MK"},
-{n:51,fr:"Adh-Dhariyat",tr:"Les Vents Dispersants",ar:"الذاريات",v:60,t:"MK"},
-{n:52,fr:"At-Tur",tr:"Le Mont Sinaï",ar:"الطور",v:49,t:"MK"},
-{n:53,fr:"An-Najm",tr:"L'Étoile",ar:"النجم",v:62,t:"MK"},
-{n:54,fr:"Al-Qamar",tr:"La Lune",ar:"القمر",v:55,t:"MK"},
-{n:55,fr:"Ar-Rahman",tr:"Le Tout Miséricordieux",ar:"الرحمن",v:78,t:"MD"},
-{n:56,fr:"Al-Waqi'a",tr:"L'Événement",ar:"الواقعة",v:96,t:"MK"},
-{n:57,fr:"Al-Hadid",tr:"Le Fer",ar:"الحديد",v:29,t:"MD"},
-{n:58,fr:"Al-Mujadila",tr:"La Discussion",ar:"المجادلة",v:22,t:"MD"},
-{n:59,fr:"Al-Hashr",tr:"L'Exode",ar:"الحشر",v:24,t:"MD"},
-{n:60,fr:"Al-Mumtahana",tr:"L'Éprouvée",ar:"الممتحنة",v:13,t:"MD"},
-{n:61,fr:"As-Saf",tr:"Le Rang",ar:"الصف",v:14,t:"MD"},
-{n:62,fr:"Al-Jumu'a",tr:"Le Vendredi",ar:"الجمعة",v:11,t:"MD"},
-{n:63,fr:"Al-Munafiqun",tr:"Les Hypocrites",ar:"المنافقون",v:11,t:"MD"},
-{n:64,fr:"At-Taghabun",tr:"La Spoliation",ar:"التغابن",v:18,t:"MD"},
-{n:65,fr:"At-Talaq",tr:"Le Divorce",ar:"الطلاق",v:12,t:"MD"},
-{n:66,fr:"At-Tahrim",tr:"L'Interdiction",ar:"التحريم",v:12,t:"MD"},
-{n:67,fr:"Al-Mulk",tr:"La Royauté",ar:"الملك",v:30,t:"MK"},
-{n:68,fr:"Al-Qalam",tr:"Le Calame",ar:"القلم",v:52,t:"MK"},
-{n:69,fr:"Al-Haqqa",tr:"La Réalité",ar:"الحاقة",v:52,t:"MK"},
-{n:70,fr:"Al-Ma'arij",tr:"Les Voies d'Ascension",ar:"المعارج",v:44,t:"MK"},
-{n:71,fr:"Nuh",tr:"Noé",ar:"نوح",v:28,t:"MK"},
-{n:72,fr:"Al-Jinn",tr:"Les Djinns",ar:"الجن",v:28,t:"MK"},
-{n:73,fr:"Al-Muzzammil",tr:"L'Enveloppé",ar:"المزمل",v:20,t:"MK"},
-{n:74,fr:"Al-Muddaththir",tr:"Le Revêtu",ar:"المدثر",v:56,t:"MK"},
-{n:75,fr:"Al-Qiyama",tr:"La Résurrection",ar:"القيامة",v:40,t:"MK"},
-{n:76,fr:"Al-Insan",tr:"L'Homme",ar:"الإنسان",v:31,t:"MD"},
-{n:77,fr:"Al-Mursalat",tr:"Les Envoyés",ar:"المرسلات",v:50,t:"MK"},
-{n:78,fr:"An-Naba",tr:"La Nouvelle",ar:"النبأ",v:40,t:"MK"},
-{n:79,fr:"An-Nazi'at",tr:"Les Arracheurs",ar:"النازعات",v:46,t:"MK"},
-{n:80,fr:"Abasa",tr:"Il S'est Rembruni",ar:"عبس",v:42,t:"MK"},
-{n:81,fr:"At-Takwir",tr:"L'Enroulement",ar:"التكوير",v:29,t:"MK"},
-{n:82,fr:"Al-Infitar",tr:"La Déchirure",ar:"الانفطار",v:19,t:"MK"},
-{n:83,fr:"Al-Mutaffifin",tr:"Les Fraudeurs",ar:"المطففين",v:36,t:"MK"},
-{n:84,fr:"Al-Inshiqaq",tr:"La Fissure",ar:"الانشقاق",v:25,t:"MK"},
-{n:85,fr:"Al-Buruj",tr:"Les Constellations",ar:"البروج",v:22,t:"MK"},
-{n:86,fr:"At-Tariq",tr:"L'Astre Nocturne",ar:"الطارق",v:17,t:"MK"},
-{n:87,fr:"Al-A'la",tr:"Le Très-Haut",ar:"الأعلى",v:19,t:"MK"},
-{n:88,fr:"Al-Ghashiya",tr:"L'Enveloppante",ar:"الغاشية",v:26,t:"MK"},
-{n:89,fr:"Al-Fajr",tr:"L'Aube",ar:"الفجر",v:30,t:"MK"},
-{n:90,fr:"Al-Balad",tr:"La Cité",ar:"البلد",v:20,t:"MK"},
-{n:91,fr:"Ash-Shams",tr:"Le Soleil",ar:"الشمس",v:15,t:"MK"},
-{n:92,fr:"Al-Layl",tr:"La Nuit",ar:"الليل",v:21,t:"MK"},
-{n:93,fr:"Ad-Duha",tr:"La Matinée",ar:"الضحى",v:11,t:"MK"},
-{n:94,fr:"Ash-Sharh",tr:"L'Expansion",ar:"الشرح",v:8,t:"MK"},
-{n:95,fr:"At-Tin",tr:"Le Figuier",ar:"التين",v:8,t:"MK"},
-{n:96,fr:"Al-Alaq",tr:"L'Adhérence",ar:"العلق",v:19,t:"MK"},
-{n:97,fr:"Al-Qadr",tr:"La Destinée",ar:"القدر",v:5,t:"MK"},
-{n:98,fr:"Al-Bayyina",tr:"La Preuve",ar:"البينة",v:8,t:"MD"},
-{n:99,fr:"Az-Zalzala",tr:"Le Séisme",ar:"الزلزلة",v:8,t:"MD"},
-{n:100,fr:"Al-Adiyat",tr:"Les Coursiers",ar:"العاديات",v:11,t:"MK"},
-{n:101,fr:"Al-Qari'a",tr:"Le Fracas",ar:"القارعة",v:11,t:"MK"},
-{n:102,fr:"At-Takathur",tr:"La Rivalité",ar:"التكاثر",v:8,t:"MK"},
-{n:103,fr:"Al-Asr",tr:"Le Temps",ar:"العصر",v:3,t:"MK"},
-{n:104,fr:"Al-Humaza",tr:"Le Calomniateur",ar:"الهمزة",v:9,t:"MK"},
-{n:105,fr:"Al-Fil",tr:"L'Éléphant",ar:"الفيل",v:5,t:"MK"},
-{n:106,fr:"Quraysh",tr:"Quraysh",ar:"قريش",v:4,t:"MK"},
-{n:107,fr:"Al-Ma'un",tr:"L'Ustensile",ar:"الماعون",v:7,t:"MK"},
-{n:108,fr:"Al-Kawthar",tr:"L'Abondance",ar:"الكوثر",v:3,t:"MK"},
-{n:109,fr:"Al-Kafirun",tr:"Les Mécréants",ar:"الكافرون",v:6,t:"MK"},
-{n:110,fr:"An-Nasr",tr:"Le Secours",ar:"النصر",v:3,t:"MD"},
-{n:111,fr:"Al-Masad",tr:"Les Fibres",ar:"المسد",v:5,t:"MK"},
-{n:112,fr:"Al-Ikhlas",tr:"La Sincérité",ar:"الإخلاص",v:4,t:"MK"},
-{n:113,fr:"Al-Falaq",tr:"L'Aube Naissante",ar:"الفلق",v:5,t:"MK"},
-{n:114,fr:"An-Nas",tr:"Les Hommes",ar:"الناس",v:6,t:"MK"}
-];
-
-// ── CUMUL VERSETS (numéro absolu dans le Coran) ──
-var CML=[0,7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
-
-// ── TADABBUR ──
-var TAD={1:{p:"la-plume/index.html"},2:{p:"la-plume/index.html"},112:{p:"la-plume/index.html"},113:{p:"la-plume/index.html"},114:{p:"la-plume/index.html"}};
-
-// ── ÉTAT ──
-var CUR=0,DATA=null,AUTO=false,AV=0,REC="alafasy",PG=0,PPG=10;
-
-// ── HELPERS ──
-function g(id){return document.getElementById(id);}
-function absV(s,v){var b=0;for(var i=1;i<s;i++)b+=CML[i]||0;return b+v;}
-
-// ── RENDER LISTE ──
-function renderList(list){
-  var h="";
-  list.forEach(function(s){
-    var a=s.n===CUR?" act":"";
-    h+="<div class='si"+a+"' id='si-"+s.n+"' onclick='sel("+s.n+")'>"
-      +"<div><span class='si-n'>"+s.n+" · "+(s.t==="MK"?"Makkiyya":"Madaniyya")+"</span>"
-      +"<span class='si-f'>"+s.fr+" — "+s.tr+"</span></div>"
-      +"<span class='si-a'>"+s.ar+"</span></div>";
-  });
-  g("slist").innerHTML=h||"<p style='padding:10px;font-style:italic;color:var(--tl)'>Aucun résultat.</p>";
-}
-renderList(S);
-
-function filtr(){
-  var q=g("srch").value.toLowerCase();
-  renderList(S.filter(function(s){return s.fr.toLowerCase().includes(q)||s.tr.toLowerCase().includes(q)||s.ar.includes(q)||String(s.n).includes(q);}));
-}
-
-// ── SÉLECTIONNER SOURATE ──
-async function sel(n){
-  if(n===CUR)return;
-  CUR=n;PG=0;AV=0;AUTO=false;
-  g("apb").classList.remove("on");g("apb").textContent="Auto";
-  document.querySelectorAll(".si").forEach(function(e){e.classList.remove("act");});
-  var el=g("si-"+n);
-  if(el){el.classList.add("act");el.scrollIntoView({block:"nearest",behavior:"smooth"});}
-
-  g("wc").style.display="none";
-  g("pc").style.display="block";
-  g("vbw").innerHTML="<div class='ld'>Chargement des versets…</div>";
-  g("ayahErr").style.display="none";
-
-  var s=S.find(function(x){return x.n===n;});
-  g("shn").textContent="SOURATE "+n;
-  g("shname").textContent=s.fr;
-  g("shar").textContent=s.ar;
-  g("shmeta").textContent=s.tr+" · "+s.v+" versets · "+(s.t==="MK"?"Makkiyya":"Madaniyya");
-  g("shvs").textContent=s.v+" VERSETS";
-  g("vhc").textContent=s.v+" versets";
-
-  // Audio sourate complète — cdn.islamic.network (Mishary 128 kbps fiable)
-  if(REC==="alafasy"){
-    g("surahAC").style.display="block";
-    var as=g("audSurah");
-    as.src="https://cdn.islamic.network/quran/audio-surah/128/ar.alafasy/"+n+".mp3";
-    as.load();
-    g("surahBadge").textContent="128 kbps · Al-Afasy";
-  } else {
-    g("surahAC").style.display="none";
-  }
-
-  // Tadabbur
-  if(TAD[n]){g("tadc").style.display="flex";g("tadp").textContent=s.fr+" — analyse par Ustadha Zina";}
-  else g("tadc").style.display="none";
-
-  // Versets arabe + FR
+requireMember();
+let currentSurah=1, currentVerse=1, maxVerse=7;
+async function loadSurahs(){
   try{
-    var r=await fetch("https://api.alquran.cloud/v1/surah/"+n+"/editions/quran-uthmani,fr.hamidullah");
-    var d=await r.json();
-    DATA={n:n,ayahs:d.data[0].ayahs.map(function(a,i){return{num:a.numberInSurah,arabic:a.text,french:d.data[1].ayahs[i]?d.data[1].ayahs[i].text:""};})};
-    renderV();
-  }catch(e){
-    g("vbw").innerHTML="<p style='font-style:italic;color:var(--tl);text-align:center;padding:24px'>Impossible de charger les versets. Vérifiez votre connexion.</p>";
-  }
+    const r = await fetch('https://api.alquran.cloud/v1/surah');
+    const d = await r.json();
+    const sel = document.getElementById('surahSel');
+    d.data.forEach(s=>{ const o=document.createElement('option'); o.value=s.number; o.textContent=s.number+'. '+s.englishName+' ('+s.name+')'; sel.appendChild(o); });
+  }catch(e){ console.error(e); }
 }
-
-// ── AFFICHER VERSETS ──
-function renderV(){
-  if(!DATA)return;
-  var ay=DATA.ayahs,tot=ay.length,pgs=Math.ceil(tot/PPG);
-  var st=PG*PPG,en=Math.min(st+PPG,tot),sl=ay.slice(st,en);
-  var h="";
-  sl.forEach(function(v){
-    var a=v.num===AV?" actv":"";
-    h+="<div class='vb"+a+"' id='vb-"+v.num+"' onclick='playV("+v.num+")'>"
-      +"<div class='at'>"+v.arabic+" <span class='vnum'>"+v.num+"</span></div>"
-      +"<div class='ft'>"+v.french+"</div>"
-      +"<button class='pvb"+(v.num===AV?" pl":"")+"'>"+(v.num===AV?"▶ En lecture":"▶ Écouter")+"</button>"
-      +"</div>";
-  });
-  g("vbw").innerHTML=h;
-  g("pginf").textContent="Versets "+(st+1)+" à "+en+" sur "+tot;
-  var nh="";
-  for(var i=0;i<pgs;i++) nh+="<button class='vpb"+(i===PG?" ap":"")+"' onclick='goPg("+i+")'>"+(i+1)+"</button>";
-  g("vnavd").innerHTML=nh;
+async function loadSurah(){
+  currentSurah = document.getElementById('surahSel').value;
+  if(!currentSurah) return;
+  currentVerse=1;
+  const r=await fetch('https://api.alquran.cloud/v1/surah/'+currentSurah);
+  const d=await r.json();
+  maxVerse=d.data.numberOfAyahs;
+  const vs=document.getElementById('verseSel');
+  vs.innerHTML='<option>Verset</option>';
+  for(let i=1;i<=maxVerse;i++){ const o=document.createElement('option');o.value=i;o.textContent='Verset '+i;vs.appendChild(o); }
+  loadVerse();
 }
-
-function goPg(p){PG=p;renderV();g("vbw").scrollIntoView({behavior:"smooth",block:"start"});}
-
-// ── LIRE VERSET ──
-function playV(vn){
-  if(!DATA)return;
-  AV=vn;PG=Math.floor((vn-1)/PPG);renderV();
-  var abs=absV(DATA.n,vn);
-  var url="https://cdn.islamic.network/quran/audio/128/ar."+REC+"/"+abs+".mp3";
-  var aud=g("audAyah");
-  aud.src=url;aud.load();
-  aud.play().catch(function(){});
-  g("ayahBadge").textContent="v"+vn+" · 128 kbps";
-  g("ayahErr").style.display="none";
-  var el=g("vb-"+vn);
-  if(el)el.scrollIntoView({behavior:"smooth",block:"center"});
+async function loadVerse(){
+  const v=document.getElementById('verseSel').value||currentVerse;
+  currentVerse=parseInt(v)||1;
+  try{
+    const r=await fetch('https://api.alquran.cloud/v1/ayah/'+currentSurah+':'+currentVerse+'/editions/quran-uthmani,en.sahih');
+    const d=await r.json();
+    document.getElementById('arabicText').textContent=d.data[0]?.text||'';
+    document.getElementById('transText').textContent=d.data[1]?.text||'';
+    const audio=document.getElementById('audioPlayer');
+    audio.src='https://cdn.islamic.network/quran/audio/128/ar.alafasy/'+((parseInt(currentSurah)-1)*6236+currentVerse)+'.mp3';
+    audio.load();
+  }catch(e){ console.error(e); }
 }
-
-// ── AUTO ──
-function togAuto(){
-  AUTO=!AUTO;
-  var b=g("apb");
-  b.classList.toggle("on",AUTO);b.textContent=AUTO?"Auto ✦":"Auto";
-  var aud=g("audAyah");
-  if(AUTO){
-    aud.onended=function(){
-      if(!AUTO||!DATA)return;
-      var nx=AV+1;
-      if(nx<=DATA.ayahs.length){playV(nx);}
-      else{AUTO=false;b.classList.remove("on");b.textContent="Auto";}
-    };
-    if(!AV&&DATA)playV(1);
-  }else{aud.onended=null;}
-}
-
-// ── CHANGER REC ──
-function chgRec(){REC=g("rec").value;if(CUR)sel(CUR);}
-
-// ── TADABBUR ──
-function openTad(){if(TAD[CUR])location.href=TAD[CUR].p;}
-
-// ── ERREUR AUDIO ──
-g("audAyah").addEventListener("error",function(){g("ayahErr").style.display="block";});
+function nextVerse(){ if(currentVerse<maxVerse){ currentVerse++; document.getElementById('verseSel').value=currentVerse; loadVerse(); } }
+function prevVerse(){ if(currentVerse>1){ currentVerse--; document.getElementById('verseSel').value=currentVerse; loadVerse(); } }
+loadSurahs();
 </script>
 </body>
 </html>
