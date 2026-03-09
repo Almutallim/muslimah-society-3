@@ -417,10 +417,23 @@ function doLogin(){
   btn.disabled=true; btn.textContent="Connexion...";
   var c=window.supabase.createClient(_U,_K);
   c.auth.signInWithPassword({email:email,password:pwd})
-    .then(function(r){
+    .then(async function(r){
       if(r.error){showMsg(r.error.message,"error");btn.disabled=false;btn.textContent="Se connecter";return;}
-      showMsg("Connexion reussie — redirection...","success");
-      setTimeout(function(){location.href="dashboard.html";},1000);
+      showMsg("Connexion réussie — redirection...","success");
+      // Vérifier le rôle pour rediriger vers admin si nécessaire
+      try {
+        const userId = r.data.user.id;
+        const {data:profile} = await c.from('profiles').select('role').eq('id',userId).single();
+        setTimeout(function(){
+          if(profile && profile.role === 'admin'){
+            location.href = "admin-dashboard.html";
+          } else {
+            location.href = "dashboard.html";
+          }
+        },900);
+      } catch(e) {
+        setTimeout(function(){location.href="dashboard.html";},900);
+      }
     })
     .catch(function(e){showMsg(e.message||"Erreur.","error");btn.disabled=false;btn.textContent="Se connecter";});
 }
