@@ -107,7 +107,19 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
 @media(max-width:960px){.piliers-grid,.tel-grid{grid-template-columns:repeat(2,1fr)}.comm-hero-stats{gap:28px}}
 @media(max-width:640px){.ms-header,.piliers,.telegram,.rejoindre,.ms-footer{padding-left:20px;padding-right:20px}.comm-hero{padding:52px 20px 44px}.piliers-grid,.tel-grid{grid-template-columns:1fr}.ms-nav a:not(.btn-o):not(.btn-s){display:none}.esprit-values{gap:24px}.rej-btns{flex-direction:column}}
 </style>
-</head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function() {
+  const SB_URL = "https://lgxnejnihodyfgxlyycd.supabase.co";
+  const SB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo";
+  const sb = supabase.createClient(SB_URL, SB_KEY);
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = "login.html"; return; }
+  const { data: profile } = await sb.from("profiles").select("role").eq("id", session.user.id).single();
+  const role = profile?.role || "visitor";
+  if (!["member","vip","admin"].includes(role)) { window.location.href = "pricing.html"; return; }
+})();
+</script></head>
 <body>
 <div class="page-shell">
 
