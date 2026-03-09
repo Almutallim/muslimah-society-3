@@ -216,21 +216,47 @@ a{text-decoration:none;color:inherit}
   const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo';
   const sb = supabase.createClient(SB_URL, SB_KEY);
   const { data: { session } } = await sb.auth.getSession();
-  if (!session) { window.location.href = 'login.html'; return; }
+
+  // Navbar dynamique
+  const navAuth = document.getElementById('nav-auth');
+
+  if (!session) {
+    // non connectée → rediriger
+    window.location.href = 'login.html';
+    return;
+  }
+
   const { data: profile } = await sb.from('profiles').select('role').eq('id', session.user.id).single();
   const role = profile?.role || 'visitor';
-  if (!['member','vip','admin'].includes(role)) { window.location.href = 'pricing.html'; return; }
-  // Si VIP ou admin : déverrouiller tout
-  if (['vip','admin'].includes(role)) {
-    document.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.ac-lock-overlay').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.af-lock').forEach(el => el.style.display = 'none');
-      document.querySelectorAll('.access-member').forEach(el => {
-        el.textContent = '✓ Déverrouillé';
-        el.style.color = 'var(--gold)';
-      });
-    });
+
+  // Mettre à jour la navbar
+  if (navAuth) {
+    if (role === 'vip' || role === 'admin') {
+      navAuth.innerHTML = '<a href="dashboard.html" class="btn-s">✦ VIP</a>';
+    } else if (role === 'member') {
+      navAuth.innerHTML = '<a href="dashboard.html" class="btn-o">Mon espace</a>';
+    } else {
+      navAuth.innerHTML = '<a href="pricing.html" class="btn-o">S\'abonner</a>';
+    }
   }
+
+  // Visiteur sans abonnement → pricing
+  if (!['member','vip','admin'].includes(role)) {
+    window.location.href = 'pricing.html';
+    return;
+  }
+
+  // Déverrouiller le contenu pour member/vip/admin
+  document.addEventListener('DOMContentLoaded', () => {
+    // Retirer tous les cadenas
+    document.querySelectorAll('.ac-lock-overlay').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.af-lock').forEach(el => el.style.display = 'none');
+    // Badge selon rôle
+    document.querySelectorAll('.access-member').forEach(el => {
+      el.textContent = role === 'vip' || role === 'admin' ? '✦ VIP' : '✓ Member';
+      el.style.color = 'var(--gold)';
+    });
+  });
 })();
 </script>
 </head>
@@ -248,7 +274,7 @@ a{text-decoration:none;color:inherit}
     <a href="audio.html" class="active">La Voix</a>
     <a href="vip-events.html">Les Majalis</a>
     <a href="library.html">Bibliothèque</a>
-    <a href="login.html" class="btn-o">Connexion</a>
+    <span id="nav-auth"><a href="login.html" class="btn-o">Connexion</a></span>
     <a href="pricing.html" class="btn-s">VIP</a>
   </nav>
 </header>
