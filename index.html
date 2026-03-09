@@ -331,8 +331,8 @@ body::before{
       <a href="community.html">Communauté</a>
       <a href="pricing.html">Abonnements</a>
       <a href="index.html#contact">Contact</a>
-      <a href="login.html" class="btn-outline" style="padding:8px 18px">Connexion</a>
-      <a href="pricing.html" class="btn-solid" style="padding:8px 18px">VIP</a>
+      <span id="nav-auth"><a href="login.html" class="btn-outline" style="padding:8px 18px">Connexion</a>
+      <a href="pricing.html" class="btn-solid" style="padding:8px 18px">VIP</a></span>
     </nav>
   </header>
 
@@ -737,6 +737,23 @@ function subscribeNewsletter(e){
 function openModal(id){ const m = document.getElementById('modal-'+id); if(m) m.classList.add('open'); }
 function closeModal(id){ const m = document.getElementById('modal-'+id); if(m) m.classList.remove('open'); }
 document.querySelectorAll('.modal-ov').forEach(m => m.addEventListener('click', e => { if(e.target === m) m.classList.remove('open'); }));
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function() {
+  const sb = supabase.createClient('https://lgxnejnihodyfgxlyycd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo');
+  const { data: { session } } = await sb.auth.getSession();
+  const navAuth = document.getElementById('nav-auth');
+  if (!navAuth) return;
+  if (!session) return; // non connectée : navbar statique déjà correcte
+  const { data: profile } = await sb.from('profiles').select('role').eq('id', session.user.id).single();
+  const role = profile?.role || 'visitor';
+  if (role === 'vip' || role === 'admin') {
+    navAuth.innerHTML = '<a href="dashboard.html" class="btn-s">✦ VIP</a>';
+  } else if (role === 'member') {
+    navAuth.innerHTML = '<a href="dashboard.html" class="btn-o">Mon espace</a>';
+  }
+})();
 </script>
 </body>
 </html>
