@@ -503,7 +503,15 @@ body::before{
           <li>Accès prioritaire pour les VIP</li>
           <li>Alger, Paris, Londres, Riyad</li>
         </ul>
-        <a href="pricing.html" class="btn-solid">Réserver ma place</a>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+  <a href="https://wa.me/213XXXXXXXXX?text=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20ma%20place%20pour%20une%20soir%C3%A9e%20Muslimah%20Society." target="_blank" class="btn-solid" style="background:#25d366;border-color:#25d366;display:flex;align-items:center;gap:7px">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.118 1.524 5.847L0 24l6.347-1.501A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.793 9.793 0 01-5.017-1.38l-.36-.214-3.768.891.934-3.668-.235-.375A9.793 9.793 0 012.182 12C2.182 6.58 6.58 2.182 12 2.182c5.42 0 9.818 4.398 9.818 9.818 0 5.42-4.398 9.818-9.818 9.818z"/></svg>
+    WhatsApp
+  </a>
+  <a href="mailto:contact@muslimahsociety.com?subject=R%C3%A9servation%20Soir%C3%A9e%20Muslimah%20Society&body=Bonjour%2C%20je%20souhaite%20r%C3%A9server%20ma%20place." class="btn-solid" style="display:flex;align-items:center;gap:7px">
+    ✉ Email
+  </a>
+</div>
       </div>
     </div>
   </section>
@@ -679,9 +687,9 @@ body::before{
       <div class="fmono">MS</div>
       <div class="flegal">
         <a onclick="openModal('cgu')">CGU</a>
-        <a onclick="openModal('cgv')">CGV</a>
+        <a href="#" onclick="openModal('cgv');return false;" style="cursor:pointer">CGV</a>
         <a onclick="openModal('privacy')">Confidentialité</a>
-        <a onclick="openModal('mentions')">Mentions légales</a>
+        <a href="#" onclick="openModal('mentions');return false;" style="cursor:pointer">Mentions légales</a>
       </div>
     </div>
   </footer>
@@ -710,8 +718,16 @@ function sendContact(e){
     msg.textContent = 'Veuillez remplir tous les champs.';
     return;
   }
-  const mailto = `mailto:contact@muslimahsociety.com?subject=${encodeURIComponent('[' + sujet + '] — ' + prenom)}&body=${encodeURIComponent('Prénom : ' + prenom + '\nEmail : ' + email + '\nSujet : ' + sujet + '\n\nMessage :\n' + message)}`;
-  window.location.href = mailto;
+  const subject = encodeURIComponent('[' + sujet + '] — ' + prenom);
+  const body = encodeURIComponent('Prénom : ' + prenom + '\nEmail : ' + email + '\nSujet : ' + sujet + '\n\nMessage :\n' + message);
+  const domain = email.split('@')[1]?.toLowerCase() || '';
+  if (domain.includes('gmail')) {
+    window.open('https://mail.google.com/mail/?view=cm&to=contact@muslimahsociety.com&su=' + subject + '&body=' + body, '_blank');
+  } else if (domain.includes('yahoo')) {
+    window.open('https://compose.mail.yahoo.com/?to=contact@muslimahsociety.com&subject=' + subject + '&body=' + body, '_blank');
+  } else {
+    window.location.href = 'mailto:contact@muslimahsociety.com?subject=' + subject + '&body=' + body;
+  }
   msg.style.display = 'block';
   msg.style.background = 'rgba(80,140,100,.08)';
   msg.style.border = '1px solid rgba(80,140,100,.2)';
@@ -729,7 +745,16 @@ function subscribeNewsletter(e){
     setTimeout(()=>{ btn.textContent = "S'inscrire"; btn.style.background = ''; }, 2000);
     return;
   }
-  window.location.href = `mailto:contact@muslimahsociety.com?subject=${encodeURIComponent('Newsletter — Inscription')}&body=${encodeURIComponent('Nouvelle inscription newsletter : ' + email)}`;
+  const nlSubject = encodeURIComponent('Newsletter — Inscription');
+  const nlBody = encodeURIComponent('Nouvelle inscription newsletter : ' + email);
+  const nlDomain = email.split('@')[1]?.toLowerCase() || '';
+  if (nlDomain.includes('gmail')) {
+    window.open('https://mail.google.com/mail/?view=cm&to=contact@muslimahsociety.com&su=' + nlSubject + '&body=' + nlBody, '_blank');
+  } else if (nlDomain.includes('yahoo')) {
+    window.open('https://compose.mail.yahoo.com/?to=contact@muslimahsociety.com&subject=' + nlSubject + '&body=' + nlBody, '_blank');
+  } else {
+    window.location.href = 'mailto:contact@muslimahsociety.com?subject=' + nlSubject + '&body=' + nlBody;
+  }
   input.value = '';
   btn.textContent = '✓ Inscrite !';
   setTimeout(()=>{ btn.textContent = "S'inscrire"; }, 2400);
