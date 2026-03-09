@@ -1,141 +1,500 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Audios exclusifs — Muslimah Society</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-  <style>
-:root{--gold:#c9a84c;--gold-p:#f0e4c0;--blush:#e8d5d0;--blush-l:#f5ede9;--ivory:#fdf8f2;--text:#3d2b25;--text-m:#7a5a50;--text-l:#a89080;--rose-d:#b08880;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Cormorant Garamond',serif;background:var(--ivory);color:var(--text);}
-a{color:inherit;text-decoration:none;}
-.wrap{max-width:900px;margin:0 auto;padding:0 24px;}
-.ms-header{position:sticky;top:0;z-index:800;background:linear-gradient(to bottom,rgba(253,248,242,.98),rgba(250,244,236,.95));border-bottom:1px solid var(--gold-p);backdrop-filter:blur(10px);}
-.ms-header .inner{height:68px;display:flex;align-items:center;justify-content:space-between;gap:14px;}
-.ms-logo{display:flex;align-items:center;gap:10px;}
-.ms-logo-mark{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 35% 30%,rgba(255,252,245,1),rgba(240,228,200,.55));}
-.ms-logo-mark span{font-family:'Cinzel',serif;font-size:12px;color:var(--gold);}
-.ms-logo-name{font-family:'Cinzel',serif;font-size:12px;letter-spacing:3px;color:var(--text);}
-.ms-nav{display:flex;gap:10px;align-items:center;}
-.btn{display:inline-flex;align-items:center;padding:8px 18px;min-height:38px;border-radius:30px;font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;border:1.5px solid transparent;cursor:pointer;transition:all .3s;}
-.btn-ghost{border-color:rgba(201,168,76,.3);color:var(--text-m);background:transparent;}.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
-.btn-gold{border-color:var(--gold);background:var(--gold);color:#fff;}.btn-gold:hover{background:#b8923e;}
-.btn-vip{border-color:var(--rose-d);background:var(--rose-d);color:#fff;}.btn-vip:hover{background:#9a7068;}
-.btn-danger{border-color:rgba(180,60,60,.3);color:#8b3a3a;background:transparent;}.btn-danger:hover{background:rgba(180,60,60,.08);}
-.page{padding:32px 0 64px;}
-.hero-sm{padding:36px 0 28px;background:linear-gradient(160deg,var(--blush-l),var(--blush) 40%,rgba(216,208,228,.5) 80%,var(--blush-l));border-bottom:1px solid rgba(201,168,76,.12);text-align:center;}
-.chip{display:inline-block;padding:5px 14px;border-radius:20px;border:1px solid var(--gold-p);background:rgba(255,252,245,.85);font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
-.hero-title{font-family:'Cinzel',serif;font-size:clamp(20px,4vw,32px);font-weight:500;letter-spacing:2px;margin-bottom:8px;}
-.hero-sub{font-size:clamp(15px,2vw,18px);font-style:italic;color:var(--text-m);}
-.card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;box-shadow:0 8px 28px rgba(61,43,37,.08);overflow:hidden;position:relative;margin-bottom:16px;}
-.card::before{content:'';position:absolute;top:6px;left:6px;width:12px;height:12px;border-top:1px solid var(--gold-p);border-left:1px solid var(--gold-p);}
-.card::after{content:'';position:absolute;bottom:6px;right:6px;width:12px;height:12px;border-bottom:1px solid var(--gold-p);border-right:1px solid var(--gold-p);}
-.card-head{padding:16px 22px;background:linear-gradient(155deg,rgba(232,213,208,.4),rgba(216,208,228,.18));border-bottom:1px solid rgba(201,168,76,.14);display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.card-head h2,.card-head h3{font-family:'Cinzel',serif;font-size:15px;font-weight:500;letter-spacing:1px;}
-.card-body{padding:22px 24px 26px;}
-.card-body p{font-size:17px;line-height:1.9;color:var(--text-m);margin-bottom:12px;}
-.card-body h2,.card-body h3{font-family:'Cinzel',serif;font-size:16px;font-weight:500;letter-spacing:1px;color:var(--text);margin:20px 0 10px;}
-.card-body h2:first-child,.card-body h3:first-child{margin-top:0;}
-.card-body ul{list-style:none;margin:8px 0 14px;}
-.card-body li{font-size:16px;color:var(--text-m);padding:6px 0 6px 20px;position:relative;border-bottom:1px solid rgba(201,168,76,.08);}
-.card-body li:last-child{border-bottom:none;}
-.card-body li::before{content:'✦';position:absolute;left:0;color:var(--gold);font-size:9px;top:10px;}
-.kicker{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
-.badge{display:inline-block;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:20px;}
-.badge.member{background:rgba(201,168,76,.12);color:#9a7830;border:1px solid rgba(201,168,76,.28);}
-.badge.vip{background:rgba(176,136,128,.15);color:var(--rose-d);border:1px solid rgba(176,136,128,.28);}
-.badge.active{background:rgba(80,140,100,.1);color:#3a6b4a;border:1px solid rgba(80,140,100,.25);}
-.badge.inactive{background:rgba(160,144,128,.1);color:var(--text-l);border:1px solid rgba(160,144,128,.2);}
-.badge.none{background:rgba(160,144,128,.08);color:var(--text-l);border:1px solid rgba(160,144,128,.18);}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
-@media(max-width:600px){.grid2,.grid3,.grid4{grid-template-columns:1fr;}}
-@media(min-width:601px) and (max-width:800px){.grid4{grid-template-columns:repeat(2,1fr);}}
-.stat-card{background:rgba(240,228,192,.15);border:1px solid rgba(201,168,76,.18);border-radius:3px;padding:20px;text-align:center;}
-.stat-value{font-family:'Cinzel',serif;font-size:28px;font-weight:500;color:var(--gold);margin-bottom:6px;}
-.stat-label{font-size:13px;font-style:italic;color:var(--text-l);}
-.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;}
-.note{padding:14px 18px;border-left:3px solid var(--gold);background:linear-gradient(to right,rgba(201,168,76,.07),transparent);border-radius:0 3px 3px 0;font-size:16px;font-style:italic;color:var(--text-m);margin-bottom:14px;}
-.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px;}
-.info-item{padding:16px;background:rgba(240,228,192,.12);border:1px solid rgba(201,168,76,.15);border-radius:3px;}
-.info-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--text-l);margin-bottom:8px;}
-.info-value{font-size:20px;font-family:'Cinzel',serif;color:var(--gold);}
-table{width:100%;border-collapse:collapse;}
-th{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 12px;text-align:left;border-bottom:1px solid rgba(201,168,76,.2);background:rgba(240,228,192,.1);}
-td{padding:10px 12px;font-size:15px;color:var(--text-m);border-bottom:1px solid rgba(201,168,76,.08);}
-tr:last-child td{border-bottom:none;}
-input,select{width:100%;padding:10px 14px;border:1px solid rgba(201,168,76,.25);border-radius:3px;background:rgba(255,252,245,.8);font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);outline:none;transition:border-color .3s;}
-input:focus,select:focus{border-color:rgba(201,168,76,.6);}
-.search-bar{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;}
-.search-bar input{flex:1;min-width:180px;}
-.search-bar select{width:160px;flex-shrink:0;}
-.reward-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
-@media(max-width:600px){.reward-grid{grid-template-columns:1fr;}}
-.reward-card{background:rgba(255,252,248,.9);border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:18px;text-align:center;}
-.reward-card.locked{opacity:.55;filter:grayscale(.4);}
-.reward-card h3{font-family:'Cinzel',serif;font-size:13px;letter-spacing:1px;margin:10px 0 6px;}
-.reward-card p{font-size:14px;font-style:italic;color:var(--text-m);}
-.reward-icon{font-size:28px;margin-bottom:4px;}
-.code-box{background:rgba(240,228,192,.2);border:1px solid rgba(201,168,76,.3);border-radius:3px;padding:16px 20px;font-family:'Cinzel',serif;font-size:22px;letter-spacing:4px;text-align:center;color:var(--gold);margin:14px 0;}
-.quran-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;}
-.quran-controls select{width:auto;min-width:140px;}
-.audio-player{width:100%;margin:14px 0;}
-.verse-display{font-size:22px;line-height:2.2;text-align:right;direction:rtl;color:var(--text);padding:20px;background:rgba(240,228,192,.1);border-radius:3px;border:1px solid rgba(201,168,76,.15);margin-bottom:12px;}
-.verse-trans{font-size:16px;font-style:italic;color:var(--text-m);line-height:1.8;padding:0 4px;}
-.nav-verse{display:flex;justify-content:space-between;margin-top:12px;}
-.ms-footer{background:linear-gradient(to bottom,#ede3dc,#e4d8d0);border-top:1px solid var(--gold-p);padding:22px 0;margin-top:32px;}
-.ft-copy{font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--text-l);}
-@media(max-width:719px){.ms-logo-name{display:none;}}
-  </style>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>La Voix — Muslimah Society · Maison éditoriale</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue-deep:#8fa8bc;
+  --blue-mid:#a8bfce;
+  --blue-soft:#bccdd9;
+  --blue-pale:#d4e2ea;
+  --blue-whisper:#e8f0f4;
+  --blue-bg:#f0f5f8;
+  --ivory:#fdfcfa;
+  --cream:#f8f6f2;
+  --white-card:rgba(255,254,252,.95);
+  --ink:#1e2d38;
+  --text:#2e3f4d;
+  --soft:#5a7080;
+  --faint:#8aa0b0;
+  --gold:#c9a84c;
+  --sh:0 14px 40px rgba(100,140,170,.14);
+  --r:6px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Cormorant Garamond',serif;color:var(--text);background:var(--blue-bg);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+
+/* ══ NAV ══ */
+.ms-header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:15px 42px;
+  background:rgba(240,245,248,.96);backdrop-filter:blur(14px);border-bottom:1px solid rgba(140,180,205,.25)}
+.ms-logo{display:flex;align-items:center;gap:12px}
+.ms-logo-mono{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  border:1.5px solid var(--blue-mid);color:var(--blue-deep);font-family:'Cinzel',serif;font-size:13px;background:rgba(255,254,252,.9)}
+.ms-logo-name{font-family:'Cinzel',serif;font-size:13px;letter-spacing:3px;color:var(--ink)}
+.ms-logo-sub{font-size:10px;color:var(--faint);font-style:italic;letter-spacing:1px}
+.ms-nav{display:flex;align-items:center;gap:20px}
+.ms-nav a{font-size:15px;color:var(--soft);font-style:italic;transition:.25s}
+.ms-nav a:hover,.ms-nav a.active{color:var(--blue-deep)}
+.btn-o{border-radius:40px;padding:8px 20px;border:1.5px solid var(--blue-mid);color:var(--blue-deep);background:transparent;font-size:14px;font-style:italic;transition:.25s}
+.btn-o:hover{background:var(--blue-mid);color:#fff}
+.btn-s{border-radius:40px;padding:8px 20px;border:1.5px solid var(--blue-deep);background:var(--blue-deep);color:#fff;font-size:14px;font-style:italic;transition:.25s}
+.btn-s:hover{background:var(--blue-mid)}
+
+/* ══ MASTHEAD ══ */
+.masthead{background:linear-gradient(155deg,var(--blue-soft) 0%,var(--blue-mid) 45%,var(--blue-deep) 100%);
+  padding:56px 42px 48px;text-align:center;position:relative;overflow:hidden}
+.masthead::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.16),transparent 55%)}
+.masthead-sup{font-family:'Cinzel',serif;font-size:10px;letter-spacing:6px;text-transform:uppercase;
+  color:rgba(255,255,255,.65);margin-bottom:16px;position:relative;z-index:2}
+.masthead-icon{font-size:32px;color:rgba(255,255,255,.4);margin-bottom:14px;position:relative;z-index:2;display:block}
+.masthead-title{font-family:'Playfair Display',serif;font-size:clamp(50px,8vw,96px);
+  color:rgba(255,255,255,.95);letter-spacing:5px;line-height:1;margin-bottom:10px;position:relative;z-index:2}
+.masthead-title em{color:#e8e0c8;font-style:italic}
+.masthead-rule{display:flex;align-items:center;justify-content:center;gap:18px;margin:18px 0;position:relative;z-index:2}
+.masthead-rule hr{width:110px;border:none;border-top:1px solid rgba(255,255,255,.3)}
+.masthead-rule-ic{color:rgba(255,255,255,.5);font-size:14px}
+.masthead-sub{font-size:17px;font-style:italic;color:rgba(255,255,255,.65);letter-spacing:1px;position:relative;z-index:2}
+
+/* ══ BANDE FILTRE ══ */
+.filter-band{background:rgba(232,240,244,.8);border-bottom:1px solid rgba(140,180,205,.2);padding:0 42px}
+.filter-inner{max-width:1200px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none}
+.filter-inner::-webkit-scrollbar{display:none}
+.filter-item{flex-shrink:0;padding:13px 22px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:var(--faint);border-right:1px solid rgba(140,180,205,.18);cursor:pointer;transition:.25s;white-space:nowrap}
+.filter-item:hover,.filter-item.active{color:var(--blue-deep);background:rgba(140,180,205,.1)}
+.filter-item:last-child{border-right:none}
+
+/* ══ CONTENU PRINCIPAL ══ */
+.main{max-width:1200px;margin:0 auto;padding:56px 42px}
+
+/* Section head */
+.sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:32px;
+  padding-bottom:14px;border-bottom:1px solid rgba(140,180,205,.22)}
+.sec-num{font-family:'Playfair Display',serif;font-size:56px;color:rgba(140,180,205,.3);line-height:1}
+.sec-rub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:4px}
+.sec-title{font-family:'Playfair Display',serif;font-size:28px;color:var(--ink)}
+.sec-desc{font-size:15px;font-style:italic;color:var(--faint);margin-top:3px}
+.sec-block{margin-bottom:64px}
+
+/* ══ CARTE AUDIO GRANDE ══ */
+.audio-featured{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(140,180,205,.25);
+  border-radius:var(--r);overflow:hidden;background:var(--white-card);margin-bottom:32px;box-shadow:var(--sh)}
+.af-visual{background:linear-gradient(155deg,var(--blue-whisper),var(--blue-pale) 50%,var(--blue-soft));
+  display:flex;align-items:center;justify-content:center;min-height:280px;position:relative;overflow:hidden}
+.af-visual::after{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.3);border-radius:2px;pointer-events:none}
+.af-play-btn{width:68px;height:68px;border-radius:50%;background:rgba(255,255,255,.25);
+  backdrop-filter:blur(6px);border:1.5px solid rgba(255,255,255,.5);display:grid;place-items:center;
+  font-size:22px;color:#fff;cursor:pointer;transition:.3s;position:relative;z-index:2}
+.af-play-btn:hover{background:rgba(255,255,255,.4);transform:scale(1.08)}
+.af-body{padding:36px 38px;display:flex;flex-direction:column;justify-content:center}
+.af-type{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:12px}
+.af-title{font-family:'Playfair Display',serif;font-size:clamp(22px,2.5vw,32px);color:var(--ink);line-height:1.25;margin-bottom:8px}
+.af-sub{font-size:16px;font-style:italic;color:var(--blue-deep);margin-bottom:16px}
+.af-desc{font-size:17px;line-height:1.85;color:var(--soft);margin-bottom:24px}
+.af-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.af-tag{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;border:1px solid rgba(140,180,205,.3);color:var(--blue-deep);background:var(--blue-whisper)}
+.af-cta{display:inline-flex;align-items:center;gap:8px;border-radius:40px;padding:10px 24px;
+  background:var(--blue-mid);color:#fff;font-family:'Cinzel',serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;transition:.25s}
+.af-cta:hover{background:var(--blue-deep)}
+.af-lock{display:inline-flex;align-items:center;gap:8px;font-family:'Cinzel',serif;font-size:9px;
+  letter-spacing:2px;text-transform:uppercase;color:var(--faint);border:1px solid rgba(140,180,205,.3);
+  border-radius:40px;padding:10px 20px}
+
+/* ══ GRILLE AUDIO ══ */
+.audio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.audio-card{background:var(--white-card);border:1px solid rgba(140,180,205,.22);border-radius:var(--r);
+  overflow:hidden;transition:.3s;display:flex;flex-direction:column}
+.audio-card:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:rgba(140,180,205,.45)}
+.ac-visual{height:160px;background:linear-gradient(145deg,var(--blue-whisper),var(--blue-pale) 60%,var(--blue-soft));
+  display:flex;align-items:center;justify-content:center;position:relative}
+.ac-play{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.3);backdrop-filter:blur(4px);
+  border:1px solid rgba(255,255,255,.45);display:grid;place-items:center;font-size:16px;color:#fff;
+  cursor:pointer;transition:.25s}
+.ac-play:hover{background:rgba(255,255,255,.5);transform:scale(1.08)}
+.ac-lock-overlay{position:absolute;inset:0;background:rgba(220,232,240,.35);display:flex;align-items:center;justify-content:center}
+.ac-lock-icon{font-size:24px;color:rgba(140,180,205,.7)}
+.ac-body{padding:20px 22px;flex:1;display:flex;flex-direction:column}
+.ac-type{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:6px}
+.ac-title{font-family:'Playfair Display',serif;font-size:19px;color:var(--ink);line-height:1.3;margin-bottom:4px}
+.ac-sub{font-size:13px;font-style:italic;color:var(--blue-deep);margin-bottom:10px}
+.ac-text{font-size:14px;line-height:1.75;color:var(--soft);flex:1;margin-bottom:14px}
+.ac-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(140,180,205,.14)}
+.ac-dur{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;color:var(--faint)}
+.access-libre{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;color:var(--soft);border:1px solid rgba(140,180,205,.25);background:var(--blue-whisper)}
+.access-member{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;color:#3a7a3a;border:1px solid rgba(80,140,80,.25);background:rgba(80,140,80,.06)}
+.access-vip{font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;color:#fff;background:var(--gold);border:1px solid var(--gold)}
+
+/* ══ SECTION FONCÉE — BIENTÔT ══ */
+.coming-section{background:linear-gradient(155deg,var(--blue-soft),var(--blue-mid) 50%,var(--blue-deep));
+  padding:56px 42px;margin-top:0;position:relative;overflow:hidden}
+.coming-section::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 70% 30%,rgba(255,255,255,.08),transparent 55%)}
+.coming-inner{max-width:1200px;margin:0 auto;position:relative;z-index:2}
+.coming-head{display:flex;align-items:baseline;gap:18px;margin-bottom:32px;
+  padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.18)}
+.coming-num{font-family:'Playfair Display',serif;font-size:56px;color:rgba(255,255,255,.15);line-height:1}
+.coming-rub{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:4px}
+.coming-title{font-family:'Playfair Display',serif;font-size:28px;color:#fff}
+.coming-desc{font-size:15px;font-style:italic;color:rgba(255,255,255,.5);margin-top:3px}
+.coming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.coming-card{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--r);padding:28px;transition:.3s;backdrop-filter:blur(4px)}
+.coming-card:hover{background:rgba(255,255,255,.15)}
+.coming-card-ep{font-family:'Cinzel',serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:12px}
+.coming-card-title{font-family:'Playfair Display',serif;font-size:20px;color:#fff;line-height:1.3;margin-bottom:8px}
+.coming-card-text{font-size:14px;font-style:italic;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:16px}
+.coming-badge{display:inline-block;font-family:'Cinzel',serif;font-size:8px;letter-spacing:2px;
+  text-transform:uppercase;padding:4px 12px;border-radius:20px;
+  border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.7)}
+
+/* ══ SECTION STUDIO ══ */
+.studio-section{background:var(--blue-whisper);padding:56px 42px;border-top:1px solid rgba(140,180,205,.2)}
+.studio-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.studio-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--blue-deep);margin-bottom:14px}
+.studio-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);color:var(--ink);line-height:1.2;margin-bottom:16px}
+.studio-text{font-size:18px;line-height:1.9;color:var(--soft);margin-bottom:24px}
+.studio-cta{display:inline-flex;align-items:center;gap:8px;border-radius:40px;padding:12px 28px;
+  border:1.5px solid var(--blue-mid);color:var(--blue-deep);font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;transition:.25s}
+.studio-cta:hover{background:var(--blue-mid);color:#fff}
+.studio-visual{background:linear-gradient(155deg,var(--blue-pale),var(--blue-soft));
+  border-radius:var(--r);min-height:320px;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;border:1px solid rgba(140,180,205,.25)}
+.studio-visual::after{content:"";position:absolute;inset:16px;border:1px solid rgba(255,255,255,.3);border-radius:2px}
+.studio-visual-text{font-family:'Playfair Display',serif;font-size:72px;color:rgba(255,255,255,.25);font-style:italic;position:relative;z-index:2}
+
+/* ══ FOOTER ══ */
+.ms-footer{padding:52px 42px 32px;background:linear-gradient(to bottom,var(--blue-soft),var(--blue-mid));
+  border-top:1px solid rgba(140,180,205,.3);margin-top:0}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:38px;max-width:1200px;margin:0 auto 32px}
+.fc-logo{font-family:'Cinzel',serif;font-size:15px;color:#fff;letter-spacing:3px;margin-bottom:4px}
+.fc-logo-sub{font-size:12px;font-style:italic;color:rgba(255,255,255,.6);margin-bottom:12px}
+.fc-desc{font-size:14px;font-style:italic;color:rgba(255,255,255,.6);line-height:1.74;margin-bottom:16px}
+.fc-soc{display:flex;gap:8px}
+.fc-soc a{width:32px;height:32px;border:1px solid rgba(255,255,255,.3);border-radius:50%;display:grid;place-items:center;font-family:'Cinzel',serif;font-size:9px;color:#fff;transition:.2s}
+.fc-soc a:hover{background:rgba(255,255,255,.15)}
+.fc-title{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:rgba(255,255,255,.7);padding-bottom:8px;margin-bottom:12px;border-bottom:1px solid rgba(255,255,255,.18)}
+.fc-links{list-style:none}
+.fc-links li{margin-bottom:6px}
+.fc-links a{font-size:14px;color:rgba(255,255,255,.65);transition:.2s}
+.fc-links a:hover{color:#fff}
+.footer-bot{max-width:1200px;margin:0 auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.18);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
+.fcopy{font-size:12px;font-style:italic;color:rgba(255,255,255,.5)}
+.flegal{display:flex;gap:14px}
+.flegal a{font-size:12px;font-style:italic;color:rgba(255,255,255,.5)}
+.flegal a:hover{color:#fff}
+
+@media(max-width:1060px){
+  .audio-featured,.studio-inner{grid-template-columns:1fr}
+  .audio-grid,.coming-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .ms-header,.main,.coming-section,.studio-section,.ms-footer{padding-left:20px;padding-right:20px}
+  .masthead{padding:40px 20px 36px}
+  .audio-grid,.coming-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .ms-nav a:not(.btn-o):not(.btn-s){display:none}
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function() {
+  const SB_URL = 'https://lgxnejnihodyfgxlyycd.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo';
+  const sb = supabase.createClient(SB_URL, SB_KEY);
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { window.location.href = 'login.html'; return; }
+  const { data: profile } = await sb.from('profiles').select('role').eq('id', session.user.id).single();
+  const role = profile?.role || 'visitor';
+  if (!['member','vip','admin'].includes(role)) { window.location.href = 'pricing.html'; return; }
+  // Si VIP ou admin : déverrouiller tout
+  if (['vip','admin'].includes(role)) {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.ac-lock-overlay').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.af-lock').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.access-member').forEach(el => {
+        el.textContent = '✓ Déverrouillé';
+        el.style.color = 'var(--gold)';
+      });
+    });
+  }
+})();
+</script>
 </head>
 <body>
+
+<!-- NAV -->
 <header class="ms-header">
-  <div class="wrap"><div class="inner">
-    <a class="ms-logo" href="index.html">
-      <div class="ms-logo-mark"><span>MS</span></div>
-      <div class="ms-logo-name">MUSLIMAH SOCIETY</div>
-    </a>
-    <div class="ms-nav">
-      <a class="btn btn-ghost" href="pricing.html" style="border-color:var(--gold);color:var(--gold);">Abonnements</a><a class="btn btn-ghost" href="dashboard.html">Mon espace</a>
-    </div>
-  </div></div>
+  <a class="ms-logo" href="index.html">
+    <div class="ms-logo-mono">MS</div>
+    <div><div class="ms-logo-name">MUSLIMAH SOCIETY</div><div class="ms-logo-sub">by Institut Al Muta'allim</div></div>
+  </a>
+  <nav class="ms-nav">
+    <a href="index.html">Accueil</a>
+    <a href="la-plume/index.html">La Plume</a>
+    <a href="audio.html" class="active">La Voix</a>
+    <a href="vip-events.html">Les Majalis</a>
+    <a href="library.html">Bibliothèque</a>
+    <a href="login.html" class="btn-o">Connexion</a>
+    <a href="pricing.html" class="btn-s">VIP</a>
+  </nav>
 </header>
-<section class="hero-sm">
-  <div class="wrap">
-    <div class="chip">Espace Member</div>
-    <div class="hero-title">Audithèque</div>
-    <div class="hero-sub">Vos messages et conférences audio privés</div>
-  </div>
-</section>
-<main class="page">
-  <div class="wrap">
-<div class="card">
-  <div class="card-head"><h2>Messages audio du mois</h2></div>
-  <div class="card-body">
-    <div class="note">Les audios sont réservés aux membres actifs. Chaque mois, de nouveaux messages sont publiés.</div>
-    <div id="audioList">
-      <div style="padding:32px;text-align:center;font-style:italic;color:var(--text-l);">Les audios du mois seront disponibles ici prochainement.</div>
-    </div>
+
+<!-- MASTHEAD -->
+<div class="masthead">
+  <div class="masthead-sup">Muslimah Society · Maison éditoriale</div>
+  <span class="masthead-icon">🎙</span>
+  <h1 class="masthead-title"><em>La</em> Voix</h1>
+  <div class="masthead-rule"><hr/><span class="masthead-rule-ic">✦</span><hr/></div>
+  <p class="masthead-sub">Narrations, podcasts &amp; lectures — pour celles qui préfèrent entendre</p>
+</div>
+
+<!-- BANDE FILTRE -->
+<div class="filter-band">
+  <div class="filter-inner">
+    <span class="filter-item active" onclick="filterVoix(this,'all')">Tout écouter</span>
+    <span class="filter-item" onclick="filterVoix(this,'narration')">Narrations</span>
+    <span class="filter-item" onclick="filterVoix(this,'podcast')">Podcasts</span>
+    <span class="filter-item" onclick="filterVoix(this,'lecture')">Lectures</span>
+    <span class="filter-item" onclick="filterVoix(this,'libre')">Accès libre</span>
+    <span class="filter-item" onclick="filterVoix(this,'vip')">VIP</span>
   </div>
 </div>
+
+<!-- CONTENU -->
+<div class="main">
+
+  <!-- SECTION I — NARRATIONS -->
+  <div class="sec-block" data-voix="narration">
+    <div class="sec-head">
+      <div class="sec-num">I</div>
+      <div>
+        <div class="sec-rub">La Voix des Sahabiyyat · Narrations</div>
+        <div class="sec-title">Les chroniques lues à voix haute</div>
+        <div class="sec-desc">Les récits de La Plume, narrés avec soin — pour accompagner votre quotidien</div>
+      </div>
+    </div>
+
+    <!-- Featured -->
+    <div class="audio-featured">
+      <div class="af-visual">
+        <div class="af-play-btn">▶</div>
+      </div>
+      <div class="af-body">
+        <div class="af-type">Narration · Vol. I · 12 min</div>
+        <div class="af-title">Khadija bint Khuwaylid</div>
+        <div class="af-sub">Celle qui crut la première</div>
+        <div class="af-desc">La chronique complète lue à voix haute, avec fond musical doux et ambiance orientale. Fermez les yeux — laissez l'histoire vous porter.</div>
+        <div class="af-meta">
+          <span class="af-tag">Narration</span>
+          <span class="af-tag">12 min</span>
+          <span class="access-libre">Extrait libre</span>
+        </div>
+        <span class="af-lock">🔒 Narration complète — réservée Member</span>
+      </div>
+    </div>
+
+    <div class="audio-grid">
+      <div class="audio-card" data-type="narration">
+        <div class="ac-visual">
+          <div class="ac-lock-overlay"><span class="ac-lock-icon">🔒</span></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-type">Narration · Vol. II</div>
+          <div class="ac-title">Aïsha bint Abî Bakr</div>
+          <div class="ac-sub">La savante de l'Islam</div>
+          <div class="ac-text">La chronique de la Mère des croyants, lue avec douceur et respect. 15 minutes de présence.</div>
+          <div class="ac-foot"><span class="ac-dur">15 min</span><span class="access-member">Member</span></div>
+        </div>
+      </div>
+      <div class="audio-card" data-type="narration">
+        <div class="ac-visual">
+          <div class="ac-lock-overlay"><span class="ac-lock-icon">🔒</span></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-type">Narration · Vol. III</div>
+          <div class="ac-title">Fâtima bint Muhammad</div>
+          <div class="ac-sub">Maîtresse des femmes du Paradis</div>
+          <div class="ac-text">Le récit de la fille du Prophète ﷺ — modestie, force et amour filial.</div>
+          <div class="ac-foot"><span class="ac-dur">14 min</span><span class="access-vip">VIP</span></div>
+        </div>
+      </div>
+      <div class="audio-card" data-type="narration" style="border-style:dashed;opacity:.7">
+        <div class="ac-visual" style="background:linear-gradient(145deg,var(--blue-whisper),var(--blue-pale))">
+          <span style="font-family:'Playfair Display',serif;font-size:40px;color:rgba(140,180,205,.4);font-style:italic">+</span>
+        </div>
+        <div class="ac-body">
+          <div class="ac-type">Narrations · Vol. IV → XX</div>
+          <div class="ac-title">Prochainement</div>
+          <div class="ac-sub">Les 20 narrations des Sahabiyyat</div>
+          <div class="ac-text">Les 20 premiers volumes des Sahabiyyat seront progressivement narrés et disponibles.</div>
+          <div class="ac-foot"><span class="ac-dur">—</span><span class="access-vip">VIP</span></div>
+        </div>
+      </div>
+    </div>
   </div>
-</main>
+
+  <!-- SECTION II — PODCASTS -->
+  <div class="sec-block" data-voix="podcast">
+    <div class="sec-head">
+      <div class="sec-num">II</div>
+      <div>
+        <div class="sec-rub">La Voix · Podcasts</div>
+        <div class="sec-title">Entretiens &amp; réflexions</div>
+        <div class="sec-desc">Conversations entre femmes de savoir — intimistes, profondes, sans filtre</div>
+      </div>
+    </div>
+    <div class="audio-grid">
+      <div class="audio-card" data-type="podcast">
+        <div class="ac-visual">
+          <div class="ac-lock-overlay"><span class="ac-lock-icon">🔒</span></div>
+        </div>
+        <div class="ac-body">
+          <div class="ac-type">Podcast · Épisode 1</div>
+          <div class="ac-title">Ce que Khadija nous apprend encore</div>
+          <div class="ac-sub">Entretien · 40 min</div>
+          <div class="ac-text">La directrice et une spécialiste de la Sîrah s'entretiennent sur la modernité du modèle de Khadija — entrepreneur, épouse, première croyante.</div>
+          <div class="ac-foot"><span class="ac-dur">40 min</span><span class="access-vip">VIP</span></div>
+        </div>
+      </div>
+      <div class="audio-card" data-type="podcast" style="opacity:.75;border-style:dashed">
+        <div class="ac-visual" style="background:linear-gradient(145deg,var(--blue-whisper),var(--blue-pale))">
+          <span style="font-size:32px;color:rgba(140,180,205,.4)">🎙</span>
+        </div>
+        <div class="ac-body">
+          <div class="ac-type">Podcast · Épisode 2</div>
+          <div class="ac-title">La science islamique au féminin</div>
+          <div class="ac-sub">Bientôt · ~35 min</div>
+          <div class="ac-text">Quel héritage intellectuel les femmes savantes ont-elles laissé ? Un regard sur les muhaddithât de l'histoire.</div>
+          <div class="ac-foot"><span class="ac-dur">Bientôt</span><span class="access-vip">VIP</span></div>
+        </div>
+      </div>
+      <div class="audio-card" data-type="podcast" style="opacity:.75;border-style:dashed">
+        <div class="ac-visual" style="background:linear-gradient(145deg,var(--blue-whisper),var(--blue-pale))">
+          <span style="font-size:32px;color:rgba(140,180,205,.4)">🎙</span>
+        </div>
+        <div class="ac-body">
+          <div class="ac-type">Podcast · Épisode 3</div>
+          <div class="ac-title">Foi &amp; vie contemporaine</div>
+          <div class="ac-sub">Bientôt · ~45 min</div>
+          <div class="ac-text">Comment vivre une foi authentique dans un monde qui valorise le bruit et la surface ? Une conversation sans compromis.</div>
+          <div class="ac-foot"><span class="ac-dur">Bientôt</span><span class="access-vip">VIP</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- SECTION BIENTÔT — LECTURES -->
+<section class="coming-section">
+  <div class="coming-inner">
+    <div class="coming-head">
+      <div class="coming-num">III</div>
+      <div>
+        <div class="coming-rub">La Voix · Lectures du Coran</div>
+        <div class="coming-title">Entendre le Livre</div>
+        <div class="coming-desc">Tadabbur audio — réflexion guidée sur les versets, lus et commentés</div>
+      </div>
+    </div>
+    <div class="coming-grid">
+      <div class="coming-card">
+        <div class="coming-card-ep">Sourate Al-Fâtiha</div>
+        <div class="coming-card-title">La Mère du Livre</div>
+        <div class="coming-card-text">7 versets. La prière que l'on répète 17 fois par jour — et que l'on comprend si rarement.</div>
+        <span class="coming-badge">Bientôt · VIP</span>
+      </div>
+      <div class="coming-card">
+        <div class="coming-card-ep">Sourate Al-Baqarah · versets choisis</div>
+        <div class="coming-card-title">La Vache — les perles cachées</div>
+        <div class="coming-card-text">Les versets les plus profonds de la plus longue sourate — méditation guidée et contexte historique.</div>
+        <span class="coming-badge">Bientôt · VIP</span>
+      </div>
+      <div class="coming-card">
+        <div class="coming-card-ep">Sourates protectrices</div>
+        <div class="coming-card-title">Al-Falaq · An-Nas · Al-Ikhlâs</div>
+        <div class="coming-card-text">Ces trois sourates que le Prophète ﷺ récitait chaque nuit — leur sens profond expliqué avec amour.</div>
+        <span class="coming-badge">Bientôt · Member</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION STUDIO -->
+<section class="studio-section">
+  <div class="studio-inner">
+    <div>
+      <div class="studio-label">Le Studio · Muslimah Society</div>
+      <h2 class="studio-title">Une voix pour la Maison</h2>
+      <p class="studio-text">La Voix est en cours de construction. Chaque narration est enregistrée avec soin — voix choisie, ambiance musicale douce, respect du texte sacré. Rejoignez VIP pour accéder aux premiers épisodes dès leur sortie.</p>
+      <a href="pricing.html" class="studio-cta">Rejoindre la Maison ✦</a>
+    </div>
+    <div class="studio-visual">
+      <span class="studio-visual-text">♪</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="ms-footer">
-  <div class="wrap"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <span class="ft-copy">© 2026 Institut Al Muta&#8217;allim — Muslimah Society</span>
-    <span class="ft-copy" style="display:flex;gap:16px;">
-      <a href="index.html" style="color:var(--text-l);">Accueil</a>
-      <a href="privacy.html" style="color:var(--text-l);">Confidentialité</a>
-      <a href="terms.html" style="color:var(--text-l);">CGU</a>
-    </span>
-  </div></div>
+  <div class="footer-grid">
+    <div>
+      <div class="fc-logo">MUSLIMAH SOCIETY</div>
+      <div class="fc-logo-sub">Maison éditoriale pour les femmes musulmanes</div>
+      <p class="fc-desc">Savoir authentique, spiritualité et raffinement.</p>
+      <div class="fc-soc"><a href="#">IG</a><a href="#">TG</a><a href="#">YT</a></div>
+    </div>
+    <div><div class="fc-title">La Plume</div><ul class="fc-links">
+      <li><a href="la-plume/index.html">Toutes les chroniques</a></li>
+      <li><a href="la-plume/read_01.html">Les Sahabiyyat</a></li>
+      <li><a href="la-plume/index.html">Histoire islamique</a></li>
+    </ul></div>
+    <div><div class="fc-title">La Maison</div><ul class="fc-links">
+      <li><a href="audio.html">La Voix</a></li>
+      <li><a href="vip-events.html">Les Majalis</a></li>
+      <li><a href="library.html">La Bibliothèque</a></li>
+      <li><a href="pricing.html">Abonnements</a></li>
+    </ul></div>
+    <div><div class="fc-title">Contact</div>
+      <p style="font-size:14px;color:rgba(255,255,255,.65)"><a href="/cdn-cgi/l/email-protection#d4b7bbbaa0b5b7a094b9a1a7b8bdb9b5bca7bbb7bdb1a0adfab7bbb9" style="color:rgba(255,255,255,.65)"><span class="__cf_email__" data-cfemail="32515d5c46535146725f47415e5b5f535a415d515b57464b1c515d5f">[email&#160;protected]</span></a></p>
+    </div>
+  </div>
+  <div class="footer-bot">
+    <span class="fcopy">© 2026 Institut Al Muta'allim — Muslimah Society</span>
+    <div class="flegal"><a href="legal.html">Mentions légales</a><a href="privacy.html">Confidentialité</a></div>
+  </div>
 </footer>
-<script src="js/supabaseClient.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/gate.js"></script>
-<script>requireMember();</script>
-</body>
-</html>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function filterVoix(el, filter) {
+  document.querySelectorAll('.filter-item').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+
+  const sections = document.querySelectorAll('.sec-block');
+  const cards = document.querySelectorAll('.audio-card');
+
+  if (filter === 'all') {
+    sections.forEach(s => s.style.display = 'block');
+    cards.forEach(c => { c.style.opacity = '1'; c.style.transform = ''; });
+    return;
+  }
+
+  if (filter === 'libre' || filter === 'vip') {
+    sections.forEach(s => s.style.display = 'block');
+    cards.forEach(c => {
+      const badge = c.querySelector('.access-' + filter);
+      c.style.opacity = badge ? '1' : '0.3';
+      c.style.transition
