@@ -287,8 +287,8 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opa
     <a href="../audio.html">La Voix</a>
     <a href="../vip-events.html">Les Majalis</a>
     <a href="../library.html">Bibliothèque</a>
-    <a href="../login.html" class="btn-o">Connexion</a>
-    <a href="../pricing.html" class="btn-s">VIP</a>
+    <span id="nav-auth"><a href="../login.html" class="btn-o">Connexion</a>
+    <a href="../pricing.html" class="btn-s">VIP</a></span>
   </nav>
 </header>
 
@@ -705,6 +705,23 @@ function filterRub(el, filter) {
 }
 
 // masthead rubriques removed
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(async function() {
+  const sb = supabase.createClient('https://lgxnejnihodyfgxlyycd.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxneG5lam5paG9keWZneGx5eWNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE0NDg2NTcsImV4cCI6MjA4NzAyNDY1N30.3l1LlRMJRFsjDUIOXjkGqy01y4y_SZw6A4KFyVTJAFo');
+  const { data: { session } } = await sb.auth.getSession();
+  const navAuth = document.getElementById('nav-auth');
+  if (!navAuth) return;
+  if (!session) return; // non connectée : navbar statique déjà correcte
+  const { data: profile } = await sb.from('profiles').select('role').eq('id', session.user.id).single();
+  const role = profile?.role || 'visitor';
+  if (role === 'vip' || role === 'admin') {
+    navAuth.innerHTML = '<a href="../dashboard.html" class="btn-s">✦ VIP</a>';
+  } else if (role === 'member') {
+    navAuth.innerHTML = '<a href="../dashboard.html" class="btn-o">Mon espace</a>';
+  }
+})();
 </script>
 </body>
 </html>
