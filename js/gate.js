@@ -17,7 +17,7 @@ async function requireAuth(){
   return user;
 }
 
-// Petit helper: récupère le profil sans casser si absent
+
 async function getProfileSafe(userId){
   const { data, error } = await supabaseClient
     .from("profiles")
